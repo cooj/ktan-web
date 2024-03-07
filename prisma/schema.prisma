@@ -1,5 +1,6 @@
 generator client {
-    provider = "prisma-client-js"
+    provider        = "prisma-client-js"
+    previewFeatures = ["relationJoins"]
 }
 
 datasource db {
@@ -73,9 +74,7 @@ model Menu {
     status    Int?     @default(1)
     is_goods  Int?     @default(0)
 
-    parentMenu Menu?  @relation("menu_p_id", fields: [p_id], references: [id])
-    children   Menu[] @relation("menu_p_id")
-
+    @@index([p_id], map: "menu_p_id_fkey")
     @@map("menu")
 }
 
