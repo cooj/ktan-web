@@ -1,0 +1,149 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model Admin {
+    id        Int      @id @default(autoincrement())
+    account   String?  @unique @db.VarChar(50)
+    username  String?  @db.VarChar(30)
+    password  String?  @db.VarChar(255)
+    avatar    String?  @db.VarChar(255)
+    status    Int?     @default(1)
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    @@map("admin")
+}
+
+model Company {
+    id              Int      @id @default(autoincrement())
+    company         String   @db.VarChar(100)
+    address         String?  @db.VarChar(200)
+    logo            String?  @db.VarChar(255)
+    logo2           String?  @db.VarChar(255)
+    qr_code         String?  @db.VarChar(255)
+    phone           String?  @db.VarChar(20)
+    email           String?  @db.VarChar(50)
+    seo_keyword     String?  @db.VarChar(100)
+    seo_description String?  @db.VarChar(200)
+    copyright       String?  @db.VarChar(200)
+    createdAt       DateTime @default(now()) @map("created_at")
+    updatedAt       DateTime @updatedAt @map("updated_at")
+    filing          String?  @db.VarChar(100)
+
+    @@map("company")
+}
+
+model System {
+    id          Int      @id @default(autoincrement())
+    title       String?  @db.VarChar(100)
+    address     String?  @db.VarChar(200)
+    logo        String?  @db.VarChar(255)
+    logo2       String?  @db.VarChar(255)
+    qrCode      String?  @map("qr_code") @db.VarChar(255)
+    phone       String?  @db.VarChar(20)
+    email       String?  @db.VarChar(50)
+    keyword     String?  @db.VarChar(100)
+    description String?  @db.VarChar(200)
+    filing      String?  @db.VarChar(100)
+    copyright   String?  @db.VarChar(200)
+    createdAt   DateTime @default(now()) @map("created_at")
+    updatedAt   DateTime @updatedAt @map("updated_at")
+    icon        String?  @db.VarChar(255)
+
+    @@map("system")
+}
+
+model Menu {
+    id        Int      @id @default(autoincrement())
+    p_id      Int?     @default(0)
+    icon      String?  @db.VarChar(50)
+    sort      Int?     @default(0)
+    title     String?  @db.VarChar(100)
+    title_en  String?  @db.VarChar(100)
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+    href      String?  @db.VarChar(200)
+    status    Int?     @default(1)
+    is_goods  Int?     @default(0)
+
+    parentMenu Menu?  @relation("menu_p_id", fields: [p_id], references: [id])
+    children   Menu[] @relation("menu_p_id")
+
+    @@map("menu")
+}
+
+model News {
+    id          Int      @id @default(autoincrement())
+    title       String?  @db.VarChar(100)
+    title_en    String?  @db.VarChar(100)
+    author      String?  @db.VarChar(100)
+    describe    String?  @db.VarChar(200)
+    describe_en String?  @db.VarChar(200)
+    content     String?  @db.Text
+    content_en  String?  @db.Text
+    img         String?  @db.VarChar(255)
+    sort        Int?     @default(0)
+    type        Int      @default(0)
+    createdAt   DateTime @default(now()) @map("created_at")
+    updatedAt   DateTime @updatedAt @map("updated_at")
+    isHide      Boolean? @default(false)
+    read        Int?     @default(0)
+
+    @@map("news")
+}
+
+model Product {
+    id          Int      @id @default(autoincrement())
+    title       String?  @db.VarChar(100)
+    title_en    String?  @db.VarChar(100)
+    author      String?  @db.VarChar(100)
+    describe    String?  @db.VarChar(200)
+    describe_en String?  @db.VarChar(200)
+    content     String?  @db.Text
+    content_en  String?  @db.Text
+    img         String?  @db.VarChar(255)
+    sort        Int?     @default(0)
+    isHide      Boolean? @default(false)
+    type        Int      @default(0)
+    read        Int?     @default(0)
+    createdAt   DateTime @default(now()) @map("created_at")
+    updatedAt   DateTime @updatedAt @map("updated_at")
+
+    @@map("product")
+}
+
+model Link {
+    id        Int      @id @default(autoincrement())
+    title     String?  @db.VarChar(100)
+    title_en  String?  @db.VarChar(100)
+    img       String?  @db.VarChar(255)
+    href      String?  @db.VarChar(255)
+    sort      Int?     @default(0)
+    type      Int?     @default(1)
+    isHide    Boolean  @default(false)
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    @@map("link")
+}
+
+model Other {
+    id         Int      @id @default(autoincrement())
+    title      String?  @db.VarChar(100)
+    title_en   String?  @db.VarChar(100)
+    img        String?  @db.VarChar(255)
+    content    String?  @db.Text
+    content_en String?  @db.Text
+    createdAt  DateTime @default(now()) @map("created_at")
+    updatedAt  DateTime @updatedAt @map("updated_at")
+    type       Int      @unique @default(0)
+
+    @@map("other")
+}
