@@ -37,7 +37,8 @@
                     <ul class="flex">
                         <li v-for="item in menuList.filter(i => i.status)" :key="item.id" class="nav_list"
                             :class="{ nav_list1: !item.children?.length }">
-                            <NuxtLinkLocale :to="item.href" class="nav_btn nav_active">
+                            <NuxtLinkLocale :to="item.href" class="nav_btn"
+                                :class="{ nav_active: setActiveMenu(item.href || '') }">
                                 {{ $lang(item.title, item.title_en) }}
                             </NuxtLinkLocale>
 
@@ -253,6 +254,33 @@ if (process.client) {
     setTimeout(() => {
         console.log('🚀 ~ file: header.vue:21 ~ menuList:', menuList)
     }, 1500)
+}
+const setActiveMenu = (item: string) => {
+    const route = useRoute()
+    console.log(route)
+
+    const url = useRequestURL()
+    console.log(url)
+
+    const path = route.path
+    // let path=url.pathname
+    // const path = '/public/upload/product/2021/04-17/S-042KD.jpg'
+
+    // 查找第一个斜杠的索引
+    const firstSlashIndex = path.indexOf('/')
+    let first = ''
+    if (firstSlashIndex !== -1) {
+        // 截取第一个斜杠及其前面的内容
+        first = path.substring(0, firstSlashIndex + 1) // 包括斜杠
+    }
+
+    if (path === item) {
+        return true
+    } else if (item !== '/' && (path === `/${item}` || item === first)) {
+        return true
+    } else {
+        return false
+    }
 }
 </script>
 

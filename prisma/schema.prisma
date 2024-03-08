@@ -74,7 +74,10 @@ model Menu {
     status    Int?     @default(1)
     is_goods  Int?     @default(0)
 
-    @@index([p_id], map: "menu_p_id_fkey")
+    parent   Menu?  @relation("ChildToParent", fields: [p_id], references: [id])
+    children Menu[] @relation("ChildToParent")
+
+    // @@index([p_id], map: "menu_p_id_fkey")
     @@map("menu")
 }
 
@@ -99,36 +102,51 @@ model News {
 }
 
 model Product {
-    id          Int      @id @default(autoincrement())
-    title       String?  @db.VarChar(100)
-    title_en    String?  @db.VarChar(100)
-    author      String?  @db.VarChar(100)
-    describe    String?  @db.VarChar(200)
-    describe_en String?  @db.VarChar(200)
-    content     String?  @db.Text
-    content_en  String?  @db.Text
-    img         String?  @db.VarChar(255)
-    sort        Int?     @default(0)
-    isHide      Boolean? @default(false)
-    type        Int      @default(0)
-    read        Int?     @default(0)
-    createdAt   DateTime @default(now()) @map("created_at")
-    updatedAt   DateTime @updatedAt @map("updated_at")
+    id           Int       @id @default(autoincrement())
+    title        String?   @db.VarChar(100)
+    title_en     String?   @db.VarChar(100)
+    sub_title    String?   @db.VarChar(100)
+    sub_title_en String?   @db.VarChar(100)
+    author       String?   @db.VarChar(100)
+    describe     String?   @db.Text // 描述
+    describe_en  String?   @db.Text
+    content      String?   @db.Text // 内容
+    content_en   String?   @db.Text
+    contrast     String?   @db.Text // 规格对比
+    contrast_en  String?   @db.Text
+    annex        String?   @db.Text // 包装附件
+    annex_en     String?   @db.Text
+    img          String?   @db.VarChar(255)
+    sort         Int?      @default(0)
+    isHide       Boolean?  @default(false)
+    type         Int       @default(0)
+    read         Int?      @default(0)
+    createdAt    DateTime  @default(now()) @map("created_at")
+    updatedAt    DateTime  @updatedAt @map("updated_at")
+    Classify     Classify? @relation(fields: [classifyId], references: [id])
+    classifyId   Int?
+
+    links Link[]
 
     @@map("product")
 }
 
 model Link {
-    id        Int      @id @default(autoincrement())
-    title     String?  @db.VarChar(100)
-    title_en  String?  @db.VarChar(100)
-    img       String?  @db.VarChar(255)
-    href      String?  @db.VarChar(255)
-    sort      Int?     @default(0)
-    type      Int?     @default(1)
-    isHide    Boolean  @default(false)
-    createdAt DateTime @default(now()) @map("created_at")
-    updatedAt DateTime @updatedAt @map("updated_at")
+    id         Int      @id @default(autoincrement())
+    c_id       Int?     @default(0) // 关联id
+    title      String?  @db.VarChar(100)
+    title_en   String?  @db.VarChar(100)
+    content    String?  @db.Text
+    content_en String?  @db.Text
+    img        String?  @db.VarChar(255)
+    href       String?  @db.VarChar(255)
+    sort       Int?     @default(0)
+    type       Int?     @default(1) // 1：商品图片，2：商品下载文件，3：视频文件，4：软件,5:轮播图
+    isHide     Boolean  @default(false)
+    createdAt  DateTime @default(now()) @map("created_at")
+    updatedAt  DateTime @updatedAt @map("updated_at")
+    Product    Product? @relation(fields: [productId], references: [id])
+    productId  Int?
 
     @@map("link")
 }
@@ -145,4 +163,27 @@ model Other {
     type       Int      @unique @default(0)
 
     @@map("other")
+}
+
+model Classify {
+    id       Int     @id @default(autoincrement())
+    p_id     Int?    @default(0)
+    title    String? @db.VarChar(100)
+    title_en String? @db.VarChar(100)
+
+    // img        String?  @db.VarChar(255)
+    // content    String?  @db.Text
+    // content_en String?  @db.Text
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    sort   Int? @default(0)
+    status Int? @default(1)
+
+    parent   Classify?  @relation("ChildToParent", fields: [p_id], references: [id])
+    children Classify[] @relation("ChildToParent")
+
+    products Product[] // 这里需要定义成一对多的关系，因为一个分类下可以有多个产品
+
+    @@map("classify")
 }

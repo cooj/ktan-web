@@ -3,7 +3,7 @@
         <!-- 热门推荐 -->
         <div class="hot_module">
             <div class="reuse_module">
-                <p class="reuse_title">
+                <p class="reuse_title" @click="onShin">
                     热门产品
                 </p>
                 <figure class="reuse_img">
@@ -232,6 +232,12 @@ const { data: companyInfo } = await useCustomFetch<IAboutInfoResponse>('/api/pag
         type: 1,
     },
 })
+
+const onShin = async () => {
+    const { data: s, pending, error, refresh } = await useCustomFetch('/api/cheerio/news', {
+
+    })
+}
 </script>
 
 <style lang="scss" scoped>

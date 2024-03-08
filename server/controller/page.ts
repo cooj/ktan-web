@@ -58,6 +58,29 @@ export const getMenuList = async (event: H3Event) => {
         // },
     })
 
+    // const where: any = {
+    //     p_id: eq(menu.pId, 0),
+    // }
+    // if (param?.status) where.status = eq(menu.status, 1)
+
+    // console.log(db)
+    // const res = await db.query.menu.findMany({
+    //     where: (menu, { eq }) => eq(menu.pId, 0),
+    //     with: {
+    //         children: {
+    //             where: {},
+    //         },
+    //     },
+    //     orderBy: (menu, { asc }) => [asc(menu.sort)],
+    // })
+
+    // const res = await db
+    //     .select()
+    //     .from(menu)
+    //     .where(eq(menu.pId, 0))
+
+    // console.log('res :>> ', res)
+
     return res
 }
 
@@ -80,6 +103,8 @@ export const getBannerList = async (event: H3Event) => {
     }
 
     const res = await event.context.prisma.link.findMany({
+        skip: 0,
+        take: 10,
         where,
         orderBy: {
             sort: 'asc', // 按id正序排序

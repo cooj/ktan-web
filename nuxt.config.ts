@@ -18,7 +18,7 @@ export default defineNuxtConfig({
         // but missing on offline, disabling extraction it until fixed
 
         payloadExtraction: false,
-        inlineSSRStyles: false,
+        // inlineSSRStyles: false,
         renderJsonPayloads: true,
         typedPages: true,
     },
@@ -48,16 +48,16 @@ export default defineNuxtConfig({
         //     // https://nitro.unjs.io/guide/utils#experimental-composition-api
         //     asyncContext: true, // 设置defineEventHandler不用传递event -> defineEventHandler(()=>{}) 2.6版本以上才生效
         // },
-        // storage: {
-        //     // redis: {
-        //     //     driver: 'redis',
-        //     //     /* redis connector options */
-        //     // },
-        //     db: {
-        //         driver: 'fs',
-        //         base: './.data/db',
-        //     },
-        // },
+        storage: {
+            // redis: {
+            //     driver: 'redis',
+            //     /* redis connector options */
+            // },
+            db: {
+                driver: 'fs',
+                base: './.data/db',
+            },
+        },
 
     },
     app: {
