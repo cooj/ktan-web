@@ -99,7 +99,7 @@ export const useVerifyToken = (event: H3Event) => {
 /**
  * 获取接口参数方法，整合get、post请求类型统一获取参数
  * @param event defineEventHandler方法里的event参数
- * @returns
+ * @returns T
  */
 export const getEventParams = async <T = any>(event: H3Event) => {
     const method = event.method

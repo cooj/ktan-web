@@ -1,8 +1,8 @@
 <template>
     <div class="banner">
-        <Swiper :modules="[SwiperAutoplay, SwiperEffectCreative, SwiperNavigation, SwiperPagination]" :slides-per-view="1"
-            :loop="true" :autoplay="{ delay: 8000, disableOnInteraction: true }" effect="creative" :creative-effect="effect"
-            navigation :pagination="{ clickable: true }">
+        <Swiper :modules="[SwiperAutoplay, SwiperEffectCreative, SwiperNavigation, SwiperPagination]"
+            :slides-per-view="1" :loop="true" :autoplay="{ delay: 8000, disableOnInteraction: true }" effect="creative"
+            :creative-effect="effect" navigation :pagination="{ clickable: true }">
             <SwiperSlide v-for="(item, idx) in banner" :key="idx" class="w100%">
                 <NuxtLink :to="item.href" class="banner-link">
                     <img :src="item.img" :alt="item.title">
@@ -29,7 +29,7 @@ const effect = {
     next: { translate: ['100%', 0, 0] },
 }
 
-const { data: banner } = await useCustomFetch<ISlideListResponse[]>('/api/page/get_banner')
+const { data: banner } = await useCustomFetch<ISlideListResponse[]>('/api/page/get_banner?type=5')
 // console.log(banner)
 </script>
 

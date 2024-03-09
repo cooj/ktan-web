@@ -257,10 +257,9 @@ if (process.client) {
 }
 const setActiveMenu = (item: string) => {
     const route = useRoute()
-    console.log(route)
-
-    const url = useRequestURL()
-    console.log(url)
+    // console.log(route)
+    // const url = useRequestURL()
+    // console.log(url)
 
     const path = route.path
     // let path=url.pathname
