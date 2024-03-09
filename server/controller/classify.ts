@@ -1,4 +1,3 @@
-import type { Prisma } from '@prisma/client'
 import type { H3Event } from 'h3'
 import { ResponseMessage } from '~/config/message'
 
@@ -26,7 +25,8 @@ export const getList = async (event: H3Event) => {
 
     // if (!param?.type) return { msg: '请传递类型' }
     const where: any = {
-        classifyId: param?.type,
+        // classifyId: param?.type,
+        p_id: 0, // 一级菜单
         title: {
             contains: param?.title, // 包含
         },
@@ -44,31 +44,26 @@ export const getList = async (event: H3Event) => {
     }
 
     const [res1, res2] = await Promise.all([
-        event.context.prisma.product.findMany({
+        event.context.prisma.classify.findMany({
             skip: pageSkip,
             take: pageSize,
             where,
             orderBy: {
-                sort: 'desc', // 按id正序排序
+                sort: 'asc', // 按id正序排序
             },
             include: {
-                links: true,
-                classify: {
-                    select: {
-                        title: true,
-                    },
-                },
+                children: true,
             },
             // select: { // 只返回指定的字段
             //     username: true,
             //     account: true,
             // },
         }),
-        event.context.prisma.product.count({
+        event.context.prisma.classify.count({
             where,
         }),
     ])
-
+    // console.log(res1)
     if (res1) {
         return { code: 200, data: { list: res1, total: res2 } }
     } else {
@@ -79,26 +74,19 @@ export const getList = async (event: H3Event) => {
 /**
  * 新增
  * @param event
- * @returns
+ * @returns T
  */
 export const insert = async (event: H3Event) => {
     // 接口校验(是否登录)
     if (!event.context.user) return ResponseMessage.token
 
     // 获取参数
-    const param = await getEventParams<IProductCreateParam>(event)
+    const param = await getEventParams<BannerCreateParam>(event)
     // console.log('param-----', param)
     if (!param?.title) return { msg: '标题不能为空' }
 
-    const res = await event.context.prisma.product.create({
-        data: {
-            ...param,
-            links: {
-                createMany: {
-                    data: param.links,
-                },
-            },
-        },
+    const res = await event.context.prisma.classify.create({
+        data: { ...param },
     })
 
     if (res) {
@@ -118,69 +106,16 @@ export const update = async (event: H3Event) => {
     if (!event.context.user) return ResponseMessage.token
 
     // 获取参数
-    const param = await getEventParams<IProductCreateParamEdit>(event)
+    const param = await getEventParams<BannerCreateParamEdit>(event)
     // console.log('param-----', param)
 
     if (!param?.id) return { msg: '缺少参数id' }
     if (!param?.title) return { msg: '标题不能为空' }
 
-    const links = await event.context.prisma.link.findMany({
-        where: {
-            productId: param.id,
-        },
-    })
-    // const dat: Prisma.LinkUpdateManyWithWhereWithoutProductInput = {}
-    const addLinks: Prisma.LinkCreateManyInput[] = []
+    // return param
 
-    const updateIds: number[] = []
-    for (const item of param.links) {
-        const node = links.find((i) => {
-            if (item.type === 1) return i.img === item.img
-            else return i.href === item.href
-        })
-        if (node) {
-            updateIds.push(node.id)
-            await event.context.prisma.link.update({
-                where: {
-                    id: node.id,
-                },
-                data: {
-                    title: item.title || '',
-                    content: item.content || '',
-                    img: item.img || '',
-                    href: item.href || '',
-                    type: item.type,
-                },
-            })
-        } else {
-            const dat: Prisma.LinkCreateManyInput = {
-                title: item.title || '',
-                content: item.content || '',
-                img: item.img || '',
-                href: item.href || '',
-                type: item.type,
-                // productId: param.id,
-            }
-            addLinks.push(dat)
-        }
-    }
-
-    // 过滤已更新的数据（剩余的为删除）
-    const delIds: Prisma.LinkScalarWhereInput[] = links.filter(item => !updateIds.includes(item.id)).map(item => ({ id: item.id }))
-    // console.log('param :>> ', param)
-    // return { code: 200, msg: '修改成功', param }
-
-    const res = await event.context.prisma.product.update({
-        data: {
-            ...param,
-            links: {
-                createMany: {
-                    data: addLinks,
-                },
-                deleteMany: delIds,
-                // updateMany: [{ id: 1 }],
-            },
-        },
+    const res = await event.context.prisma.classify.update({
+        data: param,
         where: {
             id: param.id,
         },
@@ -208,7 +143,7 @@ export const del = async (event: H3Event) => {
 
     if (!param?.id) return { msg: '缺少参数id' }
 
-    const res = await event.context.prisma.product.delete({
+    const res = await event.context.prisma.classify.delete({
         where: {
             id: param.id,
         },
