@@ -2,6 +2,7 @@ import { createRouter, defineEventHandler, useBase } from 'h3'
 import { getAboutInfo, getBannerList, getIndexData, getMenuList, getNewsInfo, getProductInfo, getSystemInfo } from '~/server/controller/page'
 import { getList } from '~/server/controller/news'
 import { getList as getProductList } from '~/server/controller/product'
+import { getList as getClassifyList } from '~/server/controller/classify'
 
 const router = createRouter()
 
@@ -38,6 +39,13 @@ router.use('/get_links', defineEventHandler(async (event) => {
  */
 router.use('/about', defineEventHandler(async (event) => {
     return getAboutInfo(event)
+}))
+
+/**
+ * 获取产品分类列表
+ */
+router.use('/classify', defineEventHandler(async (event) => {
+    return getClassifyList(event)
 }))
 
 /**

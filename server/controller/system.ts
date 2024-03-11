@@ -9,7 +9,7 @@ export const getSystemInfo = async (event: H3Event) => {
     // const authSign = await useVerifySign(event)
     // if (!authSign) return ResponseMessage.sign
 
-    if (!event.context.user) return ResponseMessage.token
+    // if (!event.context.user) return ResponseMessage.token
 
     // 获取参数
     // const param = await getEventParams<LoginDataType>(event)
