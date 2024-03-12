@@ -254,7 +254,7 @@ if (process.client) {
 }
 
 const classifyList = await useGoodsClassifyState().getClassify()
-console.log('classifyList :>> ', classifyList)
+// console.log('classifyList :>> ', classifyList)
 
 const setActiveMenu = (item: string) => {
     const route = useRoute()

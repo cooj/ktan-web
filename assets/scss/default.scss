@@ -1,6 +1,6 @@
 // @use 'sass:map';
 // $bgColor: #fff;#c80e0e;#47ccad;
-@forward "element-plus/theme-chalk/src/common/var.scss" with ($colors: ("primary": ("base": #c80e0e),
+@forward "element-plus/theme-chalk/src/common/var.scss" with ($colors: ("primary": ("base": #fb531c),
         // "success": ("base": #04ae8b),
         // "warning": ("base": #FF771C),
         // "danger": ("base": #ff3030),
@@ -48,7 +48,7 @@
     --m-body-bg-color: #f3f3f3;
     --co-main-color: #fb531c;
     --co-white-color: #fff;
-
+    --swiper-theme-color:var(--co-main-color);
 }
 
 :focus-visible {
@@ -58,6 +58,10 @@
 // body {
 //   background-color: var(--m-body-bg-color);
 // }
+
+.main-color{
+    color: var(--co-main-color);
+}
 
 .container {
     // width: 1200px !important;

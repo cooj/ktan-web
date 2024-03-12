@@ -26,11 +26,13 @@ export const getList = async (event: H3Event) => {
 
     // if (!param?.type) return { msg: '请传递类型' }
     const where: any = {
-        classifyId: param?.type,
+        // classifyId,
         title: {
             contains: param?.title, // 包含
         },
     }
+
+    if (param?.type) where.classifyId = Number(param?.type)
 
     // 查询菜单姓"张"，1页显示20条
     let page: number | undefined
@@ -38,11 +40,11 @@ export const getList = async (event: H3Event) => {
     let pageSkip: number | undefined
 
     if (param?.isPage) {
-        page = param.page || 1
-        pageSize = param.pageSize || 20
+        page = Number(param.page) || 1
+        pageSize = Number(param.pageSize) || 20
         pageSkip = pageSize * (page - 1) || 0
     }
-
+    console.log('where :>> ', where)
     const [res1, res2] = await Promise.all([
         event.context.prisma.product.findMany({
             skip: pageSkip,

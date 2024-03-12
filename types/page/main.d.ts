@@ -36,12 +36,13 @@ declare interface IMenuListResponse {
     children?: IMenuListResponse[]
     status?: number
     is_goods?: number // 是否为产品分类
+    img?: string
 }
 
 // 产品分类
 declare interface IClassifyListResponse {
-    id: 14
-    p_id: 1
+    id: number
+    p_id: number
     title: '本地语音智能核相仪'
     title_en: null
     createdAt: '2024-03-08T06:51:32.165Z'
@@ -112,4 +113,56 @@ declare interface IIndexResponse {
     }
     newsList: INewsResponse[]
     mienList: INewsResponse[]
+}
+
+// 友情链接、文件下载、轮播图
+declare interface ILinkItem {
+    id: number
+    c_id: 0
+    title: string
+    title_en: string
+    content: string
+    content_en: string
+    img: string
+    href: string
+    sort: 0
+    type: number
+    isHide: boolean
+    createdAt: '2024-03-08T08:46:12.839Z'
+    updatedAt: '2024-03-08T08:46:12.839Z'
+    productId: 1
+}
+
+/**
+ * 产品列表 - 响应数据
+ */
+declare interface IGoodsGetListItem {
+
+    id: 1
+    title: 'S108B MiNi钳形漏电流表 '
+    title_en: string | null
+    sub_title: '钳形电流表'
+    sub_title_en: string | null
+    author: string | null
+    describe: string
+    describe_en: string | null
+    content: string
+    content_en: string | null
+    contrast: string
+    contrast_en: string | null
+    annex: string
+    annex_en: string | null
+    img: string | null
+    sort: 0
+    isHide: false
+    type: 0
+    read: 0
+    createdAt: '2024-03-08T08:46:12.839Z'
+    updatedAt: '2024-03-08T08:46:12.839Z'
+    classifyId: 9
+
+    classify: {
+        title: string
+    }
+    links: ILinkItem[]
 }

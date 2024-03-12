@@ -1,12 +1,14 @@
 <template>
-    <el-image class="co-image" v-bind="$attrs">
-        <template #error>
-            <div class="co-image-error">
-                <i class="i-ep-picture" />
-                <!-- <i class="i-ep-picture-filled" /> -->
-            </div>
-        </template>
-    </el-image>
+    <client-only>
+        <el-image class="co-image" v-bind="$attrs">
+            <template #error>
+                <div class="co-image-error">
+                    <i class="i-ep-picture" />
+                    <!-- <i class="i-ep-picture-filled" /> -->
+                </div>
+            </template>
+        </el-image>
+    </client-only>
 </template>
 
 <script lang="ts" setup>
