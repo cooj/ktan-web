@@ -1,5 +1,5 @@
 <template>
-    <div class="width_box goods-classify relative px30px!">
+    <div class="width_box goods-classify relative z-10 px30px!">
         <div class="overflow-x-clip">
             <!-- :slides-per-view="5" -->
             <Swiper class="" :modules="[SwiperAutoplay, SwiperEffectCreative, SwiperNavigation, SwiperPagination]"
@@ -127,4 +127,12 @@ const linkGoodsList = async (params: GoodsListParams) => {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.goods-classify {
+    --swiper-navigation-size: 24px;
+
+    :deep(.swiper) {
+        overflow: unset;
+    }
+}
+</style>

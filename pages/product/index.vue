@@ -140,14 +140,6 @@ const linkGoodsList = async (params: GoodsListParams) => {
 </style>
 
 <style lang="scss" scoped>
-.goods-classify {
-    --swiper-navigation-size: 24px;
-
-    :deep(.swiper) {
-        overflow: unset;
-    }
-}
-
 .goods-page {
     --el-pagination-border-radius: 50%;
     --el-pagination-button-width: 38px;
