@@ -19,11 +19,8 @@
                 </ClientOnly>
             </ul>
             <div class="py50px">
-                <ClientOnly>
-                    <el-pagination v-model:current-page="page" :page-size="pageSize" class="goods-page justify-center"
-                        background layout="prev, pager, next" :total="productData.total"
-                        @current-change="onHandleCurrentChange" />
-                </ClientOnly>
+                <CiPagination v-model:page="page" v-model:page-size="pageSize" v-model:total="productData.total"
+                    @change="onHandleCurrentChange" />
             </div>
         </div>
     </section>
@@ -34,7 +31,7 @@ definePageMeta({
     layout: 'home',
 })
 
-const route = useRoute()
+// const route = useRoute()
 // const query:GoodsListParamsQuery = route.query
 
 const pageSize = ref(8)
@@ -106,9 +103,4 @@ watch(() => [pg.value, cid.value], () => {
 </style>
 
 <style lang="scss" scoped>
-.goods-page {
-    --el-pagination-border-radius: 50%;
-    --el-pagination-button-width: 38px;
-    --el-pagination-button-height: 38px;
-}
 </style>
