@@ -121,6 +121,13 @@ export const getEventParams = async <T = any>(event: H3Event) => {
         })
     } else if (method === 'GET') {
         param = getQuery(event) as unknown as T
+        // for (const key of param) {
+        //     if (param[key] === undefined || param[key] === '' || param[key] === null) {
+        //         //
+        //     } else if (!Number.isNaN(Number(param[key]))) {
+        //         param[key] = Number(param[key])
+        //     }
+        // }
     } else {
         param = await readBody<T>(event)
     }

@@ -1,24 +1,30 @@
 <template>
     <section>
-        <CiClassify @change="initData" />
+        <CiClassify />
         <div class="width_box">
             <!-- 产品列表 -->
             <ul class="goods_module goods-grid pt50px">
-                <li v-for="item in productData.list" :key="item.id" class="goods_list">
-                    <NuxtLink :to="`/product/${item.id}`" class="goods_link">
-                        <CoImage class="goods_img w100% pb100% block!" :src="item.img" />
-                        <!-- <figure class="goods_img">
+                <ClientOnly>
+                    <li v-for="item in productData.list" :key="item.id" class="goods_list">
+                        <NuxtLink :to="`/product/${item.id}`" class="goods_link">
+                            <CoImage class="goods_img w100% pb100% block!" :src="item.img" />
+                            <!-- <figure class="goods_img">
                         <img src="http://www.eaglotest.com.cn/public/upload/product/2022/03-10/S390A.jpg">
                     </figure> -->
-                        <p class="goods-tle line-clamp-1 text-center">
-                            {{ $lang(item.title, item.title_en) }}
-                        </p>
-                    </NuxtLink>
-                </li>
+                            <p class="goods-tle line-clamp-1 text-center">
+                                {{ $lang(item.title, item.title_en) }}
+                            </p>
+                        </NuxtLink>
+                    </li>
+                </ClientOnly>
             </ul>
-            <el-pagination v-model:current-page="pg" :page-size="pageSize" class="goods-page justify-center py50px"
-                background layout="prev, pager, next" :total="productData.total"
-                @current-change="onHandleCurrentChange" />
+            <div class="py50px">
+                <ClientOnly>
+                    <el-pagination v-model:current-page="page" :page-size="pageSize" class="goods-page justify-center"
+                        background layout="prev, pager, next" :total="productData.total"
+                        @current-change="onHandleCurrentChange" />
+                </ClientOnly>
+            </div>
         </div>
     </section>
 </template>
@@ -28,10 +34,18 @@ definePageMeta({
     layout: 'home',
 })
 
-const pageSize = ref(12)
-const page = useRouteQuery('page', 1) // 当前页
-const cid = useRouteQuery('cid', '') // 当前页
-const pg = ref(Number(page.value))
+const route = useRoute()
+// const query:GoodsListParamsQuery = route.query
+
+const pageSize = ref(8)
+const pg = useRouteQuery('page', 1)
+const cid = useRouteQuery('cid', '')
+const page = ref(Number(pg.value) || 1)
+
+// const cid = computed({
+//     get: () => query.cid || '',
+//     set: () => { },
+// })
 
 const productData = reactive({
     list: [] as IGoodsGetListItem[],
@@ -39,13 +53,18 @@ const productData = reactive({
 })
 
 const initData = async () => {
+    console.log('page.value :>> ', page.value)
+    // console.log('cid.value :>> ', cid.value)
+    const route = useRoute()
+    const query = route.query as GoodsListParamsQuery
+    // const cid=query.cid
     const { data, error, refresh, execute } = await useCustomFetch<{ code: number, data: { list: IGoodsGetListItem[], total: number } }>(`/api/page/product`, {
         method: 'GET',
         params: {
             isPage: 1,
-            page: pg.value,
+            page: Number(query.page) || 1,
             pageSize: pageSize.value,
-            type: Number(cid.value) || null,
+            type: Number(query.cid) || null,
         },
     })
     console.log('data :>> ', data)
@@ -64,75 +83,22 @@ const initData = async () => {
 initData()
 
 const onHandleCurrentChange = () => {
-    // linkGoodsList()
-    linkGoodsList({ query: { page: pg.value }, relate: true })
-    // console.log('pg.value :>> ', pg.value)
-    // console.log('page.value', page.value)
-    // refresh()
+    linkGoodsList({ query: { page: page.value }, relate: true })
+}
+
+// onBeforeRouteUpdate(() => {
+//     initData()
+// })
+
+// watch(() => route.query, () => {
+//     console.log('111111 :>> ', 111111)
+//     initData()
+// })
+watch(() => [pg.value, cid.value], () => {
+    page.value = Number(pg.value) || 1
+    // if (!pg.value && !cid.value && !bid.value) return
     initData()
-}
-
-/**
- * 商品页面参数
- */
-declare interface GoodsListParams {
-    query: GoodsListParamsQuery // 参数
-    relate?: boolean // 是否携带浏览器地址上的参数
-    url?: boolean // 返回地址的形式
-}
-
-declare interface GoodsListParamsQuery {
-    page?: string | number // 关键字
-    cid?: string | number // 商品分类id   类别
-    // bid?: string | number // 商品品牌id
-}
-
-/**
- * 进入商品页面方法
- */
-const linkGoodsList = async (params: GoodsListParams) => {
-    const url = '/product'
-    const route = useRoute()
-    const query = route.query as GoodsListParamsQuery
-
-    const data = params.query
-    if (params.relate) { // 获取
-        // console.log('Number.isNaN(Number(query.cid)) :>> ', Number.isNaN(Number(query.cid)))
-        // keyword不存在params对象里面时,并且路由里面存在keyword字段时
-        if (!('keyword' in params.query) && 'keyword' in query) data.page = query.page
-
-        // c不存在params对象里面时,并且路由里面存在数字类型cid时
-        if (!('cid' in params.query) && !Number.isNaN(Number(query.cid))) {
-            data.cid = Number(query.cid)
-        }
-
-        // c不存在params对象里面时,并且路由里面存在数字类型cid时
-        // if (!('bid' in params.query) && 'bid' in query) data.bid = query.bid
-    }
-
-    // 返回地址的形式, /goods/list?cid=1
-    if (params.url) {
-        const list = Object.keys(data).map(i => `${i}=${encodeURIComponent(data[i as keyof GoodsListParamsQuery] || '')}`)
-        return list.length > 0 ? `${url}?${list.join('&')}` : url
-    } else {
-        console.log('page:', page.value, 'pg:', pg.value)
-        await navigateTo({
-            path: url,
-            query: data as any,
-            // replace: true,
-        })
-        initData()
-        return ''
-    }
-
-    // return navigateTo({
-    //   path: '/goods/list',
-    //   query: {
-    //     page: 1,
-    //     sort: 'asc',
-    //   },
-    // })
-}
+})
 </script>
 
 <style>

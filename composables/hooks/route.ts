@@ -16,5 +16,9 @@ export function useRouteParam<T = string>(name: string, init = '' as T) {
  */
 export function useRouteQuery<T = string>(name: string, init = '' as T) {
     const route = useRoute()
+    // return computed({
+    //     get: () => route.query[name] as T ?? init,
+    //     set: () => { },
+    // })
     return computed(() => route.query[name] as T ?? init)
 }
