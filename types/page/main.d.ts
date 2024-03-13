@@ -94,7 +94,7 @@ declare interface INewsResponse {
     img: 'http://localhost:9008/upload/2023/8/31/1693465126951cbycq5.png'
     sort: 0
     isHide: false
-    type: 1
+    type: number
     createdAt: '2023-08-31T06:59:35.000Z'
     updatedAt: '2023-08-31T06:59:35.000Z'
     read: number // 阅读量

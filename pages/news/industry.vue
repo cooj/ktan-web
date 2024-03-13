@@ -1,5 +1,5 @@
 <template>
-    <LayoutContentNews :type="1" />
+    <LayoutContentNews :type="2" />
 </template>
 
 <script lang="ts" setup>

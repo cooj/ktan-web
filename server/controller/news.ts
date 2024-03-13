@@ -24,8 +24,11 @@ export const getList = async (event: H3Event) => {
     const param = await getEventParams<FindListQueryParam>(event)
 
     if (!param?.type) return { msg: '请传递类型' }
+    const types = param.type.toString().split(',').filter(item => !!item).map(item => Number(item))
     const where: any = {
-        type: param.type,
+        type: {
+            in: types,
+        },
         title: {
             contains: param?.title, // 包含
         },

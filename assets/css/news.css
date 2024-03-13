@@ -1,0 +1,162 @@
+
+/* 列表 */
+.news_list {
+	margin-top: 3.75rem;
+	background-color: #fff;
+	transition: background-color 0.3s;
+}
+
+.news_link {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.news_img {
+	width: 40.5625rem;
+	max-height: 23.1875rem;
+	overflow: hidden;
+	flex-shrink: 0;
+}
+
+.news_img img {
+	transform: scale(1);
+	transition: transform 0.3s;
+}
+
+.news_box {
+	width: 100%;
+	margin: 0 2.5rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	overflow: hidden;
+
+}
+
+.news_date {
+	font-size: 1.828125rem;
+	color: #fb531c;
+	transition: color 0.3s;
+
+}
+
+.news_title {
+	font-size: 1.25rem;
+	font-weight: 100;
+	color: #131313;
+	transition: color 0.3s;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin: 0.9375rem 0 1.25rem;
+}
+
+.news_icon {
+	width: 15.5rem;
+	margin: 0 auto 1.25rem;
+}
+
+.news_icon1 {
+	display: none;
+}
+
+.news_text {
+	font-size: 0.875rem;
+	color: #84807f;
+	transition: color 0.3s;
+	line-height: 2;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-box-orient: vertical;
+}
+
+.news_list:hover {
+	background-color: #fb531c;
+	transition: background-color 0.3s;
+}
+
+.news_list:hover .news_img img {
+	transform: scale(1.1);
+	transition: transform 0.3s;
+}
+
+.news_list:hover .news_date {
+	color: #fff;
+	transition: color 0.3s;
+}
+
+.news_list:hover .news_title {
+	color: #fff;
+	transition: color 0.3s;
+}
+
+.news_list:hover .news_icon0 {
+	display: none;
+}
+
+.news_list:hover .news_icon1 {
+	display: block;
+}
+
+.news_list:hover .news_text {
+	color: #fff;
+	transition: color 0.3s;
+}
+
+/* 分页 */
+.page {
+	margin: 3.75rem auto 4.375rem;
+}
+
+/* 小于1220px执行 */
+@media screen and (max-width: 1220px) {
+	.news_img {
+		width: 28.375rem;
+	}
+}
+
+/* 小于992px */
+@media screen and (max-width: 992px) {
+	.news_link {
+		display: block;
+	}
+
+	.news_img {
+		width: 100%;
+	}
+
+	.news_box {
+		margin: 0 1.25rem;
+		padding: 2.5rem 0;
+	}
+}
+
+/* 小于765px */
+@media screen and (max-width: 765px) {
+	.news_list {
+		margin-top: 0;
+		margin-bottom: 2rem;
+	}
+
+	.news_box {
+		padding: 0.625rem 0;
+		margin: 0 0.625rem;
+	}
+
+	.news_date {
+		font-size: 1.25rem;
+	}
+
+	.news_title {
+		font-size: 1rem;
+	}
+
+	.news_text {
+		font-size: 0.75rem;
+	}
+}

@@ -236,12 +236,12 @@ export const getNewsInfo = async (event: H3Event) => {
     const param = await getEventParams<{ id: number, type: number }>(event)
 
     if (!param?.id) return null
-    if (!param?.type) return null
+    // if (!param?.type) return null
 
     const res = await event.context.prisma.news.findUnique({
         where: {
             id: Number(param.id),
-            type: Number(param.type),
+            // type: Number(param.type),
         },
     })
 
