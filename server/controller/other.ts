@@ -13,13 +13,14 @@ export const getInfo = async (event: H3Event) => {
     }
 
     // 获取参数
-    const param = await getEventParams<{ type: number }>(event)
+    const param = await getEventParams<{ type: string }>(event)
 
     if (!param?.type) return { msg: '不存在记录' }
 
-    const res = await event.context.prisma.other.findUnique({
+    const res = await event.context.prisma.other.findFirst({
         where: {
-            type: param.type,
+            key: param.type,
+            // key: 'about',
         },
     })
     return { code: 200, data: res }
@@ -45,19 +46,21 @@ export const update = async (event: H3Event) => {
         title_en: param?.title_en,
         content: param?.content,
         content_en: param?.content_en,
-        img: param?.img,
+        subtitle: param?.subtitle,
+        subtitle_en: param?.subtitle_en,
+        img: param?.img || '',
     }
 
     const res = await event.context.prisma.other.upsert({
         where: {
-            type: param.type,
+            key: param.type,
         },
         update: {
             ...update,
         },
         create: {
             ...update,
-            type: param.type,
+            key: param.type,
         },
     })
 

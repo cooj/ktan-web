@@ -22,34 +22,37 @@ model Admin {
     @@map("admin")
 }
 
-model Company {
-    id              Int      @id @default(autoincrement())
-    company         String   @db.VarChar(100)
-    address         String?  @db.VarChar(200)
-    logo            String?  @db.VarChar(255)
-    logo2           String?  @db.VarChar(255)
-    qr_code         String?  @db.VarChar(255)
-    phone           String?  @db.VarChar(20)
-    email           String?  @db.VarChar(50)
-    seo_keyword     String?  @db.VarChar(100)
-    seo_description String?  @db.VarChar(200)
-    copyright       String?  @db.VarChar(200)
-    createdAt       DateTime @default(now()) @map("created_at")
-    updatedAt       DateTime @updatedAt @map("updated_at")
-    filing          String?  @db.VarChar(100)
+model Recruit {
+    id         Int     @id @default(autoincrement())
+    title      String  @db.VarChar(100)
+    title_en   String  @db.VarChar(100)
+    people     String? @db.VarChar(200)
+    address    String? @db.VarChar(200)
+    address_en String? @db.VarChar(200)
 
-    @@map("company")
+    describe    String? @db.Text
+    describe_en String? @db.Text
+    content     String? @db.Text
+    content_en  String? @db.Text
+    sort        Int?    @default(0)
+
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    @@map("recruit")
 }
 
 model System {
     id          Int      @id @default(autoincrement())
+    company     String?  @db.VarChar(100)
     title       String?  @db.VarChar(100)
     address     String?  @db.VarChar(200)
     logo        String?  @db.VarChar(255)
     logo2       String?  @db.VarChar(255)
-    customCode  String?  @map("custom_code") @db.VarChar(255)
+    customCode  String?  @map("custom_code") @db.VarChar(255) // 客服微信
     qrCode      String?  @map("qr_code") @db.VarChar(255)
     phone       String?  @db.VarChar(20)
+    phone2      String?  @db.VarChar(20)
     email       String?  @db.VarChar(50)
     keyword     String?  @db.VarChar(100)
     description String?  @db.VarChar(200)
@@ -144,7 +147,7 @@ model Link {
     img        String?  @db.VarChar(255)
     href       String?  @db.VarChar(255)
     sort       Int?     @default(0)
-    type       Int?     @default(1) // 1：商品图片，2：商品下载文件，3：视频文件，4：软件,5:轮播图
+    type       Int?     @default(1) // 1：商品图片，2：商品下载文件，3：视频文件，4：软件,5:轮播图 6：荣誉资质 ,7: 关于我们展示图
     isHide     Boolean  @default(false)
     createdAt  DateTime @default(now()) @map("created_at")
     updatedAt  DateTime @updatedAt @map("updated_at")
@@ -155,15 +158,18 @@ model Link {
 }
 
 model Other {
-    id         Int      @id @default(autoincrement())
-    title      String?  @db.VarChar(100)
-    title_en   String?  @db.VarChar(100)
-    img        String?  @db.VarChar(255)
-    content    String?  @db.Text
-    content_en String?  @db.Text
-    createdAt  DateTime @default(now()) @map("created_at")
-    updatedAt  DateTime @updatedAt @map("updated_at")
-    type       Int      @unique @default(0)
+    id          Int      @id @default(autoincrement())
+    title       String?  @db.VarChar(100)
+    title_en    String?  @db.VarChar(100)
+    img         String?  @db.VarChar(255)
+    subtitle    String?  @db.Text
+    subtitle_en String?  @db.Text
+    content     String?  @db.Text
+    content_en  String?  @db.Text
+    createdAt   DateTime @default(now()) @map("created_at")
+    updatedAt   DateTime @updatedAt @map("updated_at")
+    // type       Int?      @unique @default(0)
+    key         String?  @unique @db.VarChar(100) // 唯一标识
 
     @@map("other")
 }

@@ -198,13 +198,13 @@ export const getFileList = async (event: H3Event) => {
  */
 export const getAboutInfo = async (event: H3Event) => {
     // 获取参数
-    const param = await getEventParams<{ type: number }>(event)
+    const param = await getEventParams<{ type: string }>(event)
 
     if (!param?.type) return { msg: '不存在记录' }
 
     const res = await event.context.prisma.other.findUnique({
         where: {
-            type: Number(param.type),
+            key: param.type,
         },
     })
     return res
@@ -216,13 +216,13 @@ export const getAboutInfo = async (event: H3Event) => {
 export const getGoodsList = async (event: H3Event) => {
     // TODO: 商品
     // 获取参数
-    const param = await getEventParams<{ type: number }>(event)
+    const param = await getEventParams<{ type: string }>(event)
 
     if (!param?.type) return { msg: '不存在记录' }
 
     const res = await event.context.prisma.other.findUnique({
         where: {
-            type: Number(param.type),
+            key: param.type,
         },
     })
     return res

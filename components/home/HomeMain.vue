@@ -234,7 +234,7 @@ const { data: companyInfo } = await useCustomFetch<IAboutInfoResponse>('/api/pag
 })
 
 const onShin = async () => {
-    const { data: s, pending, error, refresh } = await useCustomFetch('/api/cheerio/news', {
+    const { data: s, pending, error, refresh } = await useCustomFetch('/api/cheerio/recruit', {
 
     })
 }
