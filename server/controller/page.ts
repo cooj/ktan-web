@@ -122,6 +122,78 @@ export const getBannerList = async (event: H3Event) => {
 }
 
 /**
+ * 获取文件列表
+ */
+export const getFileList = async (event: H3Event) => {
+    // 接口校验
+    // if (!event.context.user) return ResponseMessage.token
+
+    // const lang = useCookie<'cn' | 'en'>('i18n_redirected')
+    // console.log('🚀 ~ file: page.ts:38 ~ getMenuList ~ lang:', lang)
+
+    // 获取参数
+    const param = await getEventParams<{ type: number } & ListPage>(event)
+
+    const where: any = {
+        type: param?.type ? Number(param?.type) : 1,
+        isHide: false,
+    }
+    if (param?.type) {
+        where.type = { in: [Number(param?.type)] }
+    } else {
+        where.type = { in: [2, 3, 4] }
+    }
+
+    let page: number | undefined
+    let pageSize: number | undefined
+    let pageSkip: number | undefined
+
+    if (param?.isPage) {
+        page = param.page || 1
+        pageSize = Number(param.pageSize) || 20
+        pageSkip = pageSize * (page - 1) || 0
+    }
+    console.log('where :>> ', where)
+    const [res1, res2] = await Promise.all([
+        event.context.prisma.link.findMany({
+            skip: pageSkip,
+            take: pageSize,
+            where,
+            orderBy: {
+                sort: 'asc', // 按id正序排序
+            },
+            include: {
+                Product: {
+                    include: {
+                        links: {
+                            where: {
+                                type: 1,
+                            },
+                        },
+                    },
+                },
+            },
+            // select: { // 只返回指定的字段
+            //     username: true,
+            //     account: true,
+            // },
+        }),
+        event.context.prisma.link.count({
+            where,
+        }),
+    ])
+    console.log(res1)
+    if (res1) {
+        res1.forEach((item) => {
+            if (!item?.img) item.img = item.Product?.links[0]?.img || ''
+        })
+        return { code: 200, data: { list: res1, total: res2 } }
+    } else {
+        return { code: 400, message: '查询失败' }
+    }
+}
+
+/**
  * 获取关于我们、联系我们的内容
  */
 export const getAboutInfo = async (event: H3Event) => {

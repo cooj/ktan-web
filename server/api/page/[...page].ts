@@ -1,5 +1,5 @@
 import { createRouter, defineEventHandler, useBase } from 'h3'
-import { getAboutInfo, getBannerList, getIndexData, getMenuList, getNewsInfo, getProductInfo, getSystemInfo } from '~/server/controller/page'
+import { getAboutInfo, getBannerList, getFileList, getIndexData, getMenuList, getNewsInfo, getProductInfo, getSystemInfo } from '~/server/controller/page'
 import { getList } from '~/server/controller/news'
 import { getList as getProductList } from '~/server/controller/product'
 import { getList as getClassifyList } from '~/server/controller/classify'
@@ -49,14 +49,6 @@ router.use('/classify', defineEventHandler(async (event) => {
 }))
 
 /**
- * 获取产品列表
- */
-router.use('/goods', defineEventHandler(async (event) => {
-    // TODO 获取商品
-    return getAboutInfo(event)
-}))
-
-/**
  * 获取新闻
  */
 router.use('/news', defineEventHandler(async (event) => {
@@ -80,6 +72,13 @@ router.use('/product', defineEventHandler(async (event) => {
  */
 router.use('/product/detail', defineEventHandler(async (event) => {
     return getProductInfo(event)
+}))
+
+/**
+ * 获取商品
+ */
+router.use('/files', defineEventHandler(async (event) => {
+    return getFileList(event)
 }))
 
 /**
