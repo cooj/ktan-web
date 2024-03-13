@@ -46,13 +46,13 @@
                             <div v-if="item.is_goods || item.children?.length" class="nav_hide">
                                 <ul v-if="item.is_goods" class="nav_ul">
                                     <li v-for="opt in classifyList" :key="opt.id" class="nav_li">
-                                        <NuxtLinkLocale :to="`/product/${opt.id}`" class="nav_title">
+                                        <NuxtLinkLocale :to="`/product?cid=${opt.id}`" class="nav_title">
                                             {{ $lang(opt.title, opt.title_en) }}
                                         </NuxtLinkLocale>
                                         <!-- <a target="" class="nav_title" href="95-zh-Hans.html">高低压核相相序系列</a> -->
                                         <div v-if="opt.children?.length" class="nav_sublevel">
                                             <NuxtLinkLocale v-for="sub in opt.children" :key="sub.id"
-                                                :to="`/product/${sub.id}`">
+                                                :to="`/product?cid=${sub.id}`">
                                                 {{ $lang(sub.title, sub.title_en) }}
                                             </NuxtLinkLocale>
                                             <!-- <a target="" href="103.html">本地语音智能核相仪</a>
@@ -246,7 +246,9 @@ const { $lang } = useNuxtApp()
 const systemInfo = await useSystemState().getSystemInfo()
 // console.log(dat)
 
-const menuList = await useMenuState().getMenuList()
+const menuState = useMenuState()
+
+const menuList = await menuState.getMenuList()
 if (process.client) {
     setTimeout(() => {
         console.log('🚀 ~ file: header.vue:21 ~ menuList:', menuList)
@@ -257,6 +259,12 @@ const classifyList = await useGoodsClassifyState().getClassify()
 // console.log('classifyList :>> ', classifyList)
 
 const setActiveMenu = (item: string) => {
+    const href = menuState.activeMenu.value?.href
+
+    return href === item
+    // if (href === item) {
+    // }
+    console.log(menuState.activeMenu.value?.href)
     const route = useRoute()
     // console.log(route)
     // const url = useRequestURL()

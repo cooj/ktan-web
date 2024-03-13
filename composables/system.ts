@@ -51,7 +51,57 @@ export const useMenuState = () => {
     const activeMenu = computed<IMenuListResponse | undefined>(() => {
         // [id].vue 的问价，不能直接拿route.path来进行比较
         const path = route.matched[0].path.split('/:')[0]
-        return menuList.value.find(item => item.href === path || `/en${item.href}` === path)
+
+        let url = ''
+
+        // if (path.startsWith('/en')) {
+        //     const secondSlashIndex = path.indexOf('/', 4) // 从第5个字符开始查找第二个斜杠的位置
+        //     if (secondSlashIndex !== -1) {
+        //         url = path.substring(0, secondSlashIndex) // 返回/en开头到第二个斜杠之间的内容（不包括第二个斜杠）
+        //     } else {
+        //         url = path // 如果没有第二个斜杠，则返回整个字符串
+        //     }
+        // } else {
+        //     const firstSlashIndex = path.indexOf('/', 1) // 从第二个字符开始查找第一个斜杠的位置
+        //     if (firstSlashIndex !== -1) {
+        //         url = path.substring(0, firstSlashIndex) // 返回第一个斜杠之前的内容（不包括斜杠）
+        //     } else {
+        //         url = path // 如果没有斜杠，则返回整个字符串
+        //     }
+        // }
+
+        // if (path.startsWith('/en')) {
+        //     const secondSlashIndex = path.indexOf('/', 4) // 从第5个字符开始查找第二个斜杠的位置
+        //     if (secondSlashIndex !== -1) {
+        //         url = path.substring(secondSlashIndex) // 返回第二个斜杠及后面的内容
+        //     } else {
+        //         url = '' // 如果没有第二个斜杠，则返回空字符串
+        //     }
+        // } else {
+        //     const firstSlashIndex = path.indexOf('/') // 查找第一个斜杠的位置
+        //     if (firstSlashIndex !== -1) {
+        //         url = path.substring(firstSlashIndex) // 返回第一个斜杠及后面的内容
+        //     } else {
+        //         url = '' // 如果没有斜杠，则返回空字符串
+        //     }
+        // }
+
+        const strArr = path.split('/')
+        if (path === '/' || path === '/en') {
+            url = '/'
+        } else if (path.startsWith('/en')) {
+            // console.log(strArr)
+            if (strArr[2]) url = `/${strArr[2]}`
+        } else {
+            if (strArr[1]) url = `/${strArr[1]}`
+        }
+
+        console.log(url) // 输出结果
+
+        // console.log(path)
+        return menuList.value.find(item => item.href === url || `/en${item.href}` === url)
+
+        // return menuList.value.find(item => item.href === url)
     })
 
     return {

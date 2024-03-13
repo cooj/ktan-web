@@ -15,7 +15,7 @@
             <!-- banner图 -->
             <ClientOnly>
                 <div class="banner_img">
-                    <img :src="menu?.img" alt="">
+                    <img :src="activeMenu?.img" alt="">
                 </div>
 
                 <!-- 面包屑 -->
@@ -56,7 +56,7 @@ const { activeMenu, menuList } = useMenuState()
 //             next: { translate: ['100%', 0, 0] }
 //         }"
 
-const menu = ref(activeMenu.value)
+// const menu = computed(() => activeMenu.value)
 
 const effect = {
     prev: {
@@ -68,6 +68,10 @@ const effect = {
 
 const { data: banner } = await useCustomFetch<ISlideListResponse[]>('/api/page/get_banner?type=5')
 // console.log(banner)
+// onBeforeUpdate(() => {
+//     console.log(activeMenu.value)
+//     console.log('menu.value :>> ', menu.value)
+// })
 </script>
 
 <style lang="scss" scoped>
