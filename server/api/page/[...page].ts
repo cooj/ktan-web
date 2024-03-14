@@ -37,7 +37,8 @@ router.use('/get_links', defineEventHandler(async (event) => {
 /**
  * 获取关于我们、联系我们数据
  */
-router.use('/about', defineEventHandler(async (event) => {
+router.use('/other', defineEventHandler(async (event) => {
+    console.log(1111)
     return getAboutInfo(event)
 }))
 

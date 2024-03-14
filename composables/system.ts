@@ -96,7 +96,7 @@ export const useMenuState = () => {
             if (strArr[1]) url = `/${strArr[1]}`
         }
 
-        console.log(url) // 输出结果
+        // console.log(url) // 输出结果
 
         // console.log(path)
         return menuList.value.find(item => item.href === url || `/en${item.href}` === url)

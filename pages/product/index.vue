@@ -6,7 +6,7 @@
             <ul class="goods_module goods-grid pt50px">
                 <ClientOnly>
                     <li v-for="item in productData.list" :key="item.id" class="goods_list">
-                        <NuxtLink :to="`/product/${item.id}`" class="goods_link">
+                        <NuxtLinkLocale :to="`/product/${item.id}`" class="goods_link">
                             <CoImage class="goods_img w100% pb100% block!" :src="item.img" />
                             <!-- <figure class="goods_img">
                         <img src="http://www.eaglotest.com.cn/public/upload/product/2022/03-10/S390A.jpg">
@@ -14,7 +14,7 @@
                             <p class="goods-tle line-clamp-1 text-center">
                                 {{ $lang(item.title, item.title_en) }}
                             </p>
-                        </NuxtLink>
+                        </NuxtLinkLocale>
                     </li>
                 </ClientOnly>
             </ul>

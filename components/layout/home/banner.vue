@@ -5,9 +5,9 @@
             :loop="true" :autoplay="{ delay: 8000, disableOnInteraction: true }" effect="creative"
             :creative-effect="effect" navigation :pagination="{ clickable: true }">
             <SwiperSlide v-for="(item, idx) in banner" :key="idx" class="w100%">
-                <NuxtLink :to="item.href" class="banner-link">
+                <NuxtLinkLocale :to="item.href" class="banner-link">
                     <img :src="item.img" :alt="item.title">
-                </NuxtLink>
+                </NuxtLinkLocale>
             </SwiperSlide>
         </Swiper>
 

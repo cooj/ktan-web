@@ -183,7 +183,7 @@ export const getFileList = async (event: H3Event) => {
             where,
         }),
     ])
-    console.log(res1)
+    // console.log(res1)
     if (res1) {
         res1.forEach((item) => {
             if (!item?.img) item.img = item.Product?.links[0]?.img || ''
@@ -202,12 +202,13 @@ export const getAboutInfo = async (event: H3Event) => {
     const param = await getEventParams<{ type: string }>(event)
 
     if (!param?.type) return { msg: '不存在记录' }
-
+    console.log('param :>> ', param)
     const res = await event.context.prisma.other.findUnique({
         where: {
             key: param.type,
         },
     })
+    console.log(res)
     return res
 }
 

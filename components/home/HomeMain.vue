@@ -16,7 +16,7 @@
                 :slides-per-view="1" :space-between="10" :loop="true"
                 :autoplay="{ delay: 8000, disableOnInteraction: true }" :breakpoints="breakpoints" class="hot_swiper">
                 <SwiperSlide class="w100%">
-                    <NuxtLink to="" class="banner-link">
+                    <NuxtLinkLocale to="" class="banner-link">
                         <p class="hot_name">
                             S191 智能电缆综合探测仪
                         </p>
@@ -24,10 +24,10 @@
                         <figure class="hot_img">
                             <img src="assets/image/e17fecaf35cd6a3efb1fb1b0d3345538.jpg" alt="">
                         </figure>
-                    </NuxtLink>
+                    </NuxtLinkLocale>
                 </SwiperSlide>
                 <SwiperSlide class="w100%">
-                    <NuxtLink to="" class="banner-link">
+                    <NuxtLinkLocale to="" class="banner-link">
                         <p class="hot_name">
                             S688 大口径钳形漏电电流表
                         </p>
@@ -35,10 +35,10 @@
                         <figure class="hot_img">
                             <img src="assets/image/S688.jpg" alt="">
                         </figure>
-                    </NuxtLink>
+                    </NuxtLinkLocale>
                 </SwiperSlide>
                 <SwiperSlide class="w100%">
-                    <NuxtLink to="" class="banner-link">
+                    <NuxtLinkLocale to="" class="banner-link">
                         <p class="hot_name">
                             S191 智能电缆综合探测仪
                         </p>
@@ -46,10 +46,10 @@
                         <figure class="hot_img">
                             <img src="assets/image/S688.jpg" alt="">
                         </figure>
-                    </NuxtLink>
+                    </NuxtLinkLocale>
                 </SwiperSlide>
                 <SwiperSlide class="w100%">
-                    <NuxtLink to="" class="banner-link">
+                    <NuxtLinkLocale to="" class="banner-link">
                         <p class="hot_name">
                             S-100F/S-200F/S-300F 柔性线圈电流传感器
                         </p>
@@ -57,10 +57,10 @@
                         <figure class="hot_img">
                             <img src="assets/image/N.jpg" alt="">
                         </figure>
-                    </NuxtLink>
+                    </NuxtLinkLocale>
                 </SwiperSlide>
                 <SwiperSlide class="w100%">
-                    <NuxtLink to="" class="banner-link">
+                    <NuxtLinkLocale to="" class="banner-link">
                         <p class="hot_name">
                             S191 智能电缆综合探测仪
                         </p>
@@ -68,10 +68,10 @@
                         <figure class="hot_img">
                             <img src="assets/image/e17fecaf35cd6a3efb1fb1b0d3345538.jpg" alt="">
                         </figure>
-                    </NuxtLink>
+                    </NuxtLinkLocale>
                 </SwiperSlide>
                 <SwiperSlide class="w100%">
-                    <NuxtLink to="" class="banner-link">
+                    <NuxtLinkLocale to="" class="banner-link">
                         <p class="hot_name">
                             S688 大口径钳形漏电电流表
                         </p>
@@ -79,10 +79,10 @@
                         <figure class="hot_img">
                             <img src="assets/image/S688.jpg" alt="">
                         </figure>
-                    </NuxtLink>
+                    </NuxtLinkLocale>
                 </SwiperSlide>
                 <SwiperSlide class="w100%">
-                    <NuxtLink to="" class="banner-link">
+                    <NuxtLinkLocale to="" class="banner-link">
                         <p class="hot_name">
                             S191 智能电缆综合探测仪
                         </p>
@@ -90,10 +90,10 @@
                         <figure class="hot_img">
                             <img src="assets/image/N.jpg" alt="">
                         </figure>
-                    </NuxtLink>
+                    </NuxtLinkLocale>
                 </SwiperSlide>
                 <SwiperSlide class="w100%">
-                    <NuxtLink to="" class="banner-link">
+                    <NuxtLinkLocale to="" class="banner-link">
                         <p class="hot_name">
                             S451 直流电阻测试仪
                         </p>
@@ -101,7 +101,7 @@
                         <figure class="hot_img">
                             <img src="assets/image/e17fecaf35cd6a3efb1fb1b0d3345538.jpg" alt="">
                         </figure>
-                    </NuxtLink>
+                    </NuxtLinkLocale>
                 </SwiperSlide>
             </Swiper>
             <a target="" href="center-zh-Hans.html" class="hot_more">查看更多 >></a>

@@ -5,26 +5,26 @@
             <Swiper class="" :modules="[SwiperAutoplay, SwiperEffectCreative, SwiperNavigation, SwiperPagination]"
                 :slides-per-view="5" :space-between="30" :navigation="navigation">
                 <SwiperSlide class="type_list" :class="setClassifyName(0)">
-                    <NuxtLink :to="linkGoodsList({ query: {}, relate: false, url: true })" class="type_name">
+                    <NuxtLinkLocale :to="linkGoodsList({ query: {}, relate: false, url: true })" class="type_name">
                         {{ $lang('首页', 'Home') }}
-                    </NuxtLink>
+                    </NuxtLinkLocale>
                 </SwiperSlide>
                 <SwiperSlide v-for="(item, idx) in classifyList" :key="idx" class="type_list"
                     :class="setClassifyName(item.id)">
-                    <NuxtLink class="type_name line-clamp-1"
+                    <NuxtLinkLocale class="type_name line-clamp-1"
                         :to="linkGoodsList({ query: { cid: item.id, page: 1 }, relate: false, url: true })">
                         {{ $lang(item.title, item.title_en) }}
-                    </NuxtLink>
+                    </NuxtLinkLocale>
                     <template v-if="item.children?.length">
                         <figure class="type_icon">
                             <i class="i-ep-caret-bottom main-color block text-24px" />
                         </figure>
                         <ul class="type_subclass">
                             <li v-for="sub in item.children" :key="sub.id">
-                                <NuxtLink class="cursor-pointer"
+                                <NuxtLinkLocale class="cursor-pointer"
                                     :to="linkGoodsList({ query: { cid: sub.id, page: 1 }, relate: false, url: true })">
                                     {{ $lang(sub.title, sub.title_en) }}
-                                </NuxtLink>
+                                </NuxtLinkLocale>
                             </li>
                         </ul>
                     </template>

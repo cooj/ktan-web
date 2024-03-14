@@ -1,9 +1,11 @@
 <template>
     <nav class="sort_module">
-        <NuxtLink v-for="(item, index) in activeMenu?.children" :key="item.id" :to="item.href || ''"
-            :class="{ sort_active: $route.path === item.href || props.value === index + 1 }">
-            {{ $lang(item.title, item.title_en) }}
-        </NuxtLink>
+        <ClientOnly>
+            <NuxtLinkLocale v-for="(item, index) in activeMenu?.children" :key="item.id" :to="item.href || ''"
+                :class="{ sort_active: setActiveClassName(item.href || '', index) }">
+                {{ $lang(item.title, item.title_en) }}
+            </NuxtLinkLocale>
+        </ClientOnly>
     </nav>
 </template>
 
@@ -14,6 +16,15 @@ const props = defineProps<{
 }>()
 
 const { activeMenu, menuList } = useMenuState()
+
+const route = useRoute()
+const setActiveClassName = (url: string, index: number) => {
+    if (route.path.startsWith('/en')) {
+        return route.path === `/en${url}`
+    } else {
+        return route.path === url || props.value === index + 1
+    }
+}
 
 // onBeforeRouteUpdate(() => {
 //     console.log('activeMenu.value :>> ', activeMenu.value)
