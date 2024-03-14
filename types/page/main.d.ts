@@ -7,6 +7,7 @@ declare interface ISystemInfoResponse {
     logo2: string
     qq: string
     qrCode: ''
+    customCode: ''
     phone: '189-2553-8915'
     phone2: '189-2553-8915'
     email: ''

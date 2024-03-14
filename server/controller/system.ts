@@ -51,7 +51,7 @@ export const setSystemInfo = async (event: H3Event) => {
     const param = await getEventParams<ISystemEditParams>(event)
     // console.log('param-----', param)
 
-    if (!param?.title) return { msg: '公司名称不能为空' }
+    if (!param?.company) return { msg: '公司名称不能为空' }
 
     const [res1, res2] = await Promise.all([
         event.context.prisma.system.update({
@@ -62,13 +62,16 @@ export const setSystemInfo = async (event: H3Event) => {
                 logo: param.logo,
                 logo2: param.logo2,
                 qrCode: param.qr_code,
+                customCode: param.custom_code,
                 phone: param.phone,
+                phone2: param.phone2,
                 email: param.email,
                 keyword: param.seo_keyword,
                 description: param.seo_description,
                 filing: param.filing,
                 copyright: param.copyright,
                 icon: param.icon,
+                welcome: param.welcome,
             },
             where: { id: 1 },
         }),
@@ -86,6 +89,7 @@ export const setSystemInfo = async (event: H3Event) => {
                 // seo_description: param.seo_description,
                 filing: param.filing_en,
                 copyright: param.copyright_en,
+                welcome: param.welcome_en,
             },
             where: { id: 2 },
         }),

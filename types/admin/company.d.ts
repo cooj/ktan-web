@@ -21,10 +21,13 @@ declare interface ISystemEditParams {
     copyright: string // 版权信息
     filing_en: string // 备案号
     copyright_en: string // 版权信息
-
-    icon: string
+    icon: string // 网站图标
     company: string
     company_en: string
+    phone2: string
+    custom_code: string
+    welcome: string
+    welcome_en: string
 }
 
 // 公司信息
