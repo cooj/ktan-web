@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client'
 import type { H3Event } from 'h3'
 import { ResponseMessage } from '~/config/message'
 
@@ -24,6 +25,7 @@ export const getSystemInfo = async (event: H3Event) => {
             code: 200,
             data: {
                 ...res1,
+                company_en: res2.company,
                 title_en: res2.title,
                 address_en: res2.address,
                 filing_en: res2.filing,
@@ -45,7 +47,7 @@ export const setSystemInfo = async (event: H3Event) => {
 
     if (!event.context.user) return ResponseMessage.token
 
-    // 获取参数
+    // 获取参数 ISystemEditParams
     const param = await getEventParams<ISystemEditParams>(event)
     // console.log('param-----', param)
 
@@ -54,6 +56,7 @@ export const setSystemInfo = async (event: H3Event) => {
     const [res1, res2] = await Promise.all([
         event.context.prisma.system.update({
             data: {
+                company: param.company,
                 title: param.title,
                 address: param.address,
                 logo: param.logo,
@@ -72,6 +75,7 @@ export const setSystemInfo = async (event: H3Event) => {
         event.context.prisma.system.update({
             data: {
                 title: param.title_en,
+                company: param.company_en,
                 address: param.address_en,
                 // logo: param.logo,
                 // logo2: param.logo2,

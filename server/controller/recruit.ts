@@ -32,7 +32,8 @@ export const getList = async (event: H3Event) => {
         },
     }
 
-    // if (param?.type) where.classifyId = Number(param?.type)
+    if (param?.type === 1) where.isOpen = true
+    else if (param?.type === 2) where.isOpen = false
 
     // 查询菜单姓"张"，1页显示20条
     let page: number | undefined

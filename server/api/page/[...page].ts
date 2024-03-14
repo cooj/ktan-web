@@ -3,6 +3,7 @@ import { getAboutInfo, getBannerList, getFileList, getIndexData, getMenuList, ge
 import { getList } from '~/server/controller/news'
 import { getList as getProductList } from '~/server/controller/product'
 import { getList as getClassifyList } from '~/server/controller/classify'
+import { getList as getRecruitList } from '~/server/controller/recruit'
 
 const router = createRouter()
 
@@ -76,10 +77,17 @@ router.use('/product/detail', defineEventHandler(async (event) => {
 }))
 
 /**
- * 获取商品
+ * 获取文件
  */
 router.use('/files', defineEventHandler(async (event) => {
     return getFileList(event)
+}))
+
+/**
+ * 获取招聘岗位
+ */
+router.use('/recruit', defineEventHandler(async (event) => {
+    return getRecruitList(event)
 }))
 
 /**

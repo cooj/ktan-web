@@ -8,6 +8,7 @@ declare interface ISystemInfoResponse {
     qq: string
     qrCode: ''
     phone: '189-2553-8915'
+    phone2: '189-2553-8915'
     email: ''
     keyword: string
     description: string
@@ -20,6 +21,8 @@ declare interface ISystemInfoResponse {
     filing_en: ''
     copyright_en: ''
     icon: string // 网站图标
+    company: string
+    company_en: string
 }
 
 // 菜单
@@ -165,4 +168,21 @@ declare interface IGoodsGetListItem {
         title: string
     }
     links: ILinkItem[]
+}
+
+declare interface IRecruitGetListItem {
+    id: 1
+    title: '电子工程师 （研发）'
+    title_en: ''
+    people: '多名'
+    address: '广州白云'
+    address_en: ''
+    describe: '<p>岗位职责： &nbsp; &nbsp; &nbsp; &nbsp; </p><p>1、负责产品电子系统总成项目的技术支持与协调，并参与项目管理以及产品开发设计；<br>2、现场支持系统总装和评估，负责解决系统级工程问题；<br>3、配合项目管理组，完成新产品开发工作流程；</p>'
+    describe_en: ''
+    content: '<p>职位要求： &nbsp; &nbsp; &nbsp; </p><p>1、精通数字、模拟、高频电路。<br>2、具有扎实的硬件电路设计经验。<br>3、精通电路原理图、PCB 设计。<br>4、精通大规模集成电路硬件焊接、拆卸、维修、测试。<br>5、三年及以上工作经验。<br>6、本科及以上学历，40 岁以下。、<br>7、面试必备：个人简历、学历证书、身份证（原件+复印件）。<br>8、待遇：面议</p>'
+    content_en: ''
+    sort: 0
+    is_open: true
+    createdAt: '2024-03-13T08:42:11.746Z'
+    updatedAt: '2024-03-13T09:27:37.109Z'
 }

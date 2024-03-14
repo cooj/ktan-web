@@ -23,6 +23,8 @@ declare interface ISystemEditParams {
     copyright_en: string // 版权信息
 
     icon: string
+    company: string
+    company_en: string
 }
 
 // 公司信息

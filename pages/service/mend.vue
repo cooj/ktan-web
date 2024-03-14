@@ -27,6 +27,4 @@ const { data } = await useCustomFetch<Prisma.OtherMaxAggregateOutputType>('/api/
         type: 'service-mend',
     },
 })
-
-console.log(data.value)
 </script>

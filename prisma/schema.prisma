@@ -57,7 +57,7 @@ model System {
     email       String?  @db.VarChar(50)
     keyword     String?  @db.VarChar(100)
     description String?  @db.VarChar(200)
-    filing      String?  @db.VarChar(100)
+    filing      String?  @db.VarChar(255)
     copyright   String?  @db.VarChar(200)
     createdAt   DateTime @default(now()) @map("created_at")
     updatedAt   DateTime @updatedAt @map("updated_at")
