@@ -13,13 +13,18 @@ export const getList = async (event: H3Event) => {
     if (!event.context.user) return ResponseMessage.token
 
     // 获取参数
-    const param = await getEventParams<{ type: number } & ListPage>(event)
+    const param = await getEventParams<{ type: number, title: string, goods_id: string } & ListPage>(event)
 
     if (!param?.type) return { msg: '请传递类型' }
 
+    const types = param?.type.toString().split(',').filter(item => !!item).map(item => Number(item))
     const where: any = {
-        type: param.type,
+        type: { in: types },
+        // isHide: false,
     }
+
+    if (param.title) where.title = { contains: param.title }
+    if (param.goods_id) where.productId = Number(param.goods_id)
 
     // 查询菜单姓"张"，1页显示20条
     let page: number | undefined
@@ -41,7 +46,15 @@ export const getList = async (event: H3Event) => {
                 sort: 'asc', // 按id正序排序
             },
             // include: {
-            //     children: true,
+            //     Product: {
+            //         include: {
+            //             links: {
+            //                 where: {
+            //                     type: 1,
+            //                 },
+            //             },
+            //         },
+            //     },
             // },
             // select: { // 只返回指定的字段
             //     username: true,
@@ -53,6 +66,7 @@ export const getList = async (event: H3Event) => {
         }),
     ])
     const list = res1.map((item) => {
+        // if (!item?.img) item.img = item.Product?.links[0]?.img || ''
         return {
             ...item,
             password: '',

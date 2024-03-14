@@ -97,8 +97,9 @@ export const getBannerList = async (event: H3Event) => {
     // 获取参数
     const param = await getEventParams<{ type: number } & ListPage>(event)
 
+    const types = param?.type.toString().split(',').filter(item => !!item).map(item => Number(item))
     const where: any = {
-        type: param?.type ? Number(param?.type) : 1,
+        type: { in: types },
         isHide: false,
     }
 

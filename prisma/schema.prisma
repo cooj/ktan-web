@@ -30,11 +30,12 @@ model Recruit {
     address    String? @db.VarChar(200)
     address_en String? @db.VarChar(200)
 
-    describe    String? @db.Text
-    describe_en String? @db.Text
-    content     String? @db.Text
-    content_en  String? @db.Text
-    sort        Int?    @default(0)
+    describe    String?  @db.Text
+    describe_en String?  @db.Text
+    content     String?  @db.Text
+    content_en  String?  @db.Text
+    sort        Int?     @default(0)
+    is_open     Boolean? @default(true)
 
     createdAt DateTime @default(now()) @map("created_at")
     updatedAt DateTime @updatedAt @map("updated_at")
