@@ -45,7 +45,7 @@
                             <img src="assets/image/icon_url.png" alt="">
                         </figure>
                         <p class="contact_text">
-                            官方网址：<a target="" href="index.html">eaglotest.com.cn</a>
+                            官方网址：<a target="" href="index.html">test.com.cn</a>
                         </p>
                     </li> -->
                 </ul>

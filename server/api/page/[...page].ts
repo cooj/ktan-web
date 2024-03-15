@@ -4,6 +4,7 @@ import { getList } from '~/server/controller/news'
 import { getList as getProductList } from '~/server/controller/product'
 import { getList as getClassifyList } from '~/server/controller/classify'
 import { getList as getRecruitList } from '~/server/controller/recruit'
+import { insert as setMessageData } from '~/server/controller/message'
 
 const router = createRouter()
 
@@ -88,6 +89,13 @@ router.use('/files', defineEventHandler(async (event) => {
  */
 router.use('/recruit', defineEventHandler(async (event) => {
     return getRecruitList(event)
+}))
+
+/**
+ * 设置留言信息
+ */
+router.use('/message', defineEventHandler(async (event) => {
+    return setMessageData(event)
 }))
 
 /**

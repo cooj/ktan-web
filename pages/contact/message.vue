@@ -4,52 +4,47 @@
 
         <!-- 留言框 -->
         <div class="width_box join_top">
-            <p class="join_explain">
-                鹰测技术欢迎您留言，可以拨打客服热线<span> 400-6261-158</span>,
-                会有专门的客服为您解答相关疑问。您也可以填写下面的留言表。如有任何问题或询问，请发电子邮件给我们，或使用我们的联系方式。我们很乐意回答您的问题。
-            </p>
+            <div class="join_explain" v-html="$lang(data?.content, data?.content_en)" />
             <form id="form" onsubmit="return false" method="post" class="join_module">
                 <div class="join_box">
                     <ul class="join_ul">
                         <li class="join_list">
-                            <input name="customName" type="text" placeholder="您的姓名">
+                            <input v-model="form.name" name="customName" type="text"
+                                :placeholder="$lang('您的名字', 'Name') || ''">
                             <div><img src="assets/image/icon_join1.png" alt=""></div>
                         </li>
                         <li class="join_list">
-                            <input name="mobile" type="text" placeholder="您的电话">
+                            <input v-model="form.phone" name="mobile" type="text"
+                                :placeholder="$lang('您的电话', 'Phone') || ''">
                             <div><img src="assets/image/icon_join2.png" alt=""></div>
                         </li>
                         <li class="join_list">
-                            <input name="email" type="email" placeholder="您的邮箱">
+                            <input v-model="form.email" name="email" type="email"
+                                :placeholder="$lang('您的邮箱', 'Email') || ''">
                             <div><img src="assets/image/icon_join3.png" alt=""></div>
                         </li>
                         <li class="join_list">
-                            <input name="address" class="address" type="text" placeholder="所在地区">
-                            <!--                        <div class="city_btn"><img src="/template/home/static/img/img/icon_join4.png" alt=""></div> -->
-                            <!--                        <object class="join_city"> -->
-                            <!--                            <div class="city_module"> -->
-                            <!--                                <select name="province" class="province" onchange="onProvinceChange()"> -->
-                            <!--                                </select> -->
-                            <!--                                <select name="city" class="city" onchange="onCityChange()"> -->
-                            <!--                                </select> -->
-                            <!--                                <select name="district" class="district"> -->
-                            <!--                                </select> -->
-                            <!--                                <div class="city_submit"><button type="button">确定</button></div> -->
-                            <!--                            </div> -->
-                            <!--                        </object> -->
+                            <input v-model="form.address" name="address" class="address" type="text"
+                                :placeholder="$lang('所在地区', 'Address') || ''">
+                            <!-- <div class="city_btn"><img src="/template/home/static/img/img/icon_join4.png" alt=""></div> -->
                         </li>
                     </ul>
                     <div class="join_img">
-                        <!-- <img src="assets/image/join_img.png" alt=""> -->
+                        <img :src="data?.img || ''" alt="">
                     </div>
                 </div>
-                <textarea name="note" class="join_remark" placeholder="备注" />
+                <textarea v-model="form.note" name="note" class="join_remark"
+                    :placeholder="$lang('备注', 'Remark') || ''" />
                 <div class="join_base">
                     <div class="join_list">
-                        <input name="verifyCode" type="text" placeholder="验证码">
-                        <div><a href="javascript:changeVerifyCode()"><img id="verifyCodeImg" src="" alt=""></a></div>
+                        <input v-model="form.verifyCode" name="verifyCode" type="text"
+                            :placeholder="$lang('验证码', 'Code') || ''">
+                        <div class="select-none pl5px text-28px tracking-8px font-[fantasy]" @click="setVerifyCode">
+                            <ClientOnly>{{ code }}</ClientOnly>
+                            <!-- <a href="javascript:changeVerifyCode()"><img id="verifyCodeImg" src="" alt=""></a> -->
+                        </div>
                     </div>
-                    <a href="javascript:submit()" class="join_submit">提交申请</a>
+                    <a class="join_submit" @click="onSubmit">{{ $lang('提交申请', 'Submit') }}</a>
                 </div>
             </form>
         </div>
@@ -60,14 +55,117 @@
 import type { Prisma } from '@prisma/client'
 import { defineComponent } from 'vue'
 
+const { $lang } = useNuxtApp()
+
 definePageMeta({
     layout: 'home',
 })
 const systemInfo = await useSystemState().getSystemInfo()
 
-onMounted(() => {
-    initMap('map_box', systemInfo.value?.company, systemInfo.value?.address)
+const { data } = await useCustomFetch<Prisma.OtherMaxAggregateOutputType>('/api/page/other', {
+    params: {
+        type: 'message',
+    },
 })
+
+function generateRandomString(length: number): string {
+    const characters = 'ABCDEFGHIJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz123456789'
+    let result = ''
+
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length)
+        result += characters.charAt(randomIndex)
+    }
+
+    return result
+}
+
+const disabled = ref(false)
+const code = ref(generateRandomString(4))
+const form = reactive({
+    name: '',
+    phone: '',
+    email: '',
+    address: '',
+    note: '',
+    verifyCode: '',
+})
+
+const setVerifyCode = () => {
+    code.value = generateRandomString(4)
+}
+
+const verifyArr = ref<(keyof typeof form)[]>([])
+const verifyForm = (list: { label: keyof typeof form, msg: string }[]) => {
+    verifyArr.value = []
+
+    // console.log('list :>> ', list)
+    list.forEach((item) => {
+        // console.log('form[item.label] :>> ', form[item.label])
+        if (!form[item.label]?.trim()) {
+            verifyArr.value.push(item.label)
+            ElMessage.error(item.msg)
+        }
+    })
+    return verifyArr.value.length === 0
+}
+const msgCode = $lang('验证码错误', 'Verification code error') || ''
+const msgSuccess = $lang('提交成功', 'Submit success') || ''
+
+const verifyList: { label: keyof typeof form, msg: string }[] = [
+    {
+        label: 'name',
+        msg: $lang('请输入姓名', 'Please enter your name') || '',
+    },
+    {
+        label: 'phone',
+        msg: $lang('请输入电话', 'Please enter your phone') || '',
+    },
+    {
+        label: 'email',
+        msg: $lang('请输入邮箱', 'Please enter your email') || '',
+    },
+    {
+        label: 'address',
+        msg: $lang('请输入所在地区', 'Please enter your address') || '',
+    },
+    {
+        label: 'note',
+        msg: $lang('请输入备注', 'Please enter your remark') || '',
+    },
+]
+
+const onSubmit = async () => {
+    if (disabled.value) return false
+    // console.log('form :>> ', form)
+    // console.log('11000 :>> ', msgCode)
+    const isVerify = verifyForm(verifyList)
+    // console.log('111 :>> ', 111)
+    if (form.verifyCode?.trim()?.toLowerCase() !== code.value.toLowerCase()) return ElMessage.error(msgCode)
+    if (!isVerify) return false
+    disabled.value = true
+    const { data, error } = await useCustomFetch<{ code: number }>('/api/page/message', {
+        params: {
+            title: form.name?.trim() ?? '',
+            phone: form.phone?.trim() ?? '',
+            email: form.email?.trim() ?? '',
+            address: form.address?.trim() ?? '',
+            content: form.note?.trim() ?? '',
+        },
+    })
+    disabled.value = false
+    if (error.value) return false
+    if (data.value?.code === 200) {
+        ElMessage.success(msgSuccess)
+        form.name = ''
+        form.phone = ''
+        form.email = ''
+        form.address = ''
+        form.note = ''
+        form.verifyCode = ''
+        setVerifyCode()
+    }
+}
 </script>
 
 <style lang="scss" scoped>
