@@ -7,7 +7,8 @@
             <Swiper v-if="activeMenu?.href === '/'"
                 :modules="[SwiperAutoplay, SwiperEffectCreative, SwiperNavigation, SwiperPagination]"
                 :slides-per-view="1" :loop="true" :autoplay="{ delay: 8000, disableOnInteraction: true }"
-                effect="creative" :creative-effect="effect" navigation :pagination="{ clickable: true }">
+                :pagination="{ clickable: true }">
+                <!-- navigation effect="creative" :creative-effect="effect" -->
                 <SwiperSlide v-for="(item, idx) in banner" :key="idx" class="w100%">
                     <NuxtLinkLocale :to="item.href" class="banner-link">
                         <img :src="item.img" :alt="item.title">
@@ -64,10 +65,10 @@ const { activeMenu, menuList } = useMenuState()
 // const menu = computed(() => activeMenu.value)
 
 const effect = {
-    prev: {
-        shadow: false,
-        translate: ['-20%', 0, -1],
-    },
+    // prev: {
+    //     shadow: false,
+    //     translate: ['-20%', 0, -1],
+    // },
     next: { translate: ['100%', 0, 0] },
 }
 
@@ -88,7 +89,8 @@ const { data: banner } = await useCustomFetch<ISlideListResponse[]>('/api/page/g
 .banner-link {
     display: block;
     width: 100%;
-    height: 600px;
+    // height: 600px;
+    padding-bottom: 38%;
     position: relative;
     top: 0;
     left: 0;
