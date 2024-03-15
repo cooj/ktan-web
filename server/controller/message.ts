@@ -14,7 +14,7 @@ export const getList = async (event: H3Event) => {
     if (!event.context.user) return ResponseMessage.token
 
     // 获取参数
-    const param = await getEventParams<{ type: number, title: string } & ListPage>(event)
+    const param = await getEventParams<{ status: number, title: string } & ListPage>(event)
 
     // if (!param?.type) return { msg: '请传递类型' }
 
@@ -25,6 +25,7 @@ export const getList = async (event: H3Event) => {
     }
 
     if (param?.title) where.title = { contains: param.title }
+    if (param?.status) where.status = Number(param.status)
 
     // 查询菜单姓"张"，1页显示20条
     let page: number | undefined
