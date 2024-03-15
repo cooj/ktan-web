@@ -103,6 +103,7 @@ model News {
     createdAt   DateTime @default(now()) @map("created_at")
     updatedAt   DateTime @updatedAt @map("updated_at")
     isHide      Boolean? @default(false)
+    isHot       Boolean? @default(false)
     read        Int?     @default(0)
 
     @@map("news")
@@ -126,6 +127,7 @@ model Product {
     img          String?   @db.VarChar(255)
     sort         Int?      @default(0)
     isHide       Boolean?  @default(false)
+    isHot        Boolean?  @default(false)
     type         Int       @default(0)
     read         Int?      @default(0)
     createdAt    DateTime  @default(now()) @map("created_at")
@@ -148,7 +150,7 @@ model Link {
     img        String?  @db.VarChar(255)
     href       String?  @db.VarChar(255)
     sort       Int?     @default(0)
-    type       Int?     @default(1) // 1：商品图片，2：商品下载文件，3：视频文件，4：软件,5:轮播图 6：荣誉资质 ,7: 关于我们展示图
+    type       Int?     @default(1) // 1：商品图片，2：商品下载文件，3：视频文件，4：软件,5:轮播图 6：荣誉资质 ,7: 关于我们展示图,8:友情链接
     isHide     Boolean  @default(false)
     createdAt  DateTime @default(now()) @map("created_at")
     updatedAt  DateTime @updatedAt @map("updated_at")

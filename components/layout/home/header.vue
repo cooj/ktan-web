@@ -4,34 +4,40 @@
         <!-- 顶部 -->
         <div class="width_module main-bg-color Top_box">
             <div class="width_box Top_module flex">
-                <span class="Top_title">欢迎访问广东鹰测技术有限公司官方网站！</span>
+                <span class="Top_title">{{ $lang(systemInfo?.welcome, systemInfo?.welcome_en) }}</span>
                 <div class="Top_right flex">
                     <div class="Top_list flex">
                         <div class="Top_icon Top_phone">
                             <img src="assets/image/icon_phone.png" alt="">
                         </div>
-                        <span>400-6261-158</span>
+                        <span>{{ systemInfo?.phone }}</span>
                     </div>
                     <!-- <a class="Top_list flex" href="JavaScript:;">
                         <div class="Top_icon"><img src="assets/picture/icon_user.png" alt=""></div>
                         <span>用户登录</span>
                     </a> -->
                     <div class="langue_module flex">
-                        <a target="" class="langue_list flex" href="">
-                            <div class="Top_icon"><img src="assets/image/zh-Hans.png" alt=""></div>
+                        <NuxtLink to="/" class="langue_list flex items-center">
+                            <div class="Top_icon">
+                                <img src="assets/image/zh-Hans.png" alt="">
+                            </div>
                             <span>中文版</span>
-                        </a>
-                        <a target="" class="langue_list flex" href="https://eaglotest.com/">
-                            <div class="Top_icon"><img src="assets/image/en.png" alt=""></div>
+                        </NuxtLink>
+                        <NuxtLink to="/en" class="langue_list flex items-center">
+                            <div class="Top_icon">
+                                <img src="assets/image/en.png" alt="">
+                            </div>
                             <span>English</span>
-                        </a>
+                        </NuxtLink>
                     </div>
                 </div>
             </div>
         </div>
         <!-- 导航 -->
         <div class="width_box dh_module flex">
-            <a target="" href="" class="logo_icon"><img src="assets/image/网站logo橙色.png" alt=""></a>
+            <NuxtLinkLocale to="/" class="logo_icon">
+                <img :src="systemInfo?.logo" alt="">
+            </NuxtLinkLocale>
             <div class="nav_module flex">
                 <nav>
                     <ul class="flex">
@@ -179,58 +185,61 @@
                         </li>
                     </ul>
                 </nav>
-                <div class="nav_search">
+                <div class="nav_search mt2px" @click="onToggleSearch()">
                     <img src="assets/image/icon_search.png" alt="">
                 </div>
             </div>
         </div>
         <!-- 搜索 -->
-        <div class="search_module">
-            <form class="search_box" action="/home/Product/center">
+        <div class="search_module" :class="searchOpen">
+            <form class="search_box" onsubmit="return false">
                 <button class="search_icon" type="submit">
                     <img src="assets/image/icon_search.png" alt="">
                 </button>
-                <input class="search_ipt" type="text" name="keyword" placeholder="搜索关键字">
-                <p class="search_shut">
+                <input v-model="keyword" class="search_ipt" type="text" name="keyword"
+                    :placeholder="$lang('搜索关键字', 'keyword') || ''" @keyup.enter="onSearch">
+                <p class="search_shut" @click="onToggleSearch(true)">
                     x
                 </p>
             </form>
         </div>
 
         <!-- 移动端顶部 -->
-        <div class="searchs_module">
-            <div class="searchs_switch">
+        <div class="mo_header">
+            <div class="mo_search_switch" @click="onToggleMenu()">
                 <img src="assets/image/list_icon.png" alt="">
             </div>
-            <a target="" href="" class="searchs_logo"><img src="assets/image/icon_logo.png" alt=""></a>
-            <div class="nav_search">
+            <NuxtLinkLocale to="/" class="mo_search_logo">
+                <img :src="systemInfo?.logo2 || ''" alt="">
+            </NuxtLinkLocale>
+            <div class="nav_search" @click="onToggleSearch()">
                 <img src="assets/image/icon_search.png" alt="">
             </div>
         </div>
-        <div class="navs_module">
-            <div class="navs_box">
-                <div class="navs_explain main-bg-color">
-                    <span>欢迎来到 广东鹰测技术有限公司官方网站！</span>
-                    <span>400-6261-158</span>
+        <div class="mo_module" :class="activeClass">
+            <div ref="target" class="mo_box">
+                <div class="mo_explain main-bg-color">
+                    <span>{{ $lang(systemInfo?.welcome, systemInfo?.welcome_en) }}</span>
+                    <span>{{ systemInfo?.phone }}</span>
                 </div>
-                <div class="navs_top main-bg-color">
-                    <a target="" href="" class="navs_language flex">
+                <div class="mo_top main-bg-color">
+                    <NuxtLink to="/" class="mo_language flex">
                         <div><img src="assets/image/zh-Hans.png" alt=""></div>
                         <span>中文版</span>
-                    </a>
-                    <a target="" href="index1.html" class="navs_language flex">
+                    </NuxtLink>
+                    <NuxtLink to="/en" class="mo_language flex">
                         <div><img src="assets/image/en.png" alt=""></div>
                         <span>English</span>
-                    </a>
+                    </NuxtLink>
                 </div>
-                <!--            <a href="JavaScript:;" class="navs_user"> -->
-                <!--                <figure class="navs_icon"><img src="/template/home/static/img/public/icon_user.png" alt=""></figure> -->
+                <!--            <a href="JavaScript:;" class="mo_user"> -->
+                <!--                <figure class="mo_icon"><img src="/template/home/static/img/public/icon_user.png" alt=""></figure> -->
                 <!--                <p>用户登录</p> -->
                 <!--            </a> -->
                 <nav>
-                    <ul class="navs_ul">
-                        <li v-for="item in menuList.filter(i => i.status)" :key="item.id" class="navs_li">
-                            <NuxtLinkLocale :to="item.href" class="navs_btn">
+                    <ul class="mo_ul">
+                        <li v-for="item in menuList.filter(i => i.status)" :key="item.id" class="mo_li">
+                            <NuxtLinkLocale :to="item.href" class="mo_btn">
                                 {{ $lang(item.title, item.title_en) }}
                             </NuxtLinkLocale>
                         </li>
@@ -243,6 +252,8 @@
 
 <script lang="ts" setup>
 const { $lang } = useNuxtApp()
+
+const route = useRoute()
 const systemInfo = await useSystemState().getSystemInfo()
 // console.log(dat)
 
@@ -290,6 +301,38 @@ const setActiveMenu = (item: string) => {
         return false
     }
 }
+
+const searchOpen = ref('')
+const onToggleSearch = (close?: boolean) => {
+    searchOpen.value = close ? '' : 'open'
+}
+
+const keyword = ref('')
+const onSearch = async () => {
+    if (!keyword.value?.trim()) return false
+    let url = '/product'
+    if (route.path.startsWith('/en')) {
+        url = '/en/product'
+    }
+    await navigateTo(`${url}?keyword=${keyword.value}`)
+    onToggleSearch(true)
+}
+
+// 移动端
+//
+
+const activeClass = ref('')
+const onToggleMenu = (close?: boolean) => {
+    activeClass.value = close ? '' : 'mo_show'
+}
+
+const target = ref(null)
+onClickOutside(target, (event) => {
+    if (activeClass.value) activeClass.value = ''
+})
+watch(() => route.path, () => {
+    if (activeClass.value) activeClass.value = ''
+})
 </script>
 
 <style lang="scss" scoped>

@@ -3,14 +3,14 @@
         <!-- 分类 -->
         <CiSubMenu :value="news?.type" />
         <article class="width_box news_detail">
-            <h1 class="news_title">
+            <h1 class="news_detail_title">
                 {{ $lang(news?.title, news?.title_en) }}
             </h1>
             <div class="news_subhead">
                 <span>{{ formatTime(new Date(news!.createdAt), 'YYYY-mm-dd') }}</span>
                 <span>{{ $lang('作者', 'Author') }}: {{ news?.author }}</span>
             </div>
-            <div class="news_content" v-html="$lang(news?.content, news?.content_en)" />
+            <div class="news_cont" v-html="$lang(news?.content, news?.content_en)" />
             <div class="news_return">
                 <NuxtLinkLocale :to="`/news${news?.type === 2 ? '/industry' : ''}`">
                     {{ $lang('返回列表', 'Go Back') }}

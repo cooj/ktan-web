@@ -24,6 +24,8 @@ declare interface ISystemInfoResponse {
     icon: string // 网站图标
     company: string
     company_en: string
+    welcome: string
+    welcome_en: string
 }
 
 // 菜单
@@ -110,13 +112,13 @@ declare interface INewsResponseList {
 }
 
 declare interface IIndexResponse {
-    recommend: INewsResponse[]
-    cate: {
-        cateList: IMenuListResponse[]
-        goodsList: INewsResponse[]
-    }
+    // recommend: INewsResponse[]
+    // cate: {
+    //     cateList: IMenuListResponse[]
+    //     goodsList: INewsResponse[]
+    // }
     newsList: INewsResponse[]
-    mienList: INewsResponse[]
+    productList: IGoodsGetListItem[]
 }
 
 // 友情链接、文件下载、轮播图

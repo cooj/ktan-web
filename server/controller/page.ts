@@ -376,78 +376,54 @@ export const getIndexData = async (event: H3Event) => {
 
     // if (!param?.id) return null
     // 推荐商品\商品分类、商品\新闻和风采
-    const [res1, res2, res3, res4] = await Promise.all([
+    const [res1, res2] = await Promise.all([
         event.context.prisma.product.findMany({
             skip: 0,
             take: 20,
             where: {
                 isHide: false,
+                isHot: true,
                 // type: Number(param.type),
             },
+            include: {
+                links: true,
+                classify: {
+                    select: {
+                        title: true,
+                    },
+                },
+            },
             orderBy: {
-                createdAt: 'asc', // 升序排序
+                createdAt: 'desc', // 升序排序
             },
-        }),
-        event.context.prisma.menu.findMany({
-            where: {
-                p_id: 3,
-            },
-            orderBy: {
-                sort: 'asc', // 按id正序排序
-            },
-            // include: {
-            //     children: true,
-            // },
-            // select: { // 只返回指定的字段
-            //     username: true,
-            //     account: true,
-            // },
-        }),
-        event.context.prisma.product.findMany({
-            skip: 0,
-            take: 9,
-            where: {
-                isHide: false,
-                // type: Number(param.type),
-            },
-            // orderBy: {
-            //     createdAt: 'asc', // 升序排序
-            // },
         }),
         event.context.prisma.news.findMany({
+            skip: 0,
+            take: 6,
             where: {
-                type: {
-                    in: [1, 3],
-                },
+                // type: {
+                //     in: [1, 3],
+                // },
                 isHide: false,
+                isHot: true,
                 // type: Number(param.type),
             },
             orderBy: {
-                createdAt: 'asc', // 升序排序
+                createdAt: 'desc', // 升序排序
             },
         }),
     ])
-
-    // 推荐商品
-
-    // 商品分类
-
-    // 商品分类边上的推荐商品
-
-    // skip: 0,
-    //         take: 9,
-
-    // 推荐新闻 1
-
-    // 公司风采 4
+    // console.log(res1)
+    const list = res1.map((item) => {
+        // console.log('item.links :>> ', item.links)
+        const node = item.links.find(item => item.type === 1)
+        // console.log('node :>> ', node);
+        item.img = node?.img || ''
+        return item
+    })
 
     return {
-        recommend: res1,
-        cate: {
-            cateList: res2,
-            goodsList: res3,
-        },
-        newsList: res4.filter(item => item.type === 1).slice(0, 6),
-        mienList: res4.filter(item => item.type === 3).slice(0, 4),
+        productList: list,
+        newsList: res2,
     }
 }

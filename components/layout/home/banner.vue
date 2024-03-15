@@ -1,19 +1,23 @@
 <template>
     <div class="banner">
-        <Swiper v-if="activeMenu?.href === '/'"
-            :modules="[SwiperAutoplay, SwiperEffectCreative, SwiperNavigation, SwiperPagination]" :slides-per-view="1"
-            :loop="true" :autoplay="{ delay: 8000, disableOnInteraction: true }" effect="creative"
-            :creative-effect="effect" navigation :pagination="{ clickable: true }">
-            <SwiperSlide v-for="(item, idx) in banner" :key="idx" class="w100%">
-                <NuxtLinkLocale :to="item.href" class="banner-link">
-                    <img :src="item.img" :alt="item.title">
-                </NuxtLinkLocale>
-            </SwiperSlide>
-        </Swiper>
+        <el-skeleton :loading="!activeMenu" animated>
+            <template #template>
+                <el-skeleton-item variant="image" class="h450px!" />
+            </template>
+            <Swiper v-if="activeMenu?.href === '/'"
+                :modules="[SwiperAutoplay, SwiperEffectCreative, SwiperNavigation, SwiperPagination]"
+                :slides-per-view="1" :loop="true" :autoplay="{ delay: 8000, disableOnInteraction: true }"
+                effect="creative" :creative-effect="effect" navigation :pagination="{ clickable: true }">
+                <SwiperSlide v-for="(item, idx) in banner" :key="idx" class="w100%">
+                    <NuxtLinkLocale :to="item.href" class="banner-link">
+                        <img :src="item.img" :alt="item.title">
+                    </NuxtLinkLocale>
+                </SwiperSlide>
+            </Swiper>
 
-        <template v-else>
-            <!-- banner图 -->
-            <ClientOnly>
+            <template v-else>
+                <!-- banner图 -->
+                <!-- <ClientOnly> -->
                 <div class="banner_img">
                     <img :src="activeMenu?.img" alt="">
                 </div>
@@ -40,8 +44,9 @@
                         </ClientOnly>
                     </nav>
                 </div>
-            </ClientOnly>
-        </template>
+                <!-- </ClientOnly> -->
+            </template>
+        </el-skeleton>
     </div>
 </template>
 

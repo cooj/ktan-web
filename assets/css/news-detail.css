@@ -4,7 +4,7 @@
 	border-bottom: 1px solid #ddd;
 }
 
-.news_title {
+.news_detail_title {
 	font-size: 1.625rem;
 	color: #000000;
 	font-weight: 100;
@@ -38,13 +38,17 @@
 	line-height: 1.875rem;
 } */
 
-.news_content div {
+/* .news_content div {
 	display: flex;
 	justify-content: space-between;
 	margin: 1.875rem 0;
 }
 
 .news_content img{
+	display: inline-block;
+} */
+
+.news_cont img{
 	display: inline-block;
 }
 
@@ -89,7 +93,7 @@
 
 /* 小于765px */
 @media screen and (max-width: 765px) {
-	.news_title {
+	.news_detail_title {
 		margin-top: 0;
 		font-size: 1.125rem;
 	}

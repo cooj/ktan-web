@@ -25,8 +25,7 @@
 }
 
 .hot_swiper {
-	margin: 2.25rem 0 5rem;
-	padding: 1.25rem 0;
+	padding: 3.5rem 0 5rem;
 }
 
 .hot_swiper .swiper-slide {
@@ -55,12 +54,9 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: block;
+    margin-bottom: 1.875rem;
 }
 
-.hot_img {
-	margin-top: 1.875rem;
-	overflow: hidden;
-}
 
 .hot_swiper .swiper-slide a>div {
 	margin-top: 1.5625rem;

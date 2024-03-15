@@ -93,8 +93,8 @@ const onHandleCurrentChange = (val: number) => {
 initTableData()
 </script>
 
-<style>
+<style></style>
+
+<style lang="scss" scoped>
 @import url('assets/css/news.css');
 </style>
-
-<style lang="scss" scoped></style>
