@@ -12,24 +12,26 @@
             </div>
 
             <!-- 列表 -->
-            <ul class="download_ul">
-                <li v-for="opt in productData.list" :key="opt.id" class="download_li">
-                    <h1 class="download_name">
-                        {{ $lang(opt.title, opt.title_en) }}
-                    </h1>
-                    <CoImage class="download_img w100% pb100%" :src="opt.img" />
-                    <p class="download_info">
-                        {{ $lang(opt.content, opt.content_en) }}
-                    </p>
-                    <div class="download_base">
-                        <p class="download_date">
-                            {{ formatTime(new Date(opt!.createdAt)) }}
+            <ul class="download_ul min-h-300px">
+                <ClientOnly>
+                    <li v-for="opt in productData.list" :key="opt.id" class="download_li">
+                        <h1 class="download_name">
+                            {{ $lang(opt.title, opt.title_en) }}
+                        </h1>
+                        <CoImage class="download_img w100% pb100%" :src="opt.img" />
+                        <p class="download_info">
+                            {{ $lang(opt.content, opt.content_en) }}
                         </p>
-                        <a target="" :href="opt.href" class="download_icon" download="">
-                            <img src="assets/image/icon_download.png" alt="">
-                        </a>
-                    </div>
-                </li>
+                        <div class="download_base">
+                            <p class="download_date">
+                                {{ formatTime(new Date(opt!.createdAt)) }}
+                            </p>
+                            <a target="" :href="opt.href" class="download_icon" download="">
+                                <img src="assets/image/icon_download.png" alt="">
+                            </a>
+                        </div>
+                    </li>
+                </ClientOnly>
             </ul>
 
             <!-- 分页 -->
@@ -42,14 +44,16 @@
 </template>
 
 <script lang="ts" setup>
+const { $lang } = useNuxtApp()
+
 definePageMeta({
     layout: 'home',
 })
 
 const typeList = ref({
-    2: '文档',
-    3: '视频',
-    4: '软件',
+    2: $lang('文档', 'Docs'),
+    3: $lang('视频', 'Video'),
+    4: $lang('软件', 'Software'),
 })
 const type = ref(2)
 

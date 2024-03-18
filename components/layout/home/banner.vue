@@ -1,9 +1,11 @@
 <template>
-    <div class="banner">
-        <el-skeleton :loading="!activeMenu" animated>
+    <div class="banner min-h-100px">
+        <!-- <el-skeleton :loading="!activeMenu" animated>
             <template #template>
                 <el-skeleton-item variant="image" class="h450px!" />
             </template>
+        </el-skeleton> -->
+        <ClientOnly>
             <Swiper v-if="activeMenu?.href === '/'"
                 :modules="[SwiperAutoplay, SwiperEffectCreative, SwiperNavigation, SwiperPagination]"
                 :slides-per-view="1" :loop="true" :autoplay="{ delay: 8000, disableOnInteraction: true }"
@@ -18,7 +20,6 @@
 
             <template v-else>
                 <!-- banner图 -->
-                <!-- <ClientOnly> -->
                 <div class="banner_img">
                     <img :src="activeMenu?.img" alt="">
                 </div>
@@ -45,9 +46,8 @@
                         </ClientOnly>
                     </nav>
                 </div>
-                <!-- </ClientOnly> -->
             </template>
-        </el-skeleton>
+        </ClientOnly>
     </div>
 </template>
 

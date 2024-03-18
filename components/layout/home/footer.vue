@@ -58,7 +58,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="footer_two flex">
+                <div class="footer_two">
                     <div class="c-#fff" v-html="$lang(systemInfo?.filing, systemInfo?.filing_en)" />
 
                     <div class="footer_icBox flex">

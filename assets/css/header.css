@@ -296,7 +296,7 @@
 
 .nav_list1 .nav_li {
     width: 100%;
-    white-space: nowrap;
+    /* white-space: nowrap; */
     margin-bottom: 0.625rem;
     text-align: center;
 
@@ -771,10 +771,11 @@
 
 .footer_two {
     margin-top: 2.5rem;
-    height: 4.375rem;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     border-top: 1px solid #fc8761;
-
+    padding: 12px 0;
 }
 
 
@@ -1709,7 +1710,7 @@ justify-content: center;
 
 
     .footer_list1 {
-        margin-top: -7rem;
+        margin-top: -2rem;
     }
 
 
@@ -1845,7 +1846,8 @@ justify-content: center;
 
 
     .footer_two {
-        flex-wrap: wrap;
+        display: block;
+        text-align: center;
         margin-top: 2rem;
         padding: 0.625rem 0;
     }
@@ -1858,8 +1860,9 @@ justify-content: center;
 
 
     .footer_icBox {
-        width: 80%;
+        width: 85%;
         margin: 0 auto;
+        margin-top: 0.5rem;
         justify-content: center;
     }
 

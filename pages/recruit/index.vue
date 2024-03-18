@@ -24,7 +24,7 @@
                         <div class="zp_top" :class="{ zp_active: item.id === active }" @click="onToggleItem(item)">
                             <p>{{ $lang(item.title, item.title_en) }}</p>
                             <p>{{ $lang('招聘人数', 'Recruiting Numbers') }}：{{ item.people }}</p>
-                            <p>{{ $lang('工作地点', 'Work location') }}：{{ $lang(item.address, item.address) }}</p>
+                            <p>{{ $lang('工作地点', 'Work location') }}：{{ $lang(item.address, item.address_en) }}</p>
                             <figure class="zp_icon">
                                 <img :src="systemInfo?.logo || ''">
                             </figure>
