@@ -53,7 +53,6 @@
 
 <script lang="ts" setup>
 import type { Prisma } from '@prisma/client'
-import { defineComponent } from 'vue'
 
 const { $lang } = useNuxtApp()
 
@@ -100,7 +99,6 @@ const verifyForm = (list: { label: keyof typeof form, msg: string }[]) => {
     verifyArr.value = []
 
     list.forEach((item) => {
-
         if (!form[item.label]?.trim()) {
             verifyArr.value.push(item.label)
             ElMessage.error(item.msg)

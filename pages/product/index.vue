@@ -50,7 +50,6 @@ const productData = reactive({
 })
 
 const initData = async () => {
-
     const route = useRoute()
     const query = route.query as GoodsListParamsQuery
     // const cid=query.cid
@@ -63,7 +62,6 @@ const initData = async () => {
             type: Number(query.cid) || null,
         },
     })
-
 
     if (error.value) return ElMessage.error('网络错误')
 

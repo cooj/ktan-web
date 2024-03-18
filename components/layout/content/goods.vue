@@ -14,8 +14,8 @@
                 </li>
             </ul>
             <el-pagination v-if="defData.pagination.total" v-model:current-page="defData.pagination.page"
-                v-model:page-size="defData.pagination.page_size" small :page-sizes="defData.pagination.page_sizes"
-                :total="defData.pagination.total" :pager-count="5" background layout="total, prev, pager, next, jumper"
+                v-model:page-size="defData.pagination.page_size" :page-sizes="defData.pagination.page_sizes"
+                :total="defData.pagination.total" :pager-count="5" background small layout="total, prev, pager, next, jumper"
                 class="mt15px justify-center" @size-change="onHandleSizeChange" @current-change="onHandleCurrentChange" />
         </ClientOnly>
     </div>

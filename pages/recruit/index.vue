@@ -86,7 +86,6 @@
 
 <script lang="ts" setup>
 import type { Prisma } from '@prisma/client'
-import { defineComponent } from 'vue'
 
 definePageMeta({
     layout: 'home',
@@ -112,7 +111,6 @@ const onToggleItem = (item: IRecruitGetListItem) => {
     if (item.id === active.value) active.value = 0
     else active.value = item.id
 }
-
 </script>
 
 <style lang="scss" scoped>

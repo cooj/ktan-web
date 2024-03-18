@@ -36,7 +36,6 @@ export const update = async (event: H3Event) => {
     // 获取参数
     const param = await getEventParams(event)
 
-
     if (!param?.type) return { msg: '缺少参数type' }
     // if (!param.title) return { msg: '菜单名称不能为空' }
     // if (!param.href) return { msg: '链接地址不能为空' }

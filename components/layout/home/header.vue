@@ -2,7 +2,7 @@
     <!-- 头部开始 -->
     <header class="header">
         <!-- 顶部 -->
-        <div class="width_module main-bg-color Top_box">
+        <div class="main-bg-color Top_box width_module">
             <div class="width_box Top_module flex">
                 <span class="Top_title">{{ $lang(systemInfo?.welcome, systemInfo?.welcome_en) }}</span>
                 <div class="Top_right flex">
@@ -218,11 +218,11 @@
         </div>
         <div class="mo_module" :class="activeClass">
             <div ref="target" class="mo_box">
-                <div class="mo_explain main-bg-color">
+                <div class="main-bg-color mo_explain">
                     <span>{{ $lang(systemInfo?.welcome, systemInfo?.welcome_en) }}</span>
                     <span>{{ systemInfo?.phone }}</span>
                 </div>
-                <div class="mo_top main-bg-color">
+                <div class="main-bg-color mo_top">
                     <NuxtLink to="/" class="mo_language flex">
                         <div><img src="assets/image/zh-Hans.png" alt=""></div>
                         <span>中文版</span>
@@ -256,7 +256,6 @@ const { $lang } = useNuxtApp()
 const route = useRoute()
 const systemInfo = await useSystemState().getSystemInfo()
 
-
 const menuState = useMenuState()
 
 const menuList = await menuState.getMenuList()
@@ -267,7 +266,6 @@ const menuList = await menuState.getMenuList()
 // }
 
 const classifyList = await useGoodsClassifyState().getClassify()
-
 
 const setActiveMenu = (item: string) => {
     const href = menuState.activeMenu.value?.href

@@ -73,7 +73,6 @@ const effect = {
 }
 
 const { data: banner } = await useCustomFetch<ISlideListResponse[]>('/api/page/get_banner?type=5')
-
 </script>
 
 <style lang="scss" scoped>

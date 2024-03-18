@@ -6,8 +6,6 @@
 </template>
 
 <script lang="ts" setup>
-import { defineComponent } from 'vue'
-
 const emits = defineEmits<{
     change: [value: number] // named tuple syntax
 }>()

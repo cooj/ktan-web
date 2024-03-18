@@ -11,7 +11,6 @@
 
 <script lang="ts" setup>
 import type { Prisma } from '@prisma/client'
-import { defineComponent } from 'vue'
 
 definePageMeta({
     layout: 'home',

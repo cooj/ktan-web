@@ -72,7 +72,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { SwiperOptions, ThumbsOptions } from 'swiper/types'
+import type { ThumbsOptions } from 'swiper/types'
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules'
 
 definePageMeta({

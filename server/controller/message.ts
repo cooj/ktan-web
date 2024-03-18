@@ -117,7 +117,6 @@ export const update = async (event: H3Event) => {
     // 获取参数
     const param = await getEventParams<{ id: number } & Prisma.MessageUpdateInput>(event)
 
-
     if (!param?.id) return { msg: '缺少参数id' }
     if (!param?.title) return { msg: '标题不能为空' }
 
@@ -146,7 +145,6 @@ export const del = async (event: H3Event) => {
 
     // 获取参数
     const param = await getEventParams<{ id: number }>(event)
-
 
     if (!param?.id) return { msg: '缺少参数id' }
 

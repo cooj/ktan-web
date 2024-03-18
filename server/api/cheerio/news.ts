@@ -1,4 +1,3 @@
-import { load } from 'cheerio'
 import type { Prisma } from '@prisma/client'
 
 // 不存在域名时拼接域名

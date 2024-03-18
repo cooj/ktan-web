@@ -1,5 +1,5 @@
 <template>
-    <div class="width_box goods-classify relative z-10 px30px! <md:px20px!">
+    <div class="goods-classify width_box relative z-10 px30px! <md:px20px!">
         <div class="overflow-x-clip">
             <!-- :slides-per-view="5" -->
             <Swiper class="" :modules="[SwiperAutoplay, SwiperEffectCreative, SwiperNavigation, SwiperPagination]"
@@ -20,7 +20,7 @@
                     </NuxtLinkLocale>
                     <template v-if="item.children?.length">
                         <figure class="type_icon">
-                            <i class="i-ep-caret-bottom main-color block text-24px" />
+                            <i class="main-color i-ep-caret-bottom block text-24px" />
                         </figure>
                         <ul class="type_subclass">
                             <li v-for="sub in item.children" :key="sub.id">
