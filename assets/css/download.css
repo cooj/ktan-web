@@ -1,0 +1,151 @@
+
+/* 下载 */
+.download_module {
+    margin: 2.5rem auto 5.625rem;
+}
+
+.download_ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.download_li {
+    width: 17.875rem;
+    height: 25.1875rem;
+    padding: 2.1875rem 1.8125rem;
+    margin: 0 5.25rem 3.125rem 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #f5f5f5;
+}
+
+.download_li:nth-child(3n) {
+    margin-right: 0;
+}
+
+.download_name {
+    font-size: 1.125rem;
+    color: #343434;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    line-height: 1.5;
+}
+
+.download_img {
+    width: 100%;
+    overflow: hidden;
+}
+
+.download_img>img {
+    transform: scale(1);
+    transition: transform 0.3s;
+}
+
+.download_info {
+    font-size: 0.875rem;
+    color: #3e3e3e;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    line-height: 2;
+}
+
+.download_base {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.download_date {
+    font-size: 1rem;
+    color: #7e7e7e;
+}
+
+.download_icon {
+    width: 2.0625rem;
+}
+
+.download_li:hover {
+    background-color: #fff;
+    box-shadow: 0 0 10px #ccc;
+}
+
+.download_li:hover .download_img>img {
+    transform: scale(1.1);
+    transition: transform 0.3s;
+}
+
+
+/* 小于1220px执行 */
+@media screen and (max-width: 1220px) {
+
+
+    /* 简介 */
+    .download_li {
+        width: 25%;
+        height: 22rem;
+        margin-right: 3.4%;
+    }
+}
+
+
+
+/* 小于992px */
+@media screen and (max-width: 992px) {
+
+    /* 下载 */
+    .download_li {
+        padding: 20px;
+        margin-right: 4.1%;
+        height: 20rem;
+    }
+
+    .download_icon {
+        width: 1.5rem;
+    }
+}
+
+/* 小于765px */
+@media screen and (max-width: 765px) {
+
+    /* 下载 */
+    .download_module {
+        margin: 0 0 1.875rem;
+    }
+
+
+    .download_ul {
+        justify-content: space-between;
+    }
+
+    .download_li {
+        width: 38%;
+        height: 15rem;
+        margin: 0 0 1.25rem 0 !important;
+        padding: 1.25rem 0.9375rem;
+    }
+
+    .download_name {
+        font-size: 0.875rem;
+    }
+
+    .download_info {
+        font-size: 0.75rem;
+    }
+
+    .download_date {
+        font-size: 0.75rem;
+    }
+
+    .download_icon {
+        width: 1rem;
+    }
+}
+

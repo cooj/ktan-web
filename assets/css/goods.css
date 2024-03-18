@@ -1,15 +1,16 @@
 /* 产品列表 */
 .goods_module {
     width: 100%;
-    max-width: 82.25rem;
+    /* max-width: 82.25rem; */
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
 }
-.goods-grid{
+
+.goods-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 35px;  
+    gap: 35px;
 }
 
 .goods_list {
@@ -59,88 +60,32 @@
     transition: transform 0.3s;
 }
 
-/* 分页 */
-/* .page {
-    margin: 6.25rem auto 9.0625rem;
-} */
 
-/* 小于1334px执行 */
-@media screen and (max-width: 1334px) {
-
-    /* 面包屑 */
-    .crumbs_module {
-        max-width: 76.25rem;
-    }
-
-    /* 产品列表 */
-    .goods_module {
-        max-width: 75rem;
-    }
-
-    .goods_list {
-        margin: 1.3125rem 1.3125rem 0 0;
-    }
-}
 
 /* 小于1284px执行 */
 @media screen and (max-width: 1284px) {
 
-    /* 面包屑 */
-    .crumbs_module {
-        max-width: 60rem;
-    }
-
-    .goods_module {
-        width: 60rem;
-    }
-
-    .goods_list {
-        margin: 0 3.375rem 3.375rem 0;
-    }
-
-    .goods_list:nth-child(4n) {
-        margin-right: inherit;
-    }
-
-    .goods_list:nth-child(3n) {
-        margin-right: 0;
+    .goods-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
 /* 小于992px */
 @media screen and (max-width: 992px) {
-    .goods_module {
-        width: 45rem;
-        justify-content: space-between;
-    }
-
-    .goods_list {
-        width: 45%;
-        margin: 0 !important;
-    }
-
-    /* 分页 */
-    .page {
-        margin: 4rem auto;
+    .goods-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 /* 小于765px */
 @media screen and (max-width: 765px) {
-    .goods_module {
-        width: 92%;
-    }
 
-    .goods_list {
-        height: 15rem;
+    .goods-grid {
+        gap: 15px;
     }
 
     .goods_list::before {
         width: 3.5rem;
-    }
-
-    .goods_img {
-        margin: 2rem 0 0 0;
     }
 
     .goods_link>p {

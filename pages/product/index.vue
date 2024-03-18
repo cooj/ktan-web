@@ -3,7 +3,7 @@
         <CiClassify />
         <div class="width_box">
             <!-- 产品列表 -->
-            <ul class="goods_module goods-grid pt50px">
+            <ul class="goods_module goods-grid pt50px <md:pt35px">
                 <ClientOnly>
                     <li v-for="item in productData.list" :key="item.id" class="goods_list">
                         <NuxtLinkLocale :to="`/product/${item.id}`" class="goods_link">
@@ -18,7 +18,7 @@
                     </li>
                 </ClientOnly>
             </ul>
-            <div class="py50px">
+            <div class="py50px md:pt30px">
                 <CiPagination v-model:page="page" v-model:page-size="pageSize" v-model:total="productData.total"
                     @change="onHandleCurrentChange" />
             </div>
@@ -102,5 +102,4 @@ watch(() => [pg.value, cid.value], () => {
 @import url('@/assets/css/goods.css');
 </style>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

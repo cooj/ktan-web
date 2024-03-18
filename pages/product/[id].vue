@@ -3,11 +3,11 @@
         <CiClassify />
         <!-- 商品详情 -->
         <div class="width_box">
-            <div class="flex py45px">
+            <div class="flex py45px <lg:flex-wrap">
                 <div class="goods_swiper">
                     <Swiper :thumbs="{ swiper: thumbsSwiper }" :modules="modules" class="gallery-top">
                         <SwiperSlide v-for="item in photoList" :key="item.id">
-                            <CoImage class="w100% pb100%" :src="item.img" />
+                            <CoImage class="w100% pb100% block!" :src="item.img" />
                             <!-- <img src="https://swiperjs.com/demos/images/nature-1.jpg"> -->
                         </SwiperSlide>
                     </Swiper>
@@ -17,7 +17,7 @@
                             :modules="modules" :navigation="navigation" class="gallery-thumbs"
                             @swiper="setThumbsSwiper">
                             <SwiperSlide v-for="item in photoList" :key="item.id">
-                                <CoImage class="w100% pb100%" :src="item.img" />
+                                <CoImage class="w100% pb100% block!" :src="item.img" />
                                 <!-- <img src="https://swiperjs.com/demos/images/nature-1.jpg"> -->
                             </SwiperSlide>
                         </Swiper>
@@ -149,8 +149,9 @@ const contentData = computed(() => {
 </script>
 
 <style>
-@import url('@/assets/css/goods-detail.css');
+@import url('@/assets/css/download.css');
 </style>
 
-<!-- <style lang="scss" scoped>
-</style> -->
+<style lang="scss" scoped>
+@import url('@/assets/css/goods-detail.css');
+</style>

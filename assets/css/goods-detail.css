@@ -12,7 +12,6 @@
 
 .gallery-top {
     width: 100%;
-    height: 36.25rem;
     border: 1px solid #ccc;
     margin-bottom: 1.25rem;
 }
@@ -32,7 +31,6 @@
 
 .gallery-thumbs .swiper-slide {
     border: 1px solid #ccc;
-    max-height: 6.125rem;
     overflow: hidden;
 }
 
@@ -42,7 +40,6 @@
     top: 50%;
     transform: translate(-50%, -50%);
     left: 50%;
-    padding-bottom: 5px;
 }
 
 .gallery-thumbs .swiper-slide-thumb-active {
@@ -53,12 +50,9 @@
     width: 2.625rem;
     height: 6.125rem;
     background-color: #fb531c;
-    position: inherit;
-    right: 0;
-    left: 0;
-    top: 0;
-    z-index: 9;
-    margin-top: auto;
+    transform: translateY(-50%);
+    margin-top: 0;
+    --swiper-navigation-sides-offset:0;
 }
 
 .goods_btn::after {
@@ -207,88 +201,6 @@
     display: flex;
 }
 
-/* 下载 */
-.download_module {
-    margin: 2.5rem auto 5.625rem;
-}
-
-.download_ul {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.download_li {
-    width: 17.875rem;
-    height: 25.1875rem;
-    padding: 2.1875rem 1.8125rem;
-    margin: 0 5.25rem 3.125rem 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: #f5f5f5;
-}
-
-.download_li:nth-child(3n) {
-    margin-right: 0;
-}
-
-.download_name {
-    font-size: 1.125rem;
-    color: #343434;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-box-orient: vertical;
-    line-height: 1.5;
-}
-
-.download_img {
-    width: 100%;
-    overflow: hidden;
-}
-
-.download_img>img {
-    transform: scale(1);
-    transition: transform 0.3s;
-}
-
-.download_info {
-    font-size: 0.875rem;
-    color: #3e3e3e;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-box-orient: vertical;
-    line-height: 2;
-}
-
-.download_base {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.download_date {
-    font-size: 1rem;
-    color: #7e7e7e;
-}
-
-.download_icon {
-    width: 2.0625rem;
-}
-
-.download_li:hover {
-    background-color: #fff;
-    box-shadow: 0 0 10px #ccc;
-}
-
-.download_li:hover .download_img>img {
-    transform: scale(1.1);
-    transition: transform 0.3s;
-}
 
 /* 筛选 */
 .filter_module {
@@ -312,23 +224,6 @@
     color: #fb531c !important;
 }
 
-/* 小于1334px执行 */
-@media screen and (max-width: 1334px) {
-
-    /* 面包屑 */
-    .crumbs_module {
-        max-width: 76.25rem;
-    }
-}
-
-/* 小于1284px执行 */
-@media screen and (max-width: 1284px) {
-
-    /* 面包屑 */
-    .crumbs_module {
-        max-width: 60rem;
-    }
-}
 
 /* 小于1220px执行 */
 @media screen and (max-width: 1220px) {
@@ -336,17 +231,6 @@
     /* 详情 */
     .goods_swiper {
         width: 50%;
-    }
-
-    .gallery-top {
-        height: 30.125rem;
-    }
-
-    /* 简介 */
-    .download_li {
-        width: 25%;
-        height: 22rem;
-        margin-right: 3.4%;
     }
 }
 
@@ -360,20 +244,12 @@
 	} */
 
     .goods_swiper {
-        width: 100%;
+        width: 80%;
         margin: 0 auto 1.875rem;
     }
 
-    .gallery-top {
-        height: 45rem;
-    }
-
-    .gallery-thumbs .swiper-slide {
-        max-height: 8.5rem;
-    }
-
     .goods_btn {
-        height: 8.5rem;
+        height: 100%;
     }
 
     /* 简介 */
@@ -389,21 +265,12 @@
         display: block;
         width: 100%;
         margin: 0 0 0.9375rem -.75rem;
+        -webkit-clip-path: polygon(0 0, calc(100% - var(--pad-width)) 0, 100% 100%, 0 100%);
+        clip-path: polygon(0 0, calc(100% - var(--pad-width)) 0, 100% 100%, 0 100%);
     }
 
     .info_top>figure {
         display: none;
-    }
-
-    /* 下载 */
-    .download_li {
-        padding: 20px;
-        margin-right: 4.1%;
-        height: 20rem;
-    }
-
-    .download_icon {
-        width: 1.5rem;
     }
 }
 
@@ -414,19 +281,14 @@
     /* .goods_module {
 		margin: 0 auto;
 	} */
-
-    .gallery-top {
-        height: 21.5625rem;
-    }
-
-    .gallery-thumbs .swiper-slide {
-        max-height: 3.5rem;
+    .goods_swiper{
+        width: 100%;
     }
 
     .goods_btn {
         width: 2rem;
-        height: 3.625rem;
-        margin: 0;
+        /* height: 3.625rem;
+        margin: 0; */
     }
 
     .goods_btn::after {
@@ -453,42 +315,6 @@
 
     .info_top>a {
         font-size: 0.875rem;
-    }
-
-    /* 下载 */
-    .download_module {
-        margin: 0 0 1.875rem;
-    }
-
-    #paging1 {
-        margin: 1.5rem auto;
-    }
-
-    .download_ul {
-        justify-content: space-between;
-    }
-
-    .download_li {
-        width: 38%;
-        height: 15rem;
-        margin: 0 0 1.25rem 0 !important;
-        padding: 1.25rem 0.9375rem;
-    }
-
-    .download_name {
-        font-size: 0.875rem;
-    }
-
-    .download_info {
-        font-size: 0.75rem;
-    }
-
-    .download_date {
-        font-size: 0.75rem;
-    }
-
-    .download_icon {
-        width: 1rem;
     }
 
     /* 筛选 */

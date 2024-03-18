@@ -1,9 +1,9 @@
 <template>
-    <div class="width_box goods-classify relative z-10 px30px!">
+    <div class="width_box goods-classify relative z-10 px30px! <md:px20px!">
         <div class="overflow-x-clip">
             <!-- :slides-per-view="5" -->
             <Swiper class="" :modules="[SwiperAutoplay, SwiperEffectCreative, SwiperNavigation, SwiperPagination]"
-                :slides-per-view="5" :space-between="30" :navigation="navigation">
+                :slides-per-view="5" :space-between="30" :navigation="navigation" :breakpoints="breakpoints">
                 <SwiperSlide class="type_list" :class="setClassifyName(0)">
                     <NuxtLinkLocale :to="linkGoodsList({ query: {}, relate: false, url: true })" class="type_name">
                         {{ $lang('首页', 'Home') }}
@@ -44,6 +44,28 @@
 //     // <eventName>: <expected arguments>
 //     change: []
 // }>()
+const breakpoints = ref({
+    350: {
+        slidesPerView: 2,
+        spaceBetween: 10,
+    },
+    750: {
+        slidesPerView: 2,
+        spaceBetween: 10,
+    },
+    900: {
+        slidesPerView: 3,
+        spaceBetween: 15,
+    },
+    1024: {
+        slidesPerView: 4,
+        spaceBetween: 20,
+    },
+    1255: {
+        slidesPerView: 5,
+        spaceBetween: 30,
+    },
+})
 
 const navigation = {
     nextEl: '.swiper-button-next',
@@ -69,7 +91,10 @@ const setClassifyName = (id: number) => {
 <style lang="scss" scoped>
 .goods-classify {
     --swiper-navigation-size: 24px;
-
+    @media screen and (max-width: 768px) {
+        --swiper-navigation-size: 18px;
+        --swiper-navigation-sides-offset:0px;
+    }
     :deep(.swiper) {
         overflow: unset;
     }
