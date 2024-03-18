@@ -2,6 +2,7 @@
 /* 详情 */
 .news_detail {
 	border-bottom: 1px solid #ddd;
+    margin-top: 30px;
 }
 
 .news_detail_title {
@@ -112,7 +113,7 @@
 		margin: 0 0 1.875rem;
 	}
 
-	.paging_module a {
+	.paging_module a,.paging_module span {
 		font-size: 0.75rem;
 	}
 }

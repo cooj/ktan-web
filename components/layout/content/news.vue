@@ -2,35 +2,37 @@
     <section>
         <!-- 分类 -->
         <CiSubMenu />
-        <ul class="width_box news_module">
-            <ClientOnly>
-                <li v-for="item in defData.listData" :key="item.id" class="news_list">
-                    <NuxtLinkLocale :to="`/news/${item.id}`" class="news_link">
-                        <figure class="news_img">
-                            <CoImage class="w100% pb45% block!" :src="item.img" />
-                            <!-- <img src="static/picture/春节祝福新春快乐公众号首图.jpg"> -->
-                        </figure>
-                        <div class="news_box">
-                            <p class="news_date">
-                                {{ formatTime(new Date(item!.createdAt), 'YYYY-mm-dd') }}
-                            </p>
-                            <h1 class="news_title">
-                                {{ $lang(item.title, item.title_en) }}
-                            </h1>
-                            <figure class="news_icon news_icon0">
-                                <img src="assets/image/icon_news.png" alt="">
+        <div class="width_box">
+            <ul class="news_ul">
+                <ClientOnly>
+                    <li v-for="item in defData.listData" :key="item.id" class="news_list">
+                        <NuxtLinkLocale :to="`/news/${item.id}`" class="news_link">
+                            <figure class="news_img">
+                                <CoImage class="w100% pb45% block!" :src="item.img" />
+                                <!-- <img src="static/picture/春节祝福新春快乐公众号首图.jpg"> -->
                             </figure>
-                            <figure class="news_icon news_icon1">
-                                <img src="assets/image/icon_news1.png" alt="">
-                            </figure>
-                            <p class="news_text">
-                                {{ $lang(item.describe, item.describe_en) }}
-                            </p>
-                        </div>
-                    </NuxtLinkLocale>
-                </li>
-            </ClientOnly>
-        </ul>
+                            <div class="news_box">
+                                <p class="news_date">
+                                    {{ formatTime(new Date(item!.createdAt), 'YYYY-mm-dd') }}
+                                </p>
+                                <h1 class="news_title">
+                                    {{ $lang(item.title, item.title_en) }}
+                                </h1>
+                                <figure class="news_icon news_icon0">
+                                    <img src="assets/image/icon_news.png" alt="">
+                                </figure>
+                                <figure class="news_icon news_icon1">
+                                    <img src="assets/image/icon_news1.png" alt="">
+                                </figure>
+                                <p class="news_text">
+                                    {{ $lang(item.describe, item.describe_en) }}
+                                </p>
+                            </div>
+                        </NuxtLinkLocale>
+                    </li>
+                </ClientOnly>
+            </ul>
+        </div>
         <div class="py50px">
             <CiPagination v-model:page="page" v-model:page-size="pageSize" v-model:total="defData.pagination.total"
                 @change="onHandleCurrentChange" />
@@ -97,4 +99,14 @@ initTableData()
 
 <style lang="scss" scoped>
 @import url('assets/css/news.css');
+
+.news_link:hover {
+    :deep(.news_img) {
+        img {
+            transform: scale(1.1);
+            transition: transform 0.3s;
+        }
+    }
+
+}
 </style>
