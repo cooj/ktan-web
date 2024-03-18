@@ -99,9 +99,8 @@ const verifyArr = ref<(keyof typeof form)[]>([])
 const verifyForm = (list: { label: keyof typeof form, msg: string }[]) => {
     verifyArr.value = []
 
-    // console.log('list :>> ', list)
     list.forEach((item) => {
-        // console.log('form[item.label] :>> ', form[item.label])
+
         if (!form[item.label]?.trim()) {
             verifyArr.value.push(item.label)
             ElMessage.error(item.msg)
@@ -137,10 +136,9 @@ const verifyList: { label: keyof typeof form, msg: string }[] = [
 
 const onSubmit = async () => {
     if (disabled.value) return false
-    // console.log('form :>> ', form)
-    // console.log('11000 :>> ', msgCode)
+
     const isVerify = verifyForm(verifyList)
-    // console.log('111 :>> ', 111)
+
     if (form.verifyCode?.trim()?.toLowerCase() !== code.value.toLowerCase()) return ElMessage.error(msgCode)
     if (!isVerify) return false
     disabled.value = true

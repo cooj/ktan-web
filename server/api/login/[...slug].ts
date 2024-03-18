@@ -28,15 +28,12 @@ const router = createRouter()
  */
 router.use('/sign_test', defineEventHandler(async (event) => {
     // const uploadDir = import.meta.env.NUXT_UPLOAD_DIR
-    // console.log('uploadDir :>> ', uploadDir)
 
     // return 1
 
     const dat = await getEventParams<{ username: string, img: MultiPartData }>(event)
-    console.log('🚀 ~ file: [...slug].ts:33 ~ router.use ~ dat:', dat)
     if (dat?.img) {
         const ext = extname(dat.img.filename!) // .png
-        console.log(ext)
         const url = await createFile(ext, dat.img.data)
         if (url) return url
     }

@@ -255,51 +255,49 @@ const { $lang } = useNuxtApp()
 
 const route = useRoute()
 const systemInfo = await useSystemState().getSystemInfo()
-// console.log(dat)
+
 
 const menuState = useMenuState()
 
 const menuList = await menuState.getMenuList()
-if (process.client) {
-    setTimeout(() => {
-        console.log('🚀 ~ file: header.vue:21 ~ menuList:', menuList)
-    }, 1500)
-}
+// if (process.client) {
+//     setTimeout(() => {
+//         console.log('🚀 ~ file: header.vue:21 ~ menuList:', menuList)
+//     }, 1500)
+// }
 
 const classifyList = await useGoodsClassifyState().getClassify()
-// console.log('classifyList :>> ', classifyList)
+
 
 const setActiveMenu = (item: string) => {
     const href = menuState.activeMenu.value?.href
 
     return href === item
-    // if (href === item) {
+    // // if (href === item) {
+    // // }
+
+    // const route = useRoute()
+    // // const url = useRequestURL()
+
+    // const path = route.path
+    // // let path=url.pathname
+    // // const path = '/public/upload/product/2021/04-17/S-042KD.jpg'
+
+    // // 查找第一个斜杠的索引
+    // const firstSlashIndex = path.indexOf('/')
+    // let first = ''
+    // if (firstSlashIndex !== -1) {
+    //     // 截取第一个斜杠及其前面的内容
+    //     first = path.substring(0, firstSlashIndex + 1) // 包括斜杠
     // }
-    console.log(menuState.activeMenu.value?.href)
-    const route = useRoute()
-    // console.log(route)
-    // const url = useRequestURL()
-    // console.log(url)
 
-    const path = route.path
-    // let path=url.pathname
-    // const path = '/public/upload/product/2021/04-17/S-042KD.jpg'
-
-    // 查找第一个斜杠的索引
-    const firstSlashIndex = path.indexOf('/')
-    let first = ''
-    if (firstSlashIndex !== -1) {
-        // 截取第一个斜杠及其前面的内容
-        first = path.substring(0, firstSlashIndex + 1) // 包括斜杠
-    }
-
-    if (path === item) {
-        return true
-    } else if (item !== '/' && (path === `/${item}` || item === first)) {
-        return true
-    } else {
-        return false
-    }
+    // if (path === item) {
+    //     return true
+    // } else if (item !== '/' && (path === `/${item}` || item === first)) {
+    //     return true
+    // } else {
+    //     return false
+    // }
 }
 
 const searchOpen = ref('')

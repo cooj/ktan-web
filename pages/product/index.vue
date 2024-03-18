@@ -50,8 +50,7 @@ const productData = reactive({
 })
 
 const initData = async () => {
-    console.log('page.value :>> ', page.value)
-    // console.log('cid.value :>> ', cid.value)
+
     const route = useRoute()
     const query = route.query as GoodsListParamsQuery
     // const cid=query.cid
@@ -64,7 +63,7 @@ const initData = async () => {
             type: Number(query.cid) || null,
         },
     })
-    console.log('data :>> ', data)
+
 
     if (error.value) return ElMessage.error('网络错误')
 
@@ -87,10 +86,6 @@ const onHandleCurrentChange = () => {
 //     initData()
 // })
 
-// watch(() => route.query, () => {
-//     console.log('111111 :>> ', 111111)
-//     initData()
-// })
 watch(() => [pg.value, cid.value], () => {
     page.value = Number(pg.value) || 1
     // if (!pg.value && !cid.value && !bid.value) return

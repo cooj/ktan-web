@@ -85,15 +85,11 @@ const route = useRoute()
 const query = route.query as GoodsListParamsQuery
 const cid = ref(query.cid) // 当前分类id
 const setClassifyName = (id: number) => {
-    // console.log('cid :>> ', cid.value)
-    // console.log('props.id :>> ', props.id)
     if (props.id) {
         cid.value = props.id
     }
-    // console.log('cid 0000000:>> ', cid.value)
     if (cid.value) {
         const list = getParentNode(classifyList.value, Number(cid.value), 'id')
-        // console.log('list :>> ', list)
         return list[0]?.id === id ? 'type_active' : ''
     } else {
         return id === 0 ? 'type_active' : ''

@@ -69,7 +69,7 @@ export const setMenuCreate = async (event: H3Event) => {
 
     // 获取参数
     const param = await getEventParams<MenuCreateParam>(event)
-    // console.log('param-----', param)
+
     if (!param?.title) return { msg: '菜单名称不能为空' }
     if (!param.href) return { msg: '链接地址不能为空' }
 
@@ -93,7 +93,7 @@ export const setMenuUpdate = async (event: H3Event) => {
 
     // 获取参数
     const param = await getEventParams<MenuCreateParamEdit>(event)
-    // console.log('param-----', param)
+
 
     if (!param?.id) return { msg: '缺少参数id' }
     if (!param.title) return { msg: '菜单名称不能为空' }
@@ -122,7 +122,7 @@ export const setMenuDelete = async (event: H3Event) => {
 
     // 获取参数
     const param = await getEventParams<{ id: number }>(event)
-    // console.log('param-----', param)
+
 
     if (!param?.id) return { msg: '缺少参数id' }
 

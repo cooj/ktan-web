@@ -38,7 +38,6 @@ const switchLocalePath = useSwitchLocalePath()
 //
 const changeLanguage = async (code: string) => {
     const n = switchLocalePath(code)
-    // console.log(n)
     navigateTo(n)
 }
 </script>

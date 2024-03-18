@@ -77,7 +77,6 @@ const initData = async () => {
             type: Number(type.value) || null,
         },
     })
-    // console.log('data :>> ', data)
 
     if (error.value) return ElMessage.error('网络错误')
 
@@ -99,8 +98,6 @@ const setFileType = (key: string | number) => {
 
 const onHandleCurrentChange = () => {
     // linkGoodsList({ query: { page: pg.value }, relate: true })
-    // console.log('pg.value :>> ', pg.value)
-    // console.log('page.value', page.value)
     // refresh()
     initData()
 }

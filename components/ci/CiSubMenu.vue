@@ -25,10 +25,6 @@ const setActiveClassName = (url: string, index: number) => {
         return route.path === url || props.value === index + 1
     }
 }
-
-// onBeforeRouteUpdate(() => {
-//     console.log('activeMenu.value :>> ', activeMenu.value)
-// })
 </script>
 
 <style></style>

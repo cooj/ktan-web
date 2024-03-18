@@ -14,7 +14,7 @@ export const getSystemInfo = async (event: H3Event) => {
 
     // 获取参数
     // const param = await getEventParams<LoginDataType>(event)
-    // console.log('param-----', param)
+
 
     const [res1, res2] = await Promise.all([
         event.context.prisma.system.findUnique({ where: { id: 1 } }),
@@ -49,7 +49,7 @@ export const setSystemInfo = async (event: H3Event) => {
 
     // 获取参数 ISystemEditParams
     const param = await getEventParams<ISystemEditParams>(event)
-    // console.log('param-----', param)
+
 
     if (!param?.company) return { msg: '公司名称不能为空' }
 

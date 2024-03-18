@@ -19,7 +19,6 @@ export const setLoginSign = async (event: H3Event) => {
             // password: setEncryptPassword(param.password),
         },
     })
-    // console.log('user', user)
 
     if (!user) {
         return { msg: '用户不存在' }
@@ -60,7 +59,6 @@ export const setRegister = async (event: H3Event) => {
 
     // 获取参数
     const param = await getEventParams<LoginDataType>(event)
-    // console.log('param-----', param)
 
     if (!param?.username) return { msg: '请输入用户名' }
 
@@ -74,7 +72,6 @@ export const setRegister = async (event: H3Event) => {
             password: setEncryptPassword(param.password),
         },
     })
-    console.log('user', user)
 
     if (!user) {
         return { msg: '用户不存在' }

@@ -73,11 +73,7 @@ const effect = {
 }
 
 const { data: banner } = await useCustomFetch<ISlideListResponse[]>('/api/page/get_banner?type=5')
-// console.log(banner)
-// onBeforeUpdate(() => {
-//     console.log(activeMenu.value)
-//     console.log('menu.value :>> ', menu.value)
-// })
+
 </script>
 
 <style lang="scss" scoped>

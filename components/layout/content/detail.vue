@@ -70,7 +70,7 @@ const setLinkPath = (row: INewsResponse) => {
 
     return `${path}/${row.id}`
 }
-// console.log(news)
+
 </script>
 
 <style lang="scss" scoped>

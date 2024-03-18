@@ -34,11 +34,10 @@ export const getMenuList = async (event: H3Event) => {
     // if (!event.context.user) return ResponseMessage.token
 
     // const lang = useCookie<'cn' | 'en'>('i18n_redirected')
-    // console.log('🚀 ~ file: page.ts:38 ~ getMenuList ~ lang:', lang)
 
     // 获取参数
     const param = await getEventParams<{ status: number | boolean }>(event)
-    // console.log('param :>> ', param)
+
     const where: any = {
         p_id: 0,
     }
@@ -58,29 +57,6 @@ export const getMenuList = async (event: H3Event) => {
         // },
     })
 
-    // const where: any = {
-    //     p_id: eq(menu.pId, 0),
-    // }
-    // if (param?.status) where.status = eq(menu.status, 1)
-
-    // console.log(db)
-    // const res = await db.query.menu.findMany({
-    //     where: (menu, { eq }) => eq(menu.pId, 0),
-    //     with: {
-    //         children: {
-    //             where: {},
-    //         },
-    //     },
-    //     orderBy: (menu, { asc }) => [asc(menu.sort)],
-    // })
-
-    // const res = await db
-    //     .select()
-    //     .from(menu)
-    //     .where(eq(menu.pId, 0))
-
-    // console.log('res :>> ', res)
-
     return res
 }
 
@@ -92,7 +68,6 @@ export const getBannerList = async (event: H3Event) => {
     // if (!event.context.user) return ResponseMessage.token
 
     // const lang = useCookie<'cn' | 'en'>('i18n_redirected')
-    // console.log('🚀 ~ file: page.ts:38 ~ getMenuList ~ lang:', lang)
 
     // 获取参数
     const param = await getEventParams<{ type: number } & ListPage>(event)
@@ -130,7 +105,6 @@ export const getFileList = async (event: H3Event) => {
     // if (!event.context.user) return ResponseMessage.token
 
     // const lang = useCookie<'cn' | 'en'>('i18n_redirected')
-    // console.log('🚀 ~ file: page.ts:38 ~ getMenuList ~ lang:', lang)
 
     // 获取参数
     const param = await getEventParams<{ type: number } & ListPage>(event)
@@ -154,7 +128,7 @@ export const getFileList = async (event: H3Event) => {
         pageSize = Number(param.pageSize) || 20
         pageSkip = pageSize * (page - 1) || 0
     }
-    console.log('where :>> ', where)
+    // console.log('where :>> ', where)
     const [res1, res2] = await Promise.all([
         event.context.prisma.link.findMany({
             skip: pageSkip,
@@ -183,7 +157,7 @@ export const getFileList = async (event: H3Event) => {
             where,
         }),
     ])
-    // console.log(res1)
+
     if (res1) {
         res1.forEach((item) => {
             if (!item?.img) item.img = item.Product?.links[0]?.img || ''
@@ -202,13 +176,13 @@ export const getAboutInfo = async (event: H3Event) => {
     const param = await getEventParams<{ type: string }>(event)
 
     if (!param?.type) return { msg: '不存在记录' }
-    console.log('param :>> ', param)
+
     const res = await event.context.prisma.other.findUnique({
         where: {
             key: param.type,
         },
     })
-    console.log(res)
+
     return res
 }
 
@@ -419,9 +393,7 @@ export const getIndexData = async (event: H3Event) => {
     ])
     // console.log(res1)
     const list = res1.map((item) => {
-        // console.log('item.links :>> ', item.links)
         const node = item.links.find(item => item.type === 1)
-        // console.log('node :>> ', node);
         item.img = node?.img || ''
         return item
     })

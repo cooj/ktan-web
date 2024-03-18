@@ -48,7 +48,7 @@ export const getList = async (event: H3Event) => {
             contains: param?.title, // 包含
         },
     }
-    // console.log(param)
+
     if (param?.type) {
         const cid = Number(param?.type)
         const ids = await findDescendantCategoryIds(cid, event.context.prisma)
@@ -67,7 +67,7 @@ export const getList = async (event: H3Event) => {
         pageSize = Number(param.pageSize) || 20
         pageSkip = pageSize * (page - 1) || 0
     }
-    // console.log('where :>> ', where)
+
     const [res1, res2] = await Promise.all([
         event.context.prisma.product.findMany({
             skip: pageSkip,
@@ -112,7 +112,7 @@ export const insert = async (event: H3Event) => {
 
     // 获取参数
     const param = await getEventParams<IProductCreateParam>(event)
-    // console.log('param-----', param)
+
     if (!param?.title) return { msg: '标题不能为空' }
 
     const res = await event.context.prisma.product.create({
@@ -144,7 +144,6 @@ export const update = async (event: H3Event) => {
 
     // 获取参数
     const param = await getEventParams<IProductCreateParamEdit>(event)
-    // console.log('param-----', param)
 
     if (!param?.id) return { msg: '缺少参数id' }
     if (!param?.title) return { msg: '标题不能为空' }
@@ -229,7 +228,6 @@ export const del = async (event: H3Event) => {
 
     // 获取参数
     const param = await getEventParams<{ id: number }>(event)
-    // console.log('param-----', param)
 
     if (!param?.id) return { msg: '缺少参数id' }
 

@@ -113,7 +113,6 @@ const onToggleItem = (item: IRecruitGetListItem) => {
     else active.value = item.id
 }
 
-// console.log(recruit)
 </script>
 
 <style lang="scss" scoped>
