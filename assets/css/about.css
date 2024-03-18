@@ -14,6 +14,10 @@
     position: relative;
 }
 
+.about_img img {
+    width: 100%;
+}
+
 .about_img::before {
     position: absolute;
     left: -5rem;
@@ -110,9 +114,10 @@
 }
 
 /* 新闻轮播 */
-.news_module {
+.about_banner {
     width: 100%;
-    height: 46.5rem;
+    min-height: 20rem;
+    padding: 3rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -126,7 +131,7 @@
     margin-bottom: 1.875rem;
 }
 
-.news_module::after {
+.about_banner::after {
     position: absolute;
     top: 0;
     right: 0;
@@ -215,18 +220,17 @@
 } */
 
 .certification_ul {
-    display: flex;
+    /* display: flex;
     flex-wrap: wrap;
-    margin-bottom: 1.875rem;
+    margin-bottom: 1.875rem; */
+
+    display: grid;
+    --grid-row-length: 4;
+    grid-template-columns: repeat(var(--grid-row-length), 1fr);
+    gap: 35px;
+    padding: 35px 0 50px;
 }
 
-.certification_li {
-    width: 18.75rem;
-    min-height: 24rem;
-    padding: 0 0.9375rem;
-    box-sizing: border-box;
-    margin-top: 2.5rem;
-}
 
 /* 小于1220px执行 */
 @media screen and (max-width: 1220px) {
@@ -240,24 +244,25 @@
     .news_swiper {
         max-width: 60rem;
     }
+
+    .certification_ul {
+        --grid-row-length: 3;
+    }
 }
 
 /* 小于992px */
 @media screen and (max-width: 992px) {
 
-    /* 新闻 */
-    .news_module {
-        height: 36rem;
-    }
 
     .news_swiper {
         max-width: 45rem;
     }
 
-    .certification_li {
-        width: 33%;
-        min-height: 18.375rem;
+    
+    .certification_ul {
+        --grid-row-length: 2;
     }
+
 }
 
 /* 小于765px */
@@ -299,8 +304,8 @@
     }
 
     /* 新闻 */
-    .news_module {
-        height: 22rem;
+    .about_banner {
+        --swiper-navigation-size: 24px;
     }
 
     .news_swiper {
@@ -329,7 +334,11 @@
         width: 21.5625rem;
     }
 
+    .certification_ul {
+        --grid-row-length: 1;
+    }
+
     .certification_li {
-        width: 100%;
+        padding: 0 10px;
     }
 }

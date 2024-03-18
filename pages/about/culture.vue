@@ -1,9 +1,7 @@
 <template>
     <section>
         <CiSubMenu />
-
-        <!-- <div class="about"> -->
-        <article class="width_box">
+        <article class="width_box mt30px!">
             <div class="pb50px" v-html="$lang(data?.content, data?.content_en)" />
             <!-- 列表 -->
             <!-- <div class="lb_list">
@@ -34,7 +32,6 @@
                     </ul>
                 </div> -->
         </article>
-        <!-- </div> -->
     </section>
 </template>
 

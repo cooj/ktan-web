@@ -1,7 +1,7 @@
 <template>
     <section>
         <CiSubMenu />
-        <div class="width_box text-center">
+        <div class="width_box text-center mt30px!">
             <div class="min-h-300px pb50px">
                 <img :src="data?.img || ''" alt="">
             </div>
