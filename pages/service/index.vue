@@ -103,7 +103,7 @@ const onHandleCurrentChange = () => {
 </script>
 
 <style>
-@import url('@/assets/css/goods-detail.css');
+@import url('@/assets/css/download.css');
 </style>
 
 <style lang="scss" scoped>

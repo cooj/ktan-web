@@ -69,7 +69,7 @@
                             </div>
                         </li>
                     </ul>
-                    <div v-else v-html="item.content" />
+                    <div v-else class="info_content" v-html="item.content" />
                 </li>
             </ul>
         </article>
@@ -154,4 +154,14 @@ const contentData = computed(() => {
 
 <style lang="scss" scoped>
 @import url('@/assets/css/goods-detail.css');
+
+.info_base>li {
+    :deep(.info_content) {
+        * {
+            max-width: 100% !important;
+        }
+    }
+
+    // width: 100% !important;
+}
 </style>

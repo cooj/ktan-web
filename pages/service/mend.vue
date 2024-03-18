@@ -28,3 +28,9 @@ const { data } = await useCustomFetch<Prisma.OtherMaxAggregateOutputType>('/api/
     },
 })
 </script>
+
+<style lang="scss" scoped>
+.explain_module{
+    margin-top: 25px;
+}
+</style>

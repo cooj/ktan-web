@@ -198,31 +198,9 @@
 }
 
 .info_show>.download_ul {
-    display: flex;
+    display: grid;
 }
 
-
-/* 筛选 */
-.filter_module {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 0 1.875rem;
-}
-
-.filter_module>a {
-    font-size: 1.25rem;
-    color: #7e7e7e;
-    margin: 0 1.6875rem;
-}
-
-.filter_module>a:hover {
-    color: #fb531c;
-}
-
-.filter_active {
-    color: #fb531c !important;
-}
 
 
 /* 小于1220px执行 */
@@ -317,8 +295,4 @@
         font-size: 0.875rem;
     }
 
-    /* 筛选 */
-    .filter_module>a {
-        font-size: 0.875rem;
-    }
 }

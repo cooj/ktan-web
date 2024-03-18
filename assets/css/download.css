@@ -1,19 +1,21 @@
-
 /* 下载 */
 .download_module {
     margin: 2.5rem auto 5.625rem;
 }
 
 .download_ul {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    --grid-row-length: 3;
+    grid-template-columns: repeat(var(--grid-row-length), 1fr);
+    gap: 3rem 5rem;
+
 }
 
 .download_li {
-    width: 17.875rem;
-    height: 25.1875rem;
+    /* width: 17.875rem; */
+    /* height: 25.1875rem; */
     padding: 2.1875rem 1.8125rem;
-    margin: 0 5.25rem 3.125rem 0;
+    /* margin: 0 5.25rem 3.125rem 0; */
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -34,6 +36,7 @@
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
     line-height: 1.5;
+    font-weight: bold;
 }
 
 .download_img {
@@ -83,15 +86,38 @@
 }
 
 
+
+/* 筛选 */
+.filter_module {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 1.875rem;
+}
+
+.filter_module>a {
+    font-size: 1.25rem;
+    color: #7e7e7e;
+    margin: 0 1.6875rem;
+}
+
+.filter_module>a:hover {
+    color: #fb531c;
+}
+
+.filter_active {
+    color: #fb531c !important;
+}
+
+
+
 /* 小于1220px执行 */
 @media screen and (max-width: 1220px) {
 
 
     /* 简介 */
-    .download_li {
-        width: 25%;
-        height: 22rem;
-        margin-right: 3.4%;
+    .download_ul {
+        gap: 2.5rem;
     }
 }
 
@@ -99,12 +125,13 @@
 
 /* 小于992px */
 @media screen and (max-width: 992px) {
+    .download_ul {
+        gap: 1.8rem;
+    }
 
     /* 下载 */
     .download_li {
         padding: 20px;
-        margin-right: 4.1%;
-        height: 20rem;
     }
 
     .download_icon {
@@ -117,18 +144,20 @@
 
     /* 下载 */
     .download_module {
-        margin: 0 0 1.875rem;
+        margin: 1.5rem auto 1.875rem;
     }
 
 
     .download_ul {
-        justify-content: space-between;
+        --grid-row-length: 2;
+        gap: 25px;
+
     }
 
     .download_li {
-        width: 38%;
+        /* width: 38%;
         height: 15rem;
-        margin: 0 0 1.25rem 0 !important;
+        margin: 0 0 1.25rem 0 !important; */
         padding: 1.25rem 0.9375rem;
     }
 
@@ -147,5 +176,10 @@
     .download_icon {
         width: 1rem;
     }
-}
 
+
+    /* 筛选 */
+    .filter_module>a {
+        font-size: 0.875rem;
+    }
+}
