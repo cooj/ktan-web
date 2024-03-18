@@ -53,6 +53,7 @@ export const getList = async (event: H3Event) => {
             },
             include: {
                 children: true,
+                // parent: true,
             },
             // select: { // 只返回指定的字段
             //     username: true,

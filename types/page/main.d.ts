@@ -58,6 +58,19 @@ declare interface IClassifyListResponse {
     children?: IClassifyListResponse[]
 }
 
+// 产品分类父级
+declare interface IClassifyListParent {
+    id: number
+    p_id: number
+    title: '本地语音智能核相仪'
+    title_en: null
+    createdAt: '2024-03-08T06:51:32.165Z'
+    updatedAt: '2024-03-08T06:51:32.165Z'
+    sort: 0
+    status: 1
+    parent?: IClassifyListParent
+}
+
 // 轮播图
 declare interface ISlideListResponse {
 
@@ -167,9 +180,7 @@ declare interface IGoodsGetListItem {
     updatedAt: '2024-03-08T08:46:12.839Z'
     classifyId: 9
 
-    classify: {
-        title: string
-    }
+    classify: IClassifyListParent
     links: ILinkItem[]
 }
 

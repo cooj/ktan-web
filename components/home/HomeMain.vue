@@ -21,8 +21,8 @@
                             <p class="hot_name line-clamp-1">
                                 {{ $lang(item?.title, item?.title_en) }}
                             </p>
-                            <span class="hot_explain">电缆识别路径仪系列【综合管线路径仪】</span>
-                            <CoImage class="w100% pb100% block!" :src="item?.img" />
+                            <CiClassifyName class="hot_explain" :item="item?.classify" />
+                            <CoImage class="w100% pb100% <md:ma block! <md:w95% <md:pb95%" :src="item?.img" />
                             <!-- <figure class="hot_img">
                             <img :src="item?.img" alt="">
                         </figure> -->

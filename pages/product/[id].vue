@@ -1,6 +1,6 @@
 <template>
     <section>
-        <CiClassify />
+        <CiClassify :id="product?.classify?.id" />
         <!-- 商品详情 -->
         <div class="width_box">
             <div class="flex py45px <lg:flex-wrap">
@@ -27,12 +27,7 @@
                 <article class="goods_content">
                     <h1 class="goods_name">
                         {{ $lang(product?.title, product?.title_en) }}
-                        <span>
-                            {{ $lang(classifyData[0]?.title, classifyData[0]?.title_en) }}
-                            <template v-if="classifyData[1]">
-                                【{{ $lang(classifyData[1]?.title, classifyData[1]?.title_en) }}】
-                            </template>
-                        </span>
+                        <CiClassifyName :item="product?.classify" />
                     </h1>
                     <div class="pt10px" v-html="$lang(product?.describe, product?.describe_en)" />
                 </article>
@@ -115,10 +110,6 @@ if (!data.value) {
 }
 
 const product = data.value?.data
-let classifyData: IClassifyListResponse[] = []
-if (product?.id) {
-    classifyData = getParentNode(classifyList.value, Number(product.id), 'id')
-}
 const photoList = product?.links.filter(item => item.type === 1)
 const downloadList = product?.links.filter(item => item.type === 2)
 

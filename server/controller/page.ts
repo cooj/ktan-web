@@ -312,8 +312,8 @@ export const getProductInfo = async (event: H3Event) => {
         include: {
             links: true,
             classify: {
-                select: {
-                    title: true,
+                include: {
+                    parent: true,
                 },
             },
         },
@@ -388,8 +388,12 @@ export const getIndexData = async (event: H3Event) => {
             include: {
                 links: true,
                 classify: {
-                    select: {
-                        title: true,
+                    // select: {
+                    //     title: true,
+                    //     title_en: true,
+                    // },
+                    include: {
+                        parent: true,
                     },
                 },
             },

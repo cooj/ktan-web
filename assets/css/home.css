@@ -323,7 +323,8 @@
 	}
 
 	.hot_swiper {
-		margin: .5rem 0;
+		padding: 1.75rem 0;
+        width: 95%;
 	}
 
 	.hot_more {

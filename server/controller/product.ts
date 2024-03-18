@@ -1,6 +1,23 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma, PrismaClient } from '@prisma/client'
 import type { H3Event } from 'h3'
 import { ResponseMessage } from '~/config/message'
+
+async function findDescendantCategoryIds(categoryId: number, prisma: PrismaClient): Promise<number[]> {
+    const categories = await prisma.classify.findMany({
+        where: {
+            p_id: categoryId,
+        },
+    })
+
+    let descendantIds: number[] = categories.map(category => category.id)
+
+    for (const category of categories) {
+        const childIds = await findDescendantCategoryIds(category.id, prisma)
+        descendantIds = descendantIds.concat(childIds)
+    }
+
+    return descendantIds
+}
 
 // news
 type FindListQueryParam = {
@@ -31,8 +48,14 @@ export const getList = async (event: H3Event) => {
             contains: param?.title, // 包含
         },
     }
-
-    if (param?.type) where.classifyId = Number(param?.type)
+    // console.log(param)
+    if (param?.type) {
+        const cid = Number(param?.type)
+        const ids = await findDescendantCategoryIds(cid, event.context.prisma)
+        where.classifyId = {
+            in: [cid, ...ids],
+        }
+    }
 
     // 查询菜单姓"张"，1页显示20条
     let page: number | undefined
@@ -44,7 +67,7 @@ export const getList = async (event: H3Event) => {
         pageSize = Number(param.pageSize) || 20
         pageSkip = pageSize * (page - 1) || 0
     }
-    console.log('where :>> ', where)
+    // console.log('where :>> ', where)
     const [res1, res2] = await Promise.all([
         event.context.prisma.product.findMany({
             skip: pageSkip,
@@ -56,8 +79,8 @@ export const getList = async (event: H3Event) => {
             include: {
                 links: true,
                 classify: {
-                    select: {
-                        title: true,
+                    include: {
+                        parent: true,
                     },
                 },
             },

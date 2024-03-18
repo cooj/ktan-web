@@ -14,6 +14,9 @@
                     <NuxtLinkLocale class="type_name line-clamp-1"
                         :to="linkGoodsList({ query: { cid: item.id, page: 1 }, relate: false, url: true })">
                         {{ $lang(item.title, item.title_en) }}
+                        <!-- <span v-if="childrenItem(item.children)">
+                            【{{ $lang(childrenItem(item.children)?.title, childrenItem(item.children)?.title_en) }}】
+                        </span> -->
                     </NuxtLinkLocale>
                     <template v-if="item.children?.length">
                         <figure class="type_icon">
@@ -44,6 +47,11 @@
 //     // <eventName>: <expected arguments>
 //     change: []
 // }>()
+
+const props = defineProps<{
+    id?: number
+}>()
+
 const breakpoints = ref({
     350: {
         slidesPerView: 2,
@@ -73,17 +81,31 @@ const navigation = {
 }
 
 const classifyList = await useGoodsClassifyState().getClassify()
-
+const route = useRoute()
+const query = route.query as GoodsListParamsQuery
+const cid = ref(query.cid) // 当前分类id
 const setClassifyName = (id: number) => {
-    const route = useRoute()
-    const query = route.query as GoodsListParamsQuery
-    const cid = ref(query.cid) // 当前分类id
+    // console.log('cid :>> ', cid.value)
+    // console.log('props.id :>> ', props.id)
+    if (props.id) {
+        cid.value = props.id
+    }
+    // console.log('cid 0000000:>> ', cid.value)
     if (cid.value) {
         const list = getParentNode(classifyList.value, Number(cid.value), 'id')
         // console.log('list :>> ', list)
-        return list[0].id === id ? 'type_active' : ''
+        return list[0]?.id === id ? 'type_active' : ''
     } else {
         return id === 0 ? 'type_active' : ''
+    }
+}
+
+const childrenItem = (list?: IClassifyListResponse[]) => {
+    if (list?.length) {
+        const node = list.find(item => item.id === cid.value)
+        return node
+    } else {
+        return undefined
     }
 }
 </script>
@@ -91,10 +113,12 @@ const setClassifyName = (id: number) => {
 <style lang="scss" scoped>
 .goods-classify {
     --swiper-navigation-size: 24px;
+
     @media screen and (max-width: 768px) {
         --swiper-navigation-size: 18px;
-        --swiper-navigation-sides-offset:0px;
+        --swiper-navigation-sides-offset: 0px;
     }
+
     :deep(.swiper) {
         overflow: unset;
     }

@@ -259,44 +259,96 @@ export default defineEventHandler(async (event) => {
                 }
             })
 
-            const node = await event.context.prisma.classify.findFirst({
-                where: {
-                    title: className,
-                },
-            })
-            const obj = {
-                title,
-                classifyId: node?.id || 0,
-                sub_title: brand,
-                describe: goods_desc || '',
-                content: goods_param || '',
-                contrast: goods_contrast || '',
-                annex: goods_annex || '',
-                // goods_download,
-                links: {
-                    create: goods_link,
-                },
-            }
-            await event.context.prisma.product.create({
-                data: {
-                    title,
-                    classifyId: node?.id || 0,
-                    sub_title: brand,
-                    describe: goods_desc || '',
-                    content: goods_param || '',
-                    contrast: goods_contrast || '',
-                    annex: goods_annex || '',
-                    // goods_download,
-                    links: {
-                        create: goods_link,
+            let node: Prisma.ClassifyMaxAggregateOutputType | null = null
+            if (brand) {
+                node = await event.context.prisma.classify.findFirst({
+                    where: {
+                        title: brand,
                     },
+                })
+            }
+
+            if (!node) {
+                node = await event.context.prisma.classify.findFirst({
+                    where: {
+                        title: className,
+                    },
+                })
+            }
+            const product = await event.context.prisma.product.findFirst({
+                where: {
+                    title,
                 },
             })
+            if (product) {
+                await event.context.prisma.product.update({
+                    where: {
+                        id: product.id,
+                    },
+                    data: {
+                        classify: {
+                            connect: {
+                                id: node?.id || 0,
+                            },
+                        },
+                    },
+                })
+            }
+            // await event.context.prisma.product.update({
+            //     where: {
+            //         title,
+            //     },
+            //     data: {
+            //         classifyId: node?.id || 0,
+            //     },
+            // })
 
-            product.push(obj)
+            // // const
+            // const obj = {
+            //     title,
+            //     classifyId: node?.id || 0,
+            //     sub_title: brand,
+            //     describe: goods_desc || '',
+            //     content: goods_param || '',
+            //     contrast: goods_contrast || '',
+            //     annex: goods_annex || '',
+            //     // goods_download,
+            //     links: {
+            //         create: goods_link,
+            //     },
+            // }
+
+            // // const upsertUser =
+            // await event.context.prisma.product.upsert({
+            //     where: {
+            //         title,
+            //     },
+            //     update: {
+            //         classifyId: obj.classifyId,
+            //     },
+            //     create: obj,
+            // })
+
+            // await event.context.prisma.product.create({
+            //     data: {
+            //         title,
+            //         classifyId: node?.id || 0,
+            //         sub_title: brand,
+            //         describe: goods_desc || '',
+            //         content: goods_param || '',
+            //         contrast: goods_contrast || '',
+            //         annex: goods_annex || '',
+            //         // goods_download,
+            //         links: {
+            //             create: goods_link,
+            //         },
+            //     },
+            // })
+
+            // product.push(obj)
         }
 
-        await useStorage('db').setItem('product', product)
+        // await useStorage('db').setItem('product', product)
         // await event.context.prisma.classify.createMany({
         //     data: classList,
         //     skipDuplicates: true, // 跳过重复项
