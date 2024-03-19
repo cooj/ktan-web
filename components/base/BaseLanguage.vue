@@ -7,7 +7,7 @@
         </span>
         <template #dropdown>
             <el-dropdown-menu>
-                <el-dropdown-item v-for="item in (locales as LocaleObject[])" :key="item.code"
+                <el-dropdown-item v-for="item in locales" :key="item.code"
                     :class="{ on: localeProperties.code === item.code }" @click="changeLanguage(item.code)">
                     {{ item.name }}
                 </el-dropdown-item>
@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
+// import type { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
 
 // import BaseFooter from './components/BaseFooter.vue'
 // import BaseHeader from './components/BaseHeader.vue'

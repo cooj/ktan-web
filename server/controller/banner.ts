@@ -26,6 +26,23 @@ export const getList = async (event: H3Event) => {
     if (param.title) where.title = { contains: param.title }
     if (param.goods_id) where.productId = Number(param.goods_id)
 
+    let includes: any = {
+
+    }
+    if (!types.includes(1)) {
+        includes = {
+            Product: {
+                include: {
+                    links: {
+                        where: {
+                            type: 1,
+                        },
+                    },
+                },
+            },
+        }
+    }
+
     // 查询菜单姓"张"，1页显示20条
     let page: number | undefined
     let pageSize: number | undefined
@@ -45,17 +62,7 @@ export const getList = async (event: H3Event) => {
             orderBy: {
                 sort: 'asc', // 按id正序排序
             },
-            // include: {
-            //     Product: {
-            //         include: {
-            //             links: {
-            //                 where: {
-            //                     type: 1,
-            //                 },
-            //             },
-            //         },
-            //     },
-            // },
+            include: includes,
             // select: { // 只返回指定的字段
             //     username: true,
             //     account: true,
@@ -66,7 +73,7 @@ export const getList = async (event: H3Event) => {
         }),
     ])
     const list = res1.map((item) => {
-        // if (!item?.img) item.img = item.Product?.links[0]?.img || ''
+        if (!item?.img) item.img = item.Product?.links?.[0]?.img || ''
         return {
             ...item,
             password: '',

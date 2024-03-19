@@ -408,6 +408,10 @@
 
 }
 
+.search_ipt::-webkit-autofill{
+    background-color: transparent;
+}
+
 
 
 .search_shut {
@@ -415,7 +419,8 @@
     color: #000;
     cursor: pointer;
     margin-top: -0.375rem;
-
+    min-width: 30px;
+    text-align: center;
 }
 
 
@@ -1745,6 +1750,10 @@ justify-content: center;
 @media screen and (max-width: 765px) {
     .width_box {
         width: 95%;
+    }
+
+    .search_box {
+        width: 90%;
     }
 
     /* .goods-page .more {
