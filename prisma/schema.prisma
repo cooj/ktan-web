@@ -63,6 +63,7 @@ model System {
     updatedAt   DateTime @updatedAt @map("updated_at")
     icon        String?  @db.VarChar(255)
     welcome     String?  @db.VarChar(255)
+    is_en       Boolean? @default(false)
 
     @@map("system")
 }

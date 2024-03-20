@@ -162,7 +162,7 @@
     bottom: 0;
     content: '';
     height: 0.25rem;
-    background-color: #e67816;
+    background-color: var(--co-main-color);
     opacity: 0;
     transition: opacity 0.3s;
 
@@ -171,7 +171,7 @@
 
 
 .nav_active {
-    color: #e67918;
+    color: var(--co-main-color);
     transition: color 0.3s;
 
 }
@@ -187,7 +187,7 @@
 
 
 .nav_list:hover .nav_btn {
-    color: #e67918;
+    color: var(--co-main-color);
     transition: color 0.3s;
 
 }
@@ -212,7 +212,7 @@
     left: 0.625rem;
     right: 0.625rem;
     max-height: 31.25rem;
-    background-color: #e67816;
+    background-color: var(--co-main-color);
     overflow: hidden;
     overflow-y: auto;
     display: none;
@@ -271,7 +271,7 @@
 
 
 .nav_li a:hover {
-    background-color: #fb531c;
+    background-color: var(--co-main-hover-color);
 
 }
 
@@ -331,7 +331,7 @@
 
 .nav_list1 .nav_ul {
     /* position: absolute; */
-    background-color: #e67816;
+    background-color: var(--co-main-color);
 }
 
 
@@ -408,7 +408,7 @@
 
 }
 
-.search_ipt::-webkit-autofill{
+.search_ipt::-webkit-autofill {
     background-color: transparent;
 }
 
@@ -610,15 +610,15 @@
 
 .mo_active {
     color: #fff;
-    background-color: #fb531c;
+    background-color: var(--co-main-color);
 
 }
 
 
 
 .mo_active1 {
-    color: #fb531c;
-    border-bottom: 1px solid #fb531c;
+    color: var(--co-main-color);
+    border-bottom: 1px solid var(--co-main-color);
 
 }
 
@@ -628,7 +628,7 @@
     display: flex;
     align-items: center;
     padding: 0.9375rem 0.625rem;
-    background-color: #fb531c;
+    background-color: var(--co-main-color);
     font-size: 1rem;
     color: #fff;
 
@@ -779,7 +779,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid #fc8761;
+    border-top: 1px solid var(--co-main-hover-color);
     padding: 12px 0;
 }
 
@@ -822,7 +822,7 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    background-color: #fb531c;
+    background-color: var(--co-main-color);
     padding: 0.625rem;
     font-size: 1.125rem;
     color: #fff;
@@ -948,7 +948,7 @@
     top: -8.5rem;
     right: 0;
     left: 0;
-    background-color: #fb531c;
+    background-color: var(--co-main-color);
     padding-bottom: 1.25rem;
     border-top-left-radius: 0.625rem;
     border-bottom-left-radius: 0.625rem;
@@ -990,7 +990,7 @@
 
 
 .float_list:hover .float_icon {
-    color: #fb531c;
+    color: var(--co-main-color);
 
 }
 
@@ -1010,7 +1010,7 @@
     right: 0;
     bottom: 20%;
     transform: translate(0, -50%);
-    background-color: #fb531c;
+    background-color: var(--co-main-color);
     font-size: 0.625rem;
     color: #fff;
     text-align: center;
@@ -1089,7 +1089,7 @@
 
 
 .crumbs_a:hover {
-    color: #fb531c;
+    color: var(--co-main-color);
 
 }
 
@@ -1117,7 +1117,7 @@
 .crumbs_submit {
     width: 2.5rem;
     border: 0;
-    background-color: #fb531c;
+    background-color: var(--co-main-color);
     color: #fff;
     height: 1.875rem;
     line-height: 1.875rem;
@@ -1159,7 +1159,7 @@
     transform: translate(-50%, 0);
     width: 2.5rem;
     height: 0.125rem;
-    background-color: #fb531c;
+    background-color: var(--co-main-color);
     opacity: 0;
     transition: opacity 0.3s;
 
@@ -1168,7 +1168,7 @@
 
 
 .sort_active {
-    color: #fb531c !important;
+    color: var(--co-main-color) !important;
     font-size: 1.5rem !important;
     line-height: 3 !important;
 
@@ -1185,7 +1185,7 @@
 
 
 .sort_module>a:hover {
-    color: #fb531c;
+    color: var(--co-main-color);
 
 }
 
@@ -1346,7 +1346,7 @@
     border: 0;
     background-color: #fff;
     font-size: 0.875rem;
-    color: #fb531c;
+    color: var(--co-main-color);
     text-align: center;
     flex-shrink: 0;
     margin-left: 0.625rem;
@@ -1360,7 +1360,7 @@
     height: 5.5rem;
     line-height: 5.5rem;
     text-align: center;
-    background-color: #fb531c;
+    background-color: var(--co-main-color);
     font-size: 0.875rem;
     color: #fff;
     font-weight: bold;
@@ -1536,8 +1536,8 @@ justify-content: center;
 
 .type_list:hover {
     color: #fff;
-    background-color: #FE4002;
-    border: 1px solid #FE4002;
+    background-color: var(--co-main-color);
+    border: 1px solid var(--co-main-color);
     transition: all 0.3s;
 
 }
@@ -1553,7 +1553,7 @@ justify-content: center;
 
 .type_subclass>li:hover {
     color: #fff;
-    background-color: #FE4002;
+    background-color: var(--co-main-color);
     transition: all 0.3s;
 
 }
@@ -1562,8 +1562,8 @@ justify-content: center;
 
 .type_active {
     color: #fff;
-    background-color: #FE4002;
-    border: 1px solid #FE4002;
+    background-color: var(--co-main-color);
+    border: 1px solid var(--co-main-color);
 
 }
 

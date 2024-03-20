@@ -16,7 +16,7 @@
                         <div class="Top_icon"><img src="assets/picture/icon_user.png" alt=""></div>
                         <span>用户登录</span>
                     </a> -->
-                    <div class="langue_module flex">
+                    <div v-if="systemInfo?.is_en" class="langue_module flex">
                         <NuxtLink to="/" class="langue_list flex items-center">
                             <div class="Top_icon">
                                 <img src="assets/image/zh-Hans.png" alt="">
@@ -76,7 +76,7 @@
                     </ul>
                 </nav>
                 <div class="nav_search mt2px" @click="onToggleSearch()">
-                    <img src="assets/image/icon_search.png" alt="">
+                    <img class="co-filter-color" src="assets/image/icon_search.png" alt="">
                 </div>
             </div>
         </div>
@@ -84,7 +84,7 @@
         <div class="search_module" :class="searchOpen">
             <form class="search_box" onsubmit="return false">
                 <button class="search_icon" type="submit">
-                    <img src="assets/image/icon_search.png" alt="">
+                    <img class="co-filter-color" src="assets/image/icon_search.png" alt="">
                 </button>
                 <input v-model="keyword" class="search_ipt" type="text" name="keyword"
                     :placeholder="$lang('搜索关键字', 'keyword') || ''" @keyup.enter="onSearch">
@@ -112,7 +112,7 @@
                     <span>{{ $lang(systemInfo?.welcome, systemInfo?.welcome_en) }}</span>
                     <span>{{ systemInfo?.phone }}</span>
                 </div>
-                <div class="main-bg-color mo_top">
+                <div v-if="systemInfo?.is_en" class="main-bg-color mo_top">
                     <NuxtLink to="/" class="mo_language flex">
                         <div><img src="assets/image/zh-Hans.png" alt=""></div>
                         <span>中文版</span>
@@ -149,11 +149,12 @@ const systemInfo = await useSystemState().getSystemInfo()
 const menuState = useMenuState()
 
 const menuList = await menuState.getMenuList()
-// if (process.client) {
-//     setTimeout(() => {
-//         console.log('🚀 ~ file: header.vue:21 ~ menuList:', menuList)
-//     }, 1500)
-// }
+if (process.client) {
+    setTimeout(() => {
+        console.log(systemInfo.value)
+        console.log('🚀 ~ file: header.vue:21 ~ menuList:', menuList)
+    }, 1500)
+}
 
 const classifyList = await useGoodsClassifyState().getClassify()
 

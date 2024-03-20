@@ -98,11 +98,11 @@
 }
 
 .filter_module>a:hover {
-    color: #fb531c;
+    color: var(--co-main-color);
 }
 
 .filter_active {
-    color: #fb531c !important;
+    color: var(--co-main-color) !important;
 }
 
 

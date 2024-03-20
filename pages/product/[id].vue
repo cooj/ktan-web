@@ -41,7 +41,12 @@
                     @click="setActiveValue(item.key)">
                     <p>{{ item.title }}</p>
                 </a>
-                <figure><img src="assets/image/icon_rectangle.png" alt=""></figure>
+                <div class="info_cols">
+                    <span class="sp1" />
+                    <span class="sp2" />
+                    <span class="sp3" />
+                </div>
+                <!-- <figure><img class="co-filter-color" src="assets/image/icon_rectangle.png" alt=""></figure> -->
             </div>
             <ul class="info_base">
                 <li v-for="item in contentData" :key="item.key" :class="{ info_show: active === item.key }">
@@ -59,7 +64,7 @@
                                     {{ formatTime(new Date(opt!.createdAt)) }}
                                 </p>
                                 <a target="" :href="opt.href" class="download_icon" download="">
-                                    <img src="assets/image/icon_download.png" alt="">
+                                    <img class="co-filter-color" src="assets/image/icon_download.png" alt="">
                                 </a>
                             </div>
                         </li>

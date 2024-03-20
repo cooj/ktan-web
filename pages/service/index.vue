@@ -27,7 +27,7 @@
                                 {{ formatTime(new Date(opt!.createdAt)) }}
                             </p>
                             <a target="" :href="opt.href" class="download_icon" download="">
-                                <img src="assets/image/icon_download.png" alt="">
+                                <img class="co-filter-color" src="assets/image/icon_download.png" alt="">
                             </a>
                         </div>
                     </li>

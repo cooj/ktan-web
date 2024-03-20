@@ -10,7 +10,7 @@
                 <ul class="contact_ul">
                     <li class="contact_list">
                         <figure class="contact_icon">
-                            <img src="assets/image/icon_phone1.png" alt="">
+                            <img class="co-filter-color" src="assets/image/icon_phone1.png" alt="">
                         </figure>
                         <p class="contact_text">
                             {{ $lang('服务热线', 'Service hotline') }} ：{{ systemInfo?.phone }}
@@ -18,7 +18,7 @@
                     </li>
                     <li class="contact_list">
                         <figure class="contact_icon">
-                            <img src="assets/image/icon_phone1.png" alt="">
+                            <img class="co-filter-color" src="assets/image/icon_phone1.png" alt="">
                         </figure>
                         <p class="contact_text">
                             {{ $lang('客服热线', 'Customer hotline') }}：{{ systemInfo?.phone2 }}
@@ -26,7 +26,7 @@
                     </li>
                     <li class="contact_list">
                         <figure class="contact_icon">
-                            <img src="assets/image/icon_email.png" alt="">
+                            <img class="co-filter-color" src="assets/image/icon_email.png" alt="">
                         </figure>
                         <p class="contact_text">
                             {{ $lang('电子邮箱', 'Email') }}：{{ systemInfo?.email }}
@@ -34,7 +34,7 @@
                     </li>
                     <li class="contact_list">
                         <figure class="contact_icon">
-                            <img src="assets/image/icon_address.png" alt="">
+                            <img class="co-filter-color" src="assets/image/icon_address.png" alt="">
                         </figure>
                         <p class="contact_text">
                             {{ $lang('联系地址', 'Address') }}： {{ $lang(systemInfo?.address, systemInfo?.address_en) }}

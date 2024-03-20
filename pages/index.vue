@@ -22,6 +22,12 @@
 definePageMeta({
     layout: 'home',
 })
+
+console.warn('cooj')
+console.warn('ccso')
+console.warn('ccxe')
+console.warn('ccvw')
+console.warn('asmo')
 </script>
 
-<style  lang="scss" scoped></style>
+<style lang="scss" scoped></style>

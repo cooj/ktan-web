@@ -26,6 +26,7 @@ declare interface ISystemInfoResponse {
     company_en: string
     welcome: string
     welcome_en: string
+    is_en: boolean
 }
 
 // 菜单

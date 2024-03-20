@@ -9,7 +9,7 @@
                         {{ $lang(data?.title, data?.title_en) }}
                     </p>
                     <figure class="reuse_img">
-                        <img src="assets/image/deco.png" alt="">
+                        <img class="co-filter-color" src="assets/image/deco.png" alt="">
                     </figure>
                     <!-- <span class="reuse_subhead">致力于向广大客户提供智能化电力测试仪器仪表</span> -->
                 </div>

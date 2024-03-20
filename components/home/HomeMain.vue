@@ -7,7 +7,7 @@
                     {{ $lang('热门产品', 'Hot Product') }}
                 </p>
                 <figure class="reuse_img">
-                    <img src="assets/image/deco.png" alt="">
+                    <img class="co-filter-color" src="assets/image/deco.png" alt="">
                 </figure>
                 <!--        <span class="reuse_subhead">致力于向广大客户提供智能化电力测试仪器仪表</span> -->
             </div>
@@ -45,7 +45,7 @@
                         {{ $lang('新闻资讯', 'News and information') }}
                     </p>
                     <figure class="reuse_img">
-                        <img src="assets/image/deco.png" alt="">
+                        <img class="co-filter-color" src="assets/image/deco.png" alt="">
                     </figure>
                     <!--            <span class="reuse_subhead">我们依靠企业生存，企业依靠我们发展。</span> -->
                 </div>

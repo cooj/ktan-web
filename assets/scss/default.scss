@@ -1,6 +1,6 @@
 // @use 'sass:map';
 // $bgColor: #fff;#c80e0e;#47ccad;
-@forward "element-plus/theme-chalk/src/common/var.scss" with ($colors: ("primary": ("base": #fb531c),
+@forward "element-plus/theme-chalk/src/common/var.scss" with ($colors: ("primary": ("base": #344698),
         // "success": ("base": #04ae8b),
         // "warning": ("base": #FF771C),
         // "danger": ("base": #ff3030),
@@ -46,9 +46,11 @@
 :root {
     --m-color-white: #fff;
     --m-body-bg-color: #f3f3f3;
-    --co-main-color: #fb531c;
+    --co-main-color: #344698;
+    --co-main-hover-color: #405bd1;
     --co-white-color: #fff;
-    --swiper-theme-color:var(--co-main-color);
+    --swiper-theme-color: var(--co-main-color);
+
 }
 
 :focus-visible {
@@ -59,7 +61,7 @@
 //   background-color: var(--m-body-bg-color);
 // }
 
-.main-color{
+.main-color {
     color: var(--co-main-color);
 }
 
@@ -77,6 +79,10 @@
 
 .co-main-bg-color {
     background-color: var(--co-main-color);
+}
+
+.co-filter-color{
+    filter: hue-rotate(198deg);
 }
 
 

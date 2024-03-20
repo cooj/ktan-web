@@ -43,16 +43,16 @@
 }
 
 .gallery-thumbs .swiper-slide-thumb-active {
-    border: 1px solid #fb531c;
+    border: 1px solid var(--co-main-color);
 }
 
 .goods_btn {
     width: 2.625rem;
     height: 6.125rem;
-    background-color: #fb531c;
+    background-color: var(--co-main-color);
     transform: translateY(-50%);
     margin-top: 0;
-    --swiper-navigation-sides-offset:0;
+    --swiper-navigation-sides-offset: 0;
 }
 
 .goods_btn::after {
@@ -84,7 +84,7 @@
     content: '';
     width: 7.1875rem;
     height: 0.125rem;
-    background-color: #fb531c;
+    background-color: var(--co-main-color);
 }
 
 .goods_name>span {
@@ -106,6 +106,8 @@
     display: flex;
     position: relative;
     overflow: hidden;
+    --pad-width: 23px;
+    --goods-clamp-path: polygon(0 0, calc(100% - var(--pad-width)) 0, 100% 100%, var(--pad-width) 100%);
 }
 
 /* .info_top::after {
@@ -119,7 +121,7 @@
 }
 
 .info_active::after {
-    background-color: #fb531c !important;
+    background-color: var(--co-main-color) !important;
 } */
 
 .info_top>a {
@@ -134,10 +136,10 @@
     position: relative;
     z-index: 1;
     flex-shrink: 0;
-    --pad-width: 23px;
+
     padding: 0 var(--pad-width);
-    -webkit-clip-path: polygon(0 0, calc(100% - var(--pad-width)) 0, 100% 100%, var(--pad-width) 100%);
-    clip-path: polygon(0 0, calc(100% - var(--pad-width)) 0, 100% 100%, var(--pad-width) 100%);
+    -webkit-clip-path: var(--goods-clamp-path);
+    clip-path: var(--goods-clamp-path);
     text-align: center;
     margin: 0 -5px;
     cursor: pointer;
@@ -168,6 +170,36 @@
 
 .info_top>figure>img {
     width: auto;
+}
+
+.info_top>.info_cols {
+    width: 500px;
+    max-width: 100%;
+    border-bottom: 3px solid var(--co-main-color);
+    display: flex;
+    -webkit-clip-path: var(--goods-clamp-path);
+    clip-path: var(--goods-clamp-path);
+    padding-bottom: 1px;
+    margin-left: -10px;
+}
+
+.info_top>.info_cols>span {
+    width: 35px;
+    -webkit-clip-path: var(--goods-clamp-path);
+    clip-path: var(--goods-clamp-path);
+    background-color: var(--co-main-color);
+  
+
+}
+.info_top>.info_cols>span+span {
+    margin-left: -20px;
+}
+
+.info_top>.info_cols>.sp2{
+    background-color: var(--el-color-primary-light-3);
+}
+.info_top>.info_cols>.sp3{
+    background-color: var(--el-color-primary-light-7);
 }
 
 
@@ -250,6 +282,9 @@
     .info_top>figure {
         display: none;
     }
+    .info_top>.info_cols{
+        display: none;
+    }
 }
 
 /* 小于765px */
@@ -259,7 +294,7 @@
     /* .goods_module {
 		margin: 0 auto;
 	} */
-    .goods_swiper{
+    .goods_swiper {
         width: 100%;
     }
 

@@ -19,7 +19,7 @@
                                     {{ $lang(item.title, item.title_en) }}
                                 </h1>
                                 <figure class="news_icon news_icon0">
-                                    <img src="assets/image/icon_news.png" alt="">
+                                    <img class="co-filter-color" src="assets/image/icon_news.png" alt="">
                                 </figure>
                                 <figure class="news_icon news_icon1">
                                     <img src="assets/image/icon_news1.png" alt="">

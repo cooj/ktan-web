@@ -8,7 +8,7 @@
                     荣誉资质
                 </p>
                 <figure class="reuse_img">
-                    <img src="assets/image/deco.png" alt="">
+                    <img class="co-filter-color" src="assets/image/deco.png" alt="">
                 </figure>
             </div>
             <ul class="certification_ul">
