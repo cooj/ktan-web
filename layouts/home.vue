@@ -4,6 +4,7 @@
         <LayoutHomeBanner />
         <slot />
         <LayoutHomeFooter />
+        <el-backtop :right="25" :bottom="30" />
     </main>
 </template>
 
