@@ -9,7 +9,6 @@
                         <NuxtLinkLocale :to="`/news/${item.id}`" class="news_link">
                             <figure class="news_img">
                                 <CoImage class="w100% pb45% block!" :src="item.img" />
-                                <!-- <img src="static/picture/春节祝福新春快乐公众号首图.jpg"> -->
                             </figure>
                             <div class="news_box">
                                 <p class="news_date">
