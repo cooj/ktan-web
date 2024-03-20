@@ -1,4 +1,4 @@
-## goyojo官网
+## ke-tan官网
 
 基于 nuxt3 + element-plus + unocss + prisma 前端项目代码及api接口。前台使用vue渲染页面，服务端使用nitro + prisma 写api接口
 
