@@ -47,7 +47,7 @@ export const setSystemInfo = async (event: H3Event) => {
 
     // 获取参数 ISystemEditParams
     const param = await getEventParams<ISystemEditParams>(event)
-
+    console.log(param)
     if (!param?.company) return { msg: '公司名称不能为空' }
 
     const [res1, res2] = await Promise.all([
@@ -69,6 +69,7 @@ export const setSystemInfo = async (event: H3Event) => {
                 copyright: param.copyright,
                 icon: param.icon,
                 welcome: param.welcome,
+                is_en: !!param.is_en,
             },
             where: { id: 1 },
         }),

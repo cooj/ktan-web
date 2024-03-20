@@ -28,6 +28,7 @@ declare interface ISystemEditParams {
     custom_code: string
     welcome: string
     welcome_en: string
+    is_en: boolean
 }
 
 // 公司信息
