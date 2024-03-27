@@ -1,6 +1,7 @@
 generator client {
     provider        = "prisma-client-js"
     previewFeatures = ["relationJoins"]
+    // binaryTargets   = ["native", "rhel-openssl-1.0.x"]
 }
 
 datasource db {
@@ -57,7 +58,7 @@ model System {
     email       String?  @db.VarChar(50)
     keyword     String?  @db.VarChar(100)
     description String?  @db.VarChar(200)
-    filing      String?  @db.VarChar(255)
+    filing      String?  @db.Text
     copyright   String?  @db.VarChar(200)
     createdAt   DateTime @default(now()) @map("created_at")
     updatedAt   DateTime @updatedAt @map("updated_at")
