@@ -102,9 +102,6 @@ const route = useRoute()
 const query = route.query as GoodsListParamsQuery
 const cid = ref(props.id || query.cid) // 当前分类id
 const setClassifyName = (id: number) => {
-    const cateId = route.query.cid as unknown as number
-    // cid.value = route.query.cid as unknown as number
-    if (cateId && cid.value !== Number(cateId)) cid.value = Number(cateId)
     if (props.id) {
         cid.value = props.id
     }
@@ -129,6 +126,10 @@ const childrenItem = (list?: IClassifyListResponse[]) => {
 const linkGoodsListUrl = (param: GoodsListParams) => {
     return linkGoodsList(param, props.type === 2 ? '/product2' : '/product')
 }
+
+watch(() => route.query.cid, (val) => {
+    if (!props.id) cid.value = Number(val)
+})
 </script>
 
 <style lang="scss" scoped>
