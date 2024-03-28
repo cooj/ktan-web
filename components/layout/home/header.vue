@@ -53,12 +53,12 @@
                                 <ul v-if="item.is_goods" class="nav_ul" :class="{ nav_product: item.is_goods }">
                                     <li v-for="opt in classifyList.filter(i => i.type === item.is_goods)" :key="opt.id"
                                         class="nav_li">
-                                        <NuxtLinkLocale :to="`/product?cid=${opt.id}`" class="nav_title">
+                                        <NuxtLinkLocale :to="setProductUrl(item.is_goods, opt.id)" class="nav_title">
                                             {{ $lang(opt.title, opt.title_en) }}
                                         </NuxtLinkLocale>
                                         <div v-if="opt.children?.length" class="nav_sublevel">
                                             <NuxtLinkLocale v-for="sub in opt.children" :key="sub.id"
-                                                :to="`/product?cid=${sub.id}`">
+                                                :to="setProductUrl(item.is_goods, sub.id)">
                                                 {{ $lang(sub.title, sub.title_en) }}
                                             </NuxtLinkLocale>
                                         </div>
@@ -104,7 +104,7 @@
                 <img :src="systemInfo?.logo2 || ''" alt="">
             </NuxtLinkLocale>
             <div class="nav_search" @click="onToggleSearch()">
-                <img src="assets/image/icon_search.png" alt="">
+                <img class="co-filter-color" src="assets/image/icon_search.png" alt="">
             </div>
         </div>
         <div class="mo_module" :class="activeClass">
@@ -150,12 +150,12 @@ const systemInfo = await useSystemState().getSystemInfo()
 const menuState = useMenuState()
 
 const menuList = await menuState.getMenuList()
-if (process.client) {
-    setTimeout(() => {
-        console.log(systemInfo.value)
-        console.log('🚀 ~ file: header.vue:21 ~ menuList:', menuList)
-    }, 1500)
-}
+// if (process.client) {
+//     setTimeout(() => {
+//         console.log(systemInfo.value)
+//         console.log('🚀 ~ file: header.vue:21 ~ menuList:', menuList)
+//     }, 1500)
+// }
 
 const classifyList = await useGoodsClassifyState().getClassify()
 
@@ -190,6 +190,11 @@ const setActiveMenu = (item: string) => {
     // }
 }
 
+const setProductUrl = (type: number, id: number) => {
+    const url = type === 2 ? '/product' : '/product2'
+    return `${url}?cid=${id}`
+}
+
 const searchOpen = ref('')
 const onToggleSearch = (close?: boolean) => {
     if (close && keyword.value) keyword.value = ''
@@ -203,7 +208,7 @@ const onSearch = async () => {
     if (route.path.startsWith('/en')) {
         url = '/en/product'
     }
-    await navigateTo(`${url}?keyword=${keyword.value}`)
+    await navigateTo(`${url}?keyword=${keyword.value}&search=1`)
     onToggleSearch(true)
 }
 

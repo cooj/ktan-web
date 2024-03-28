@@ -24,6 +24,7 @@ type FindListQueryParam = {
     type: number
     title: string
     pid: number
+    search?: string
 } & ListPage
 
 /**
@@ -43,16 +44,23 @@ export const getList = async (event: H3Event) => {
     const param = await getEventParams<FindListQueryParam>(event)
 
     // if (!param?.type) return { msg: '请传递类型' }
-    const num = Number(param?.type)
-    const types = num === 1 ? [num, 0] : [num]
+    // const num = Number(param?.type)
+    // const types = num === 1 ? [num, 0] : [num]
     const where: any = {
-        type: {
-            in: types,
-        },
+        // type: {
+        //     in: types,
+        // },
         title: {
             contains: param?.title, // 包含
         },
     }
+    if (param?.type) {
+        const num = Number(param?.type)
+        const types = num === 1 ? [num, 0] : [num]
+        where.type = { in: types }
+    }
+
+    if (param?.search) where.type = undefined
 
     if (param?.pid) {
         const cid = Number(param?.pid)

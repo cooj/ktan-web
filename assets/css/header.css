@@ -1752,6 +1752,11 @@ justify-content: center;
         width: 95%;
     }
 
+    .banner_img img{
+        min-height: 110px;
+        object-fit: cover;
+    }
+
     .search_box {
         width: 90%;
     }

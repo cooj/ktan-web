@@ -61,6 +61,7 @@ const initData = async () => {
             pageSize: pageSize.value,
             type: Number(props.type) || null,
             pid: Number(query.cid) || null,
+            is_search: query.search || '',
         },
     })
 

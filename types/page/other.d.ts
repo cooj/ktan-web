@@ -11,4 +11,5 @@ declare interface GoodsListParamsQuery {
     page?: string | number // 关键字
     cid?: string | number // 商品分类id   类别
     // bid?: string | number // 商品品牌id
+    search?: string
 }

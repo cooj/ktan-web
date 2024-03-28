@@ -50,8 +50,8 @@
                     <!--            <span class="reuse_subhead">我们依靠企业生存，企业依靠我们发展。</span> -->
                 </div>
 
-                <div class="news_content min-h100px">
-                    <div v-if="newsList.length" class="flex">
+                <div v-if="newsList.length" class="min-h100px">
+                    <div class="news_content flex">
                         <NuxtLinkLocale :to="`/news/${newsList?.[0]?.id}`" class="news_left">
                             <figure class="news_img">
                                 <img :src="newsList?.[0]?.img" alt="">
