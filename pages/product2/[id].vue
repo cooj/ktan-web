@@ -1,11 +1,9 @@
 <template>
-    <LayoutContentProduct :type="1" />
+    <ProductDetail />
 </template>
 
 <script lang="ts" setup>
-definePageMeta({
-    layout: 'home',
-})
+import ProductDetail from '../product/[id].vue'
 </script>
 
 <style lang="scss" scoped></style>

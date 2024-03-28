@@ -31,8 +31,8 @@
                             {{ $lang('产品中心', 'Product Center') }}
                         </p>
                         <div class="footer_link">
-                            <NuxtLinkLocale v-for="item in classifyList" :key="item.id" :to="`/product?cid=${item.id}`"
-                                class="footer_classify">
+                            <NuxtLinkLocale v-for="item in classifyList.filter(opt => opt.type === 1)" :key="item.id"
+                                :to="`/product?cid=${item.id}`" class="footer_classify">
                                 {{ $lang(item.title, item.title_en) }}
                             </NuxtLinkLocale>
                         </div>

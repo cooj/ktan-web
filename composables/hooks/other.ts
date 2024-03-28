@@ -1,8 +1,8 @@
 /**
  * 进入商品页面方法
  */
-export const linkGoodsList = (params: GoodsListParams) => {
-    const url = '/product'
+export const linkGoodsList = (params: GoodsListParams, url?: string) => {
+    url = url || '/product'
     const route = useRoute()
     const query = route.query as GoodsListParamsQuery
 

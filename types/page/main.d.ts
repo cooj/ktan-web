@@ -56,6 +56,7 @@ declare interface IClassifyListResponse {
     updatedAt: '2024-03-08T06:51:32.165Z'
     sort: 0
     status: 1
+    type: 1 | 2
     children?: IClassifyListResponse[]
 }
 
@@ -69,6 +70,7 @@ declare interface IClassifyListParent {
     updatedAt: '2024-03-08T06:51:32.165Z'
     sort: 0
     status: 1
+    type: number
     parent?: IClassifyListParent
 }
 

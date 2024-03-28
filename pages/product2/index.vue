@@ -1,5 +1,5 @@
 <template>
-    <LayoutContentProduct :type="1" />
+    <LayoutContentProduct :type="2" />
 </template>
 
 <script lang="ts" setup>

@@ -50,38 +50,40 @@
                     <!--            <span class="reuse_subhead">我们依靠企业生存，企业依靠我们发展。</span> -->
                 </div>
 
-                <div class="news_content flex">
-                    <NuxtLinkLocale :to="`/news/${newsList?.[0]?.id}`" class="news_left">
-                        <figure class="news_img">
-                            <img :src="newsList?.[0]?.img" alt="">
-                        </figure>
-                        <div class="news_txt flex">
-                            <div class="news_title">
-                                <h2 class="font-bold">
-                                    {{ $lang(newsList?.[0]?.title, newsList?.[0]?.title_en) }}
-                                </h2>
-                                <p>{{ $lang(newsList?.[0]?.describe, newsList?.[0]?.describe_en) }}</p>
-                            </div>
-                            <div class="news_date">
-                                <strong>{{ formatTime(newsList[0]?.createdAt, 'dd') }}</strong>
-                                <span>{{ formatTime(newsList[0]?.createdAt, 'YYYY-mm') }}</span>
-                            </div>
-                        </div>
-                    </NuxtLinkLocale>
-                    <div class="news_right">
-                        <NuxtLinkLocale v-for="item in newsList.slice(1)" :key="item.id" :to="`/news/${item.id}`"
-                            class="news_list">
-                            <div class="news_dates">
-                                <strong>{{ formatTime(item.createdAt, 'dd') }}</strong>
-                                <span>{{ formatTime(item.createdAt, 'YYYY-mm') }}</span>
-                            </div>
-                            <div class="news_headline">
-                                <h2 class="font-bold">
-                                    {{ $lang(item.title, item.title_en) }}
-                                </h2>
-                                <p>{{ $lang(item.describe, item.describe_en) }}</p>
+                <div class="news_content min-h100px">
+                    <div v-if="newsList.length" class="flex">
+                        <NuxtLinkLocale :to="`/news/${newsList?.[0]?.id}`" class="news_left">
+                            <figure class="news_img">
+                                <img :src="newsList?.[0]?.img" alt="">
+                            </figure>
+                            <div class="news_txt flex">
+                                <div class="news_title">
+                                    <h2 class="font-bold">
+                                        {{ $lang(newsList?.[0]?.title, newsList?.[0]?.title_en) }}
+                                    </h2>
+                                    <p>{{ $lang(newsList?.[0]?.describe, newsList?.[0]?.describe_en) }}</p>
+                                </div>
+                                <div class="news_date">
+                                    <strong>{{ formatTime(newsList[0]?.createdAt, 'dd') }}</strong>
+                                    <span>{{ formatTime(newsList[0]?.createdAt, 'YYYY-mm') }}</span>
+                                </div>
                             </div>
                         </NuxtLinkLocale>
+                        <div class="news_right">
+                            <NuxtLinkLocale v-for="item in newsList.slice(1)" :key="item.id" :to="`/news/${item.id}`"
+                                class="news_list">
+                                <div class="news_dates">
+                                    <strong>{{ formatTime(item.createdAt, 'dd') }}</strong>
+                                    <span>{{ formatTime(item.createdAt, 'YYYY-mm') }}</span>
+                                </div>
+                                <div class="news_headline">
+                                    <h2 class="font-bold">
+                                        {{ $lang(item.title, item.title_en) }}
+                                    </h2>
+                                    <p>{{ $lang(item.describe, item.describe_en) }}</p>
+                                </div>
+                            </NuxtLinkLocale>
+                        </div>
                     </div>
                 </div>
                 <NuxtLinkLocale to="/news" class="hot_more">

@@ -50,8 +50,9 @@
 
                             <!-- 子菜单列表 -->
                             <div v-if="item.is_goods || item.children?.length" class="nav_hide">
-                                <ul v-if="item.is_goods" class="nav_ul">
-                                    <li v-for="opt in classifyList" :key="opt.id" class="nav_li">
+                                <ul v-if="item.is_goods" class="nav_ul" :class="{ nav_product: item.is_goods }">
+                                    <li v-for="opt in classifyList.filter(i => i.type === item.is_goods)" :key="opt.id"
+                                        class="nav_li">
                                         <NuxtLinkLocale :to="`/product?cid=${opt.id}`" class="nav_title">
                                             {{ $lang(opt.title, opt.title_en) }}
                                         </NuxtLinkLocale>

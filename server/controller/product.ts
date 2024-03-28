@@ -23,6 +23,7 @@ async function findDescendantCategoryIds(categoryId: number, prisma: PrismaClien
 type FindListQueryParam = {
     type: number
     title: string
+    pid: number
 } & ListPage
 
 /**
@@ -42,15 +43,19 @@ export const getList = async (event: H3Event) => {
     const param = await getEventParams<FindListQueryParam>(event)
 
     // if (!param?.type) return { msg: '请传递类型' }
+    const num = Number(param?.type)
+    const types = num === 1 ? [num, 0] : [num]
     const where: any = {
-        // classifyId,
+        type: {
+            in: types,
+        },
         title: {
             contains: param?.title, // 包含
         },
     }
 
-    if (param?.type) {
-        const cid = Number(param?.type)
+    if (param?.pid) {
+        const cid = Number(param?.pid)
         const ids = await findDescendantCategoryIds(cid, event.context.prisma)
         where.classifyId = {
             in: [cid, ...ids],

@@ -9,7 +9,7 @@ export const useGoodsClassifyState = () => {
             method: 'post',
             body: {
                 // isP
-                // status: 1,
+                // type: 1,
             },
         })
 

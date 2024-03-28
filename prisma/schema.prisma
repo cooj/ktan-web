@@ -130,7 +130,7 @@ model Product {
     sort         Int?      @default(0)
     isHide       Boolean?  @default(false)
     isHot        Boolean?  @default(false)
-    type         Int       @default(0)
+    type         Int       @default(1)
     read         Int?      @default(0)
     createdAt    DateTime  @default(now()) @map("created_at")
     updatedAt    DateTime  @updatedAt @map("updated_at")
@@ -193,6 +193,7 @@ model Classify {
 
     sort   Int? @default(0)
     status Int? @default(1)
+    type   Int? @default(1)
 
     parent   Classify?  @relation("ChildToParent", fields: [p_id], references: [id])
     children Classify[] @relation("ChildToParent")

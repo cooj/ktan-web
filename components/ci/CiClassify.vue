@@ -5,14 +5,14 @@
             <Swiper class="" :modules="[SwiperAutoplay, SwiperEffectCreative, SwiperNavigation, SwiperPagination]"
                 :slides-per-view="5" :space-between="30" :navigation="navigation" :breakpoints="breakpoints">
                 <SwiperSlide class="type_list" :class="setClassifyName(0)">
-                    <NuxtLinkLocale :to="linkGoodsList({ query: {}, relate: false, url: true })" class="type_name">
+                    <NuxtLinkLocale :to="linkGoodsListUrl({ query: {}, relate: false, url: true })" class="type_name">
                         {{ $lang('首页', 'Home') }}
                     </NuxtLinkLocale>
                 </SwiperSlide>
-                <SwiperSlide v-for="(item, idx) in classifyList" :key="idx" class="type_list"
-                    :class="setClassifyName(item.id)">
+                <SwiperSlide v-for="(item, idx) in classifyList.filter(i => i.type === props.type)" :key="idx"
+                    class="type_list" :class="setClassifyName(item.id)">
                     <NuxtLinkLocale class="type_name line-clamp-1"
-                        :to="linkGoodsList({ query: { cid: item.id, page: 1 }, relate: false, url: true })">
+                        :to="linkGoodsListUrl({ query: { cid: item.id, page: 1 }, relate: false, url: true })">
                         {{ $lang(item.title, item.title_en) }}
                         <!-- <span v-if="childrenItem(item.children)">
                             【{{ $lang(childrenItem(item.children)?.title, childrenItem(item.children)?.title_en) }}】
@@ -25,7 +25,7 @@
                         <ul class="type_subclass">
                             <li v-for="sub in item.children" :key="sub.id">
                                 <NuxtLinkLocale class="cursor-pointer"
-                                    :to="linkGoodsList({ query: { cid: sub.id, page: 1 }, relate: false, url: true })">
+                                    :to="linkGoodsListUrl({ query: { cid: sub.id, page: 1 }, relate: false, url: true })">
                                     {{ $lang(sub.title, sub.title_en) }}
                                 </NuxtLinkLocale>
                             </li>
@@ -50,6 +50,7 @@
 
 const props = defineProps<{
     id?: number
+    type: number
 }>()
 
 const breakpoints = ref({
@@ -85,9 +86,11 @@ const route = useRoute()
 const query = route.query as GoodsListParamsQuery
 const cid = ref(query.cid) // 当前分类id
 const setClassifyName = (id: number) => {
+    cid.value = route.query.cid as unknown as number
     if (props.id) {
         cid.value = props.id
     }
+
     if (cid.value) {
         const list = getParentNode(classifyList.value, Number(cid.value), 'id')
         return list[0]?.id === id ? 'type_active' : ''
@@ -103,6 +106,10 @@ const childrenItem = (list?: IClassifyListResponse[]) => {
     } else {
         return undefined
     }
+}
+
+const linkGoodsListUrl = (param: GoodsListParams) => {
+    return linkGoodsList(param, props.type === 2 ? '/product2' : '/product')
 }
 </script>
 

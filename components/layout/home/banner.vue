@@ -21,7 +21,7 @@
             <template v-else>
                 <!-- banner图 -->
                 <div class="banner_img">
-                    <img :src="activeMenu?.img" alt="">
+                    <img :src="activeMenu?.img" class="w100%" alt="">
                 </div>
 
                 <!-- 面包屑 -->

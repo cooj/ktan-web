@@ -25,12 +25,14 @@ export const getList = async (event: H3Event) => {
 
     // if (!param?.type) return { msg: '请传递类型' }
     const where: any = {
-        // classifyId: param?.type,
+        // type: param?.type,
         p_id: 0, // 一级菜单
         title: {
             contains: param?.title, // 包含
         },
     }
+
+    if (param?.type) where.type = param?.type
 
     // 查询菜单姓"张"，1页显示20条
     let page: number | undefined

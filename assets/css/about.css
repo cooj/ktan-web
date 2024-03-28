@@ -121,7 +121,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url(../image/backdrop_img.jpg) no-repeat center center;
+    background: url(../image/backdrop_bg.jpg) no-repeat center center;
+    background-size: cover;
     overflow: hidden;
     position: relative;
 }

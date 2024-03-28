@@ -1,10 +1,11 @@
 <template>
     <section>
-        <CiClassify :id="product?.classify?.id" />
+        <CiClassify :id="product?.classify?.id" :type="product?.classify?.type || 1" />
         <!-- 商品详情 -->
         <div class="width_box">
             <div class="flex py45px <lg:flex-wrap">
                 <div class="goods_swiper">
+                    <!-- <ClientOnly> -->
                     <Swiper :thumbs="{ swiper: thumbsSwiper }" :modules="modules" class="gallery-top">
                         <SwiperSlide v-for="item in photoList" :key="item.id">
                             <CoImage class="w100% pb100% block!" :src="item.img" />
@@ -23,6 +24,7 @@
                         </Swiper>
                         <div class="swiper-button-next goods_btn" />
                     </div>
+                    <!-- </ClientOnly> -->
                 </div>
                 <article class="goods_content">
                     <h1 class="goods_name">
@@ -115,6 +117,7 @@ if (!data.value) {
 }
 
 const product = data.value?.data
+
 const photoList = product?.links.filter(item => item.type === 1)
 const downloadList = product?.links.filter(item => item.type === 2)
 

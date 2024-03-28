@@ -58,7 +58,7 @@
                 </div>
                 <div class="contact_img">
                     <!-- <figure><img :src="systemInfo?.qrCode" alt=""></figure> -->
-                    <CoImage :src="systemInfo?.customCode" class="w100% pb100%" />
+                    <CoImage :src="systemInfo?.qrCode" class="w100% pb100%" />
                     <p>{{ $lang('扫一扫关注公众号', 'Scan to follow the official account') }}</p>
                 </div>
             </div>
