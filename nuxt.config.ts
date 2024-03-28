@@ -123,7 +123,7 @@ export default defineNuxtConfig({
         },
     },
     devtools: {
-        enabled: false, // or false to disable
+        enabled: true, // or false to disable
     },
     i18n: {
         // locale: 'cn',

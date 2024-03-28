@@ -9,8 +9,8 @@
                         {{ $lang('首页', 'Home') }}
                     </NuxtLinkLocale>
                 </SwiperSlide>
-                <SwiperSlide v-for="(item, idx) in classifyList.filter(i => i.type === props.type)" :key="idx"
-                    class="type_list" :class="setClassifyName(item.id)">
+                <SwiperSlide v-for="(item, idx) in swiperList" :key="idx" class="type_list"
+                    :class="setClassifyName(item.id)">
                     <NuxtLinkLocale class="type_name line-clamp-1"
                         :to="linkGoodsListUrl({ query: { cid: item.id, page: 1 }, relate: false, url: true })">
                         {{ $lang(item.title, item.title_en) }}
@@ -82,11 +82,29 @@ const navigation = {
 }
 
 const classifyList = await useGoodsClassifyState().getClassify()
+const swiperList = computed(() => classifyList.value.filter(item => item.type === props.type))
+// const swiperList = computed(() => {
+//     const list = classifyList.value.filter(item => item.type === props.type)
+//     return [
+//         {
+//             id: 0,
+//             title: '首页',
+//             title_en: 'Home',
+//             children: [],
+//             icon: 'icon-home',
+//             icon_en: 'icon-home',
+//         },
+//         ...list,
+//     ]
+// })
+
 const route = useRoute()
 const query = route.query as GoodsListParamsQuery
-const cid = ref(query.cid) // 当前分类id
+const cid = ref(props.id || query.cid) // 当前分类id
 const setClassifyName = (id: number) => {
-    cid.value = route.query.cid as unknown as number
+    const cateId = route.query.cid as unknown as number
+    // cid.value = route.query.cid as unknown as number
+    if (cateId && cid.value !== Number(cateId)) cid.value = Number(cateId)
     if (props.id) {
         cid.value = props.id
     }

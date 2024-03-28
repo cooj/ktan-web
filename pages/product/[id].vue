@@ -1,6 +1,6 @@
 <template>
     <section>
-        <CiClassify :id="product?.classify?.id" :type="product?.classify?.type || 1" />
+        <CiClassify v-if="product?.classify?.type" :id="product?.classify?.id" :type="product?.classify?.type || 1" />
         <!-- 商品详情 -->
         <div class="width_box">
             <div class="flex py45px <lg:flex-wrap">
@@ -118,8 +118,9 @@ if (!data.value) {
 
 const product = data.value?.data
 
-const photoList = product?.links.filter(item => item.type === 1)
-const downloadList = product?.links.filter(item => item.type === 2)
+// const photoList = []
+const photoList = computed(() => product?.links?.filter(item => item.type === 1) || [])
+const downloadList = computed(() => product?.links?.filter(item => item.type === 2) || [])
 
 const contentData = computed(() => {
     return [
