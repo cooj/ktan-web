@@ -103,7 +103,7 @@ const setThumbsSwiper = (swiper: ThumbsOptions['swiper']) => {
     thumbsSwiper.value = swiper
 }
 
-const classifyList = await useGoodsClassifyState().getClassify()
+const systemState = await useSystemState().getSystemInfo()
 
 const id = useRouteParam('id')
 const { data } = await useCustomFetch<Record<'nextNews' | 'prevNews' | 'data', IGoodsGetListItem>>('/api/page/product/detail', {
@@ -117,7 +117,7 @@ if (!data.value) {
 }
 
 const product = data.value?.data
-
+// console.log('product :>> ', product)
 // const photoList = []
 const photoList = computed(() => product?.links?.filter(item => item.type === 1) || [])
 const downloadList = computed(() => product?.links?.filter(item => item.type === 2) || [])
@@ -145,6 +145,19 @@ const contentData = computed(() => {
             content: '',
         },
     ]
+})
+useHead({
+    title: `${systemState.value?.title} - ${product?.title}`,
+    // meta: [
+    //     {
+    //         name: 'description',
+    //         content: $lang(product?.describe, product?.describe_en),
+    //     },
+    //     // {
+    //     //     name: 'keywords',
+    //     //     content: $lang(product?.keywords, product?.keywords_en),
+    //     // }
+    // ],
 })
 </script>
 

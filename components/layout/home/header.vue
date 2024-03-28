@@ -191,7 +191,7 @@ const setActiveMenu = (item: string) => {
 }
 
 const setProductUrl = (type: number, id: number) => {
-    const url = type === 2 ? '/product' : '/product2'
+    const url = type === 2 ? '/product2' : '/product'
     return `${url}?cid=${id}`
 }
 
