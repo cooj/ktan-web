@@ -26,6 +26,8 @@ const locale = computed(() => {
     return lo.value === 'en' ? en : zhCn
 })
 
+const url = useRequestURL()
+
 useHead({
     title: systemInfo.value?.title,
     meta: [
@@ -34,6 +36,18 @@ useHead({
     ],
     link: [
         { rel: 'icon', href: systemInfo.value?.icon },
+    ],
+    script: [
+        {
+            type: 'application/ld+json',
+            innerHTML: JSON.stringify({
+                '@context': 'http://schema.org',
+                '@type': 'Organization',
+                'name': systemInfo.value?.company,
+                'url': url.origin,
+                'logo': systemInfo.value?.logo,
+            }),
+        },
     ],
     // bodyAttrs: {
     //     class: 'test',
