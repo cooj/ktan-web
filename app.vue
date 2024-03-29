@@ -27,7 +27,7 @@ const locale = computed(() => {
 })
 
 const runtimeConfig = useRuntimeConfig()
-const HOST = runtimeConfig.upload.host
+const HOST = runtimeConfig.public.upload.host
 
 useHead({
     title: systemInfo.value?.title,

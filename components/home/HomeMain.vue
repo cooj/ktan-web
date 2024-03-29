@@ -43,6 +43,7 @@
                 <div class="reuse_module">
                     <p class="reuse_title">
                         {{ $lang('新闻资讯', 'News and information') }}
+                        <!-- {{ $lang(newMenu?.title, newMenu?.title_en) }} -->
                     </p>
                     <figure class="reuse_img">
                         <img class="co-filter-color" src="assets/image/deco.png" alt="">
@@ -120,6 +121,13 @@ const { data } = await useCustomFetch<IIndexResponse>('/api/page/index')
 
 const productList = computed(() => data.value?.productList || [])
 const newsList = computed(() => data.value?.newsList || [])
+
+// const menuState = useMenuState()
+// await menuState.getMenuList()
+
+// const newMenu = computed(() => {
+//     return menuState.allList.value.find(item => item.href === '/news')
+// })
 </script>
 
 <style lang="scss" scoped>

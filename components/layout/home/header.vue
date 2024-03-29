@@ -41,7 +41,7 @@
             <div class="nav_module flex">
                 <nav>
                     <ul class="flex">
-                        <li v-for="item in menuList.filter(i => i.status)" :key="item.id" class="nav_list"
+                        <li v-for="item in menuList" :key="item.id" class="nav_list"
                             :class="{ nav_list1: item.children?.length }">
                             <NuxtLinkLocale :to="item.href" class="nav_btn"
                                 :class="{ nav_active: setActiveMenu(item.href || '') }">

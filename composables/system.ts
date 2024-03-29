@@ -25,6 +25,7 @@ export const useSystemState = () => {
 
 export const useMenuState = () => {
     const route = useRoute()
+    const allList = useState<IMenuListResponse[]>('allMenu', () => [])
     const menuList = useState<IMenuListResponse[]>('menu', () => [])
 
     const getMenuList = async (update?: boolean) => {
@@ -40,16 +41,17 @@ export const useMenuState = () => {
         if (error.value) return menuList
         // await wait(800)
         if (data.value) {
-            menuList.value = data.value
+            allList.value = data.value
+            menuList.value = filterTreeList(data.value, 1, 'status', 'children')
         } else {
             ElMessage.error('网络错误')
         }
         return menuList
     }
 
-    // 当前页菜单内容
+    // 一级菜单内容
     const activeMenu = computed<IMenuListResponse | undefined>(() => {
-        // [id].vue 的问价，不能直接拿route.path来进行比较
+        // [id].vue 的文件，不能直接拿route.path来进行比较
         const path = route.matched[0].path.split('/:')[0]
 
         let url = ''
@@ -65,13 +67,23 @@ export const useMenuState = () => {
 
         // console.log(url) // 输出结果
 
-        return menuList.value.find(item => item.href === url || `/en${item.href}` === url)
+        return allList.value.find(item => item.href === url || `/en${item.href}` === url)
 
         // return menuList.value.find(item => item.href === url)
     })
 
+    // 当前页菜单内容
+    const nowMenu = computed<IMenuListResponse | undefined>(() => {
+        // [id].vue 的文件，不能直接拿route.path来进行比较
+        const path = route.matched[0].path.split('/:')[0]
+
+        return findTreeNodeItem(allList.value, path, 'href', 'children')
+    })
+
     return {
+        nowMenu,
         activeMenu,
+        allList,
         menuList,
         getMenuList,
     }
