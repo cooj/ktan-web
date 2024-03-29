@@ -37,7 +37,7 @@
     position: relative;
 }
 
-.about_title::before {
+/* .about_title::before {
     position: absolute;
     left: -0.3125rem;
     right: -0.3125rem;
@@ -46,7 +46,7 @@
     height: 1rem;
     background-color: var(--co-main-color);
     z-index: -1;
-}
+} */
 
 .about_content>span {
     font-size: 0.875rem;

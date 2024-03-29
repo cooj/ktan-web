@@ -4,9 +4,11 @@
 
         <div class="width_box certification_module mt30px!">
             <div class="reuse_module">
-                <p class="reuse_title">
-                    荣誉资质
-                </p>
+                <ClientOnly>
+                    <p class="reuse_title">
+                        {{ $lang(nowMenu?.title, nowMenu?.title_en) }}
+                    </p>
+                </ClientOnly>
                 <figure class="reuse_img">
                     <img class="co-filter-color" src="assets/image/deco.png" alt="">
                 </figure>
@@ -31,6 +33,8 @@ definePageMeta({
 
 const { data: photo } = await useCustomFetch<ISlideListResponse[]>('/api/page/get_banner?type=6')
 const srcList = photo.value?.map(item => item.img)
+
+const { nowMenu } = useMenuState()
 </script>
 
 <style lang="scss" scoped>
