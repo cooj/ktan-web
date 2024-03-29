@@ -1,8 +1,8 @@
 <template>
     <nav class="sort_module">
         <ClientOnly>
-            <NuxtLinkLocale v-for="(item, index) in activeMenu?.children" :key="item.id" :to="item.href || ''"
-                :class="{ sort_active: setActiveClassName(item.href || '', index) }">
+            <NuxtLinkLocale v-for="(item, index) in activeMenu?.children?.filter(i => i.status)" :key="item.id"
+                :to="item.href || ''" :class="{ sort_active: setActiveClassName(item.href || '', index) }">
                 {{ $lang(item.title, item.title_en) }}
             </NuxtLinkLocale>
         </ClientOnly>
