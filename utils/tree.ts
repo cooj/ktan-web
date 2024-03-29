@@ -43,7 +43,7 @@ export function filterTreeList<T = any>(classifyList: Array<T>, val: T[keyof T],
     const _list = JSON.parse(JSON.stringify(classifyList))
 
     return _list.filter((item: any) => {
-        if (item.children) item.children = filterTreeList(item.children, val, key, children)
+        if (item[children]) item[children] = filterTreeList(item[children], val, key, children)
         return item[key] === val
     })
 }

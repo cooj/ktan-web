@@ -124,6 +124,7 @@ const newsList = computed(() => data.value?.newsList || [])
 
 // const menuState = useMenuState()
 // await menuState.getMenuList()
+// console.log(menuState.allList.value)
 
 // const newMenu = computed(() => {
 //     return menuState.allList.value.find(item => item.href === '/news')

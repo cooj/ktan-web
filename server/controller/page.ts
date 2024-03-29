@@ -41,7 +41,7 @@ export const getMenuList = async (event: H3Event) => {
     const where: any = {
         p_id: 0,
     }
-    if (param?.status) where.status = 1
+    // if (param?.status) where.status = 1
 
     const res = await event.context.prisma.menu.findMany({
         where,
