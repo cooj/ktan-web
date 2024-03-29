@@ -3,7 +3,7 @@
         <div class="footer_module main-bg-color">
             <div class="width_box footer_box">
                 <div class="footer_one flex">
-                    <div class="footer_list">
+                    <div class="footer_list footer_contact">
                         <p class="footer_title">
                             {{ $lang('联系我们', 'Contact us') }}
                         </p>
@@ -26,7 +26,7 @@
                             7天-24小时为您服务！
                         </p> -->
                     </div>
-                    <div class="footer_list">
+                    <!-- <div class="footer_list">
                         <p class="footer_title">
                             {{ $lang('产品中心', 'Product Center') }}
                         </p>
@@ -36,7 +36,8 @@
                                 {{ $lang(item.title, item.title_en) }}
                             </NuxtLinkLocale>
                         </div>
-                    </div>
+                    </div> -->
+                    <!-- <div class="footer_list footer_nav"> -->
                     <div class="footer_list">
                         <p class="footer_title">
                             {{ $lang('快速链接', 'Quick links') }}

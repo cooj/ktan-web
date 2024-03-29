@@ -2,7 +2,7 @@
     <!-- 头部开始 -->
     <header class="header">
         <!-- 顶部 -->
-        <div class="main-bg-color Top_box width_module">
+        <div v-if="0" class="main-bg-color Top_box width_module">
             <div class="width_box Top_module flex">
                 <span class="Top_title">{{ $lang(systemInfo?.welcome, systemInfo?.welcome_en) }}</span>
                 <div class="Top_right flex">
@@ -36,7 +36,7 @@
         <!-- 导航 -->
         <div class="width_box dh_module flex">
             <NuxtLinkLocale to="/" class="logo_icon">
-                <img :src="systemInfo?.logo" alt="">
+                <img :src="systemInfo?.logo" :title="systemInfo?.company" alt="logo">
             </NuxtLinkLocale>
             <div class="nav_module flex">
                 <nav>
@@ -101,7 +101,7 @@
                 <img src="assets/image/list_icon.png" alt="">
             </div>
             <NuxtLinkLocale to="/" class="mo_search_logo">
-                <img :src="systemInfo?.logo2 || ''" alt="">
+                <img :src="systemInfo?.logo2 || ''" :title="systemInfo?.company" alt="logo">
             </NuxtLinkLocale>
             <div class="nav_search" @click="onToggleSearch()">
                 <img class="co-filter-color" src="assets/image/icon_search.png" alt="">
@@ -109,7 +109,7 @@
         </div>
         <div class="mo_module" :class="activeClass">
             <div ref="target" class="mo_box">
-                <div class="main-bg-color mo_explain">
+                <div v-if="0" class="main-bg-color mo_explain">
                     <span>{{ $lang(systemInfo?.welcome, systemInfo?.welcome_en) }}</span>
                     <span>{{ systemInfo?.phone }}</span>
                 </div>

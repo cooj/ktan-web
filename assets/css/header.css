@@ -502,7 +502,7 @@
     height: 100%;
     background-color: #fff;
     transition: left .5s;
-
+    overflow: auto;
 }
 
 
@@ -661,9 +661,13 @@
 
 
 
-.footer_list:nth-child(3) {
+.footer_list.footer_nav {
     width: 10%;
 
+}
+
+.footer_list.footer_contact {
+    width: 32%;
 }
 
 
@@ -1608,7 +1612,7 @@ justify-content: center;
 
 
     .nav_list {
-        padding: 0 1.3rem;
+        padding: 0 0.6rem;
     }
 
 
@@ -1703,20 +1707,22 @@ justify-content: center;
         width: 30%;
     }
 
+    .footer_list.footer_contact {
+        width: 30%;
+    }
 
     .footer_list:nth-child(2) {
         width: 40%;
     }
 
+    .footer_code {
+        margin-right: 2rem;
+    }
 
-    .footer_list:nth-child(3) {
+
+    /* .footer_list:nth-child(3) {
         width: 15%;
-    }
-
-
-    .footer_list1 {
-        margin-top: -2rem;
-    }
+    } */
 
 
     /* 登录 */
@@ -1752,7 +1758,7 @@ justify-content: center;
         width: 95%;
     }
 
-    .banner_img img{
+    .banner_img img {
         min-height: 110px;
         object-fit: cover;
     }
@@ -1818,13 +1824,13 @@ justify-content: center;
 
 
     .footer_list:nth-child(2) {
-        width: 100%;
+        width: 55%;
         margin-right: 0;
     }
 
 
     .footer_list:nth-child(3) {
-        width: 50%;
+        width: 40%;
     }
 
 
@@ -1855,7 +1861,7 @@ justify-content: center;
 
 
     .footer_code {
-        margin: 0 0 1.25rem 0;
+        margin: 10px 0 0;
     }
 
 

@@ -53,6 +53,7 @@
     transform: translateY(-50%);
     margin-top: 0;
     --swiper-navigation-sides-offset: 0;
+    display: flex;
 }
 
 .goods_btn::after {
