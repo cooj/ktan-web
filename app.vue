@@ -26,7 +26,8 @@ const locale = computed(() => {
     return lo.value === 'en' ? en : zhCn
 })
 
-const url = useRequestURL()
+const runtimeConfig = useRuntimeConfig()
+const HOST = runtimeConfig.upload.host
 
 useHead({
     title: systemInfo.value?.title,
@@ -44,7 +45,7 @@ useHead({
                 '@context': 'http://schema.org',
                 '@type': 'Organization',
                 'name': systemInfo.value?.company,
-                'url': url.origin,
+                'url': HOST,
                 'logo': systemInfo.value?.logo,
             }),
         },
