@@ -78,9 +78,19 @@ export const getBannerList = async (event: H3Event) => {
         isHide: false,
     }
 
+    let page: number | undefined
+    let pageSize: number | undefined
+    let pageSkip: number | undefined
+
+    if (param?.isPage) {
+        page = Number(param.page || 1)
+        pageSize = Number(param.pageSize || 10)
+        pageSkip = pageSize * (page - 1) || 0
+    }
+
     const res = await event.context.prisma.link.findMany({
-        skip: 0,
-        take: 10,
+        skip: pageSkip,
+        take: pageSize,
         where,
         orderBy: {
             sort: 'asc', // 按id正序排序

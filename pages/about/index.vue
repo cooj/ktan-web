@@ -50,7 +50,13 @@ const { data } = await useCustomFetch<Prisma.OtherMaxAggregateOutputType>('/api/
     },
 })
 
-const { data: photo } = await useCustomFetch<ISlideListResponse[]>('/api/page/get_banner?type=7')
+const { data: photo } = await useCustomFetch<ISlideListResponse[]>('/api/page/get_banner', {
+    method: 'post',
+    body: {
+        type: 7,
+        isPage: 1,
+    },
+})
 </script>
 
 <style lang="scss" scoped>

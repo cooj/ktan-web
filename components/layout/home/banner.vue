@@ -4,7 +4,7 @@
             <template #template>
                 <el-skeleton-item variant="image" class="h450px!" />
             </template>
-        </el-skeleton> -->
+</el-skeleton> -->
         <ClientOnly>
             <Swiper v-if="activeMenu?.href === '/'"
                 :modules="[SwiperAutoplay, SwiperEffectCreative, SwiperNavigation, SwiperPagination]"
@@ -72,7 +72,13 @@ const effect = {
     next: { translate: ['100%', 0, 0] },
 }
 
-const { data: banner } = await useCustomFetch<ISlideListResponse[]>('/api/page/get_banner?type=5')
+const { data: banner } = await useCustomFetch<ISlideListResponse[]>('/api/page/get_banner', {
+    method: 'post',
+    body: {
+        type: 5,
+        isPage: 1,
+    },
+})
 </script>
 
 <style lang="scss" scoped>
