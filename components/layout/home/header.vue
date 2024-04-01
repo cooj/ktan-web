@@ -35,8 +35,8 @@
         </div>
         <!-- 导航 -->
         <div class="width_box dh_module flex">
-            <NuxtLinkLocale to="/" class="logo_icon">
-                <img :src="systemInfo?.logo" :title="systemInfo?.company" alt="logo">
+            <NuxtLinkLocale to="/" class="logo_icon" :title="systemInfo?.company">
+                <img :src="systemInfo?.logo" :alt="systemInfo?.company">
             </NuxtLinkLocale>
             <div class="nav_module flex">
                 <nav>
@@ -100,8 +100,8 @@
             <div class="mo_search_switch" @click="onToggleMenu()">
                 <img src="assets/image/list_icon.png" alt="">
             </div>
-            <NuxtLinkLocale to="/" class="mo_search_logo">
-                <img :src="systemInfo?.logo2 || ''" :title="systemInfo?.company" alt="logo">
+            <NuxtLinkLocale to="/" class="mo_search_logo" :title="systemInfo?.company">
+                <img :src="systemInfo?.logo2 || ''" :alt="systemInfo?.company">
             </NuxtLinkLocale>
             <div class="nav_search" @click="onToggleSearch()">
                 <img class="co-filter-color" src="assets/image/icon_search.png" alt="">
