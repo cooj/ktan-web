@@ -58,7 +58,7 @@ export const dirExists = async (dir: fs.PathLike) => {
     }
     // 拿到上级路径
     const tempDir = path.parse(dir as string).dir
-    console.log('tempDir :>> ', tempDir)
+    // console.log('tempDir :>> ', tempDir)
     // 递归判断，如果上级目录也不存在，则会代码会在此处继续循环执行，直到目录存在
     const status = await dirExists(tempDir)
     let mkdirStatus = false
@@ -116,11 +116,11 @@ export const createFile = async (ext: string, data: NodeJS.ArrayBufferView | str
 
     // 线上是运行.output/server/index.mjs（开发也是一样）,所以需要向上找两层
     const createDir = path.resolve(__dirnameNew, `../..${url}`)
-    console.log(createDir)
+    // console.log(createDir)
 
     // 创建文件夹
     const folder = await dirExists(createDir)
-    console.log(folder)
+    // console.log(folder)
     if (!folder) {
         console.warn('创建文件夹失败')
         return false

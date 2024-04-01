@@ -102,7 +102,7 @@ const qqLink = computed(() => {
         return 'javascript:;'
     }
 })
-// console.log(dat)
+
 const { data: links } = await useCustomFetch<ISlideListResponse[]>('/api/page/get_links', {
     params: {
         type: 8,

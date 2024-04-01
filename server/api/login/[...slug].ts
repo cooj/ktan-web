@@ -40,37 +40,37 @@ router.use('/sign_test', defineEventHandler(async (event) => {
 
     return 'url'
 
-    // const dat = await readRawBody(event)
-    // const dat = await readBody(event)
-    const head = getHeader(event, 'content-type')
-    console.log('🚀 ~ file: [...slug].ts:33 ~ router.use ~ head:', head)
+    // // const dat = await readRawBody(event)
+    // // const dat = await readBody(event)
+    // const head = getHeader(event, 'content-type')
+    // console.log('🚀 ~ file: [...slug].ts:33 ~ router.use ~ head:', head)
 
-    const das = await dirExists('/public/upload/2023/08/21/1634654678.79546354.png')
-    console.log(das)
-    // 文件上传方法
-    const body = (await readMultipartFormData(event)) || []
-    console.log(body)
-    if (!body.length) return { msg: '未获取到文件' }
+    // const das = await dirExists('/public/upload/2023/08/21/1634654678.79546354.png')
+    // console.log(das)
+    // // 文件上传方法
+    // const body = (await readMultipartFormData(event)) || []
+    // console.log(body)
+    // if (!body.length) return { msg: '未获取到文件' }
 
-    // let extname = path.extname(body[0].filename) // 1634654678.79546354.png
+    // // let extname = path.extname(body[0].filename) // 1634654678.79546354.png
 
-    // // 写入文件
-    // writeFile(`/public/upload/2023/08/23/${body[0].filename}`, body[0].data, (err) => {
-    //     console.log('err', err)
-    // })
+    // // // 写入文件
+    // // writeFile(`/public/upload/2023/08/23/${body[0].filename}`, body[0].data, (err) => {
+    // //     console.log('err', err)
+    // // })
 
-    console.log('__filenameNew :>> ', __filenameNew)
-    console.log(__dirnameNew)
-    const dir = resolve(__dirnameNew, '../../public/upload/2023/08/23')
-    console.log(dir)
-    // const dat = await dirExists('/public/upload/2023/08/23')
-    // console.log(dat)
-    return {
-        code: 0,
-        data: {
-            sign: '1234567890',
-        },
-    }
+    // console.log('__filenameNew :>> ', __filenameNew)
+    // console.log(__dirnameNew)
+    // const dir = resolve(__dirnameNew, '../../public/upload/2023/08/23')
+    // console.log(dir)
+    // // const dat = await dirExists('/public/upload/2023/08/23')
+    // // console.log(dat)
+    // return {
+    //     code: 0,
+    //     data: {
+    //         sign: '1234567890',
+    //     },
+    // }
     // interface LoginDataType {
     //     account: string
     //     password: string

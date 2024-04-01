@@ -71,8 +71,9 @@ export const getBannerList = async (event: H3Event) => {
 
     // 获取参数
     const param = await getEventParams<{ type: number } & ListPage>(event)
-
-    const types = param?.type.toString().split(',').filter(item => !!item).map(item => Number(item))
+    console.log(param)
+    const txt = param?.type || ''
+    const types = txt.toString().split(',').filter(item => !!item).map(item => Number(item))
     const where: any = {
         type: { in: types },
         isHide: false,
@@ -401,7 +402,7 @@ export const getIndexData = async (event: H3Event) => {
             },
         }),
     ])
-    // console.log(res1)
+
     const list = res1.map((item) => {
         const node = item.links.find(item => item.type === 1)
         item.img = node?.img || ''

@@ -117,7 +117,6 @@ if (!data.value) {
 }
 
 const product = data.value?.data
-// console.log('product :>> ', product)
 // const photoList = []
 const photoList = computed(() => product?.links?.filter(item => item.type === 1) || [])
 const downloadList = computed(() => product?.links?.filter(item => item.type === 2) || [])
