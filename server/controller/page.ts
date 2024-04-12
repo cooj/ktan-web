@@ -71,7 +71,7 @@ export const getBannerList = async (event: H3Event) => {
 
     // 获取参数
     const param = await getEventParams<{ type: number } & ListPage>(event)
-    console.log(param)
+    // console.log(param)
     const txt = param?.type || ''
     const types = txt.toString().split(',').filter(item => !!item).map(item => Number(item))
     const where: any = {
