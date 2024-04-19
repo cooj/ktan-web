@@ -64,8 +64,8 @@
 
                     <div class="footer_icBox flex">
                         <NuxtLink v-for="item in links" :key="item.id" :to="item.href" target="_blank"
-                            class="footer_icon">
-                            <img :src="item.img" :alt="$lang(item.title, item.title_en) || ''">
+                            class="footer_icon" :title="$lang(item.title, item.title_en) || ''">
+                            <img :src="item.img" class="max-h35px" :alt="$lang(item.title, item.title_en) || ''">
                         </NuxtLink>
                         <!-- <a target="" class="footer_icon"
                             href="https://www.facebook.com/profile.php?id=100069614070466?lang=zh-Hans"><img
