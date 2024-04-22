@@ -31,7 +31,7 @@ definePageMeta({
     layout: 'home',
 })
 
-const { data: photo } = await useCustomFetch<ISlideListResponse[]>('/api/page/get_banner?type=6')
+const { data: photo } = await useCustomFetch<ISlideListResponse[]>('/api/page/get_about_link?type=6')
 const srcList = photo.value?.map(item => item.img)
 
 const { nowMenu } = useMenuState()

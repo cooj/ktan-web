@@ -30,6 +30,13 @@ router.use('/get_banner', defineEventHandler(async (event) => {
 }))
 
 /**
+ * 获取关于我们、合作单位链接列表
+ */
+router.use('/get_about_link', defineEventHandler(async (event) => {
+    return getBannerList(event)
+}))
+
+/**
  * 获取友情链接
  */
 router.use('/get_links', defineEventHandler(async (event) => {
