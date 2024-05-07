@@ -9,6 +9,10 @@ export const uploadFile = async (event: H3Event) => {
 
         const url = await createFile(ext, dat.file.data, true)
         if (!url) return { msg: '上传失败' }
+        const xForwardedFor = event.node.req.headers['x-forwarded-for']
+        const xRealIp = event.node.req.headers['x-real-ip']
+        const uploadInfo = `${new Date().toJSON()}--request url:${getRequestURL(event)}--${getRequestHeaders(event).origin},ip address:${xForwardedFor}-${xRealIp},user:${event.context.user},upload url:${url}`
+        console.warn(uploadInfo)
         return { code: 200, data: url }
     } else {
         return { msg: '文件格式错误' }

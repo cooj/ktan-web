@@ -96,6 +96,9 @@ export default defineNuxtConfig({
             },
         },
     },
+    // devServer: {
+    //     host: process.env.NUXT_UPLOAD_HOST || '',
+    // },
     runtimeConfig: {
         // 仅在服务端serve可以访问
         appKey: 'abcd',
