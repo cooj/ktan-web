@@ -13,6 +13,7 @@ import en from 'element-plus/dist/locale/en.mjs'
 
 import '~/assets/scss/default.scss'
 import '~/assets/css/header.css'
+import { baiduUrl } from './config/constant'
 
 // import '@unocss/reset/tailwind.css'
 // import '~/assets/scss/app.scss'
@@ -48,6 +49,15 @@ useHead({
                 'url': HOST,
                 'logo': systemInfo.value?.logo,
             }),
+        },
+        { innerHTML: 'var _hmt = _hmt || [];' },
+        {
+            type: 'text/javascript',
+            src: baiduUrl,
+            // async: true,
+            // defer: true,
+            // crossorigin: 'anonymous',
+            // referrerpolicy: 'no-referrer-when-downgrade',
         },
     ],
     // bodyAttrs: {
