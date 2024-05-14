@@ -73,7 +73,7 @@ export const useVerifySign = async (event: H3Event) => {
     const sign = arr[0]
     const time = arr[1]
     // 判断时间戳是否过期
-    if (new Date().getTime() - Number(time) > 60 * 60 * 3) {
+    if (new Date().getTime() - Number(time) > 2 * 60 * 1000) {
         console.warn(`签名失效,${signTimestamp}`)
         return undefined
     }
